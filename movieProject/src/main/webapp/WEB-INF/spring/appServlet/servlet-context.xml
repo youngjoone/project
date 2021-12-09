@@ -31,8 +31,8 @@
 
 	<!-- interceptor 정보 여기에 추가 -->
 	<!-- bean을 정의하고 -->
-	<beans:bean id="LoginInterceptor"
-		class="com.hk.board.interceptor.LoginInterceptor" />
+<!-- 	<beans:bean id="LoginInterceptor"
+		class="com.hk.board.interceptor.LoginInterceptor" /> -->
 
 	<!-- <interceptors> <interceptor> <mapping path="/*" /> <exclude-mapping 
 		path="/login" /> <exclude-mapping path="/logout" /> <beans:ref bean="LoginInterceptor" 
