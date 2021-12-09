@@ -11,6 +11,8 @@ public class NewController {
 	@ResponseBody 
 	public String list() { 
 		return "Hello";
+		
+		//123
 	}
 
 }
