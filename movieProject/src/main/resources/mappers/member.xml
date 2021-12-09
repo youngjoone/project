@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="mapper.member">
+	<resultMap type="MemberVO" id="memberResult">
+	<!-- resultMap을 사용할때 id 필요 (list 같은 상황에) -->
+		<result column="id" property="id" />
+		<result column="pw" property="pw" />
+		<result column="birth" property="birth" />
+		<result column="name" property="name" />
+		<result column="email" property="email" />
+		<result column="tel" property="tel" />
+	</resultMap>
+	
+	<select id="checkUser" resultType="MemberVO">
+		SELECT id, pw, birth, name, email, tel
+		FROM P_MEMBER 
+		where id=#{id} and pw=#{pw}
+	</select>
+	
+	
+</mapper>
