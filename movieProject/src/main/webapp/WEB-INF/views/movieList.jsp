@@ -43,49 +43,96 @@
 	href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.dashboard.css">
+<style>
+p {
+	text-align: center;
+}
+
+ul {
+	list-style-type: none;
+	margin: 5px;
+}
+
+img {
+	margin: 15px;
+}
+</style>
 </head>
 <header>
-<jsp:include page="/WEB-INF/views/header.jsp" />
+	<jsp:include page="/WEB-INF/views/header.jsp" />
 </header>
 <body>
 
-<div class="row pd-t-50 bd-b">
-<div class="col-sm"></div>
-  <div class="col-sm-8">영화 전체보기</div>
-  <div class="col-sm"></div>
-</div>
-<div class="row">
-<div class="col-sm"></div>
-  <div class="col-sm-2">
-  
-  <img src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg" class="rounded" alt="첫째" height="331" width="230">
- <p>제목<br>별점  예매하기</p>
-   
-  </div>
-  <div class="col-sm-2">
-  
-  <img src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg" class="rounded" alt="첫째" height="331" width="230">
- 
-   
-  </div>
-  <div class="col-sm-2">
-  
-  <img src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg" class="rounded" alt="첫째" height="331" width="230">
- 
-   
-  </div>
-  <div class="col-sm-2">
-  
-  <img src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg" class="rounded" alt="첫째" height="331" width="230">
- 
-   
-  </div>
-  <div class="col-sm"></div>
-</div>
+	<div class="row pd-t-50 bd-b">
+		<div class="col-sm"></div>
+		<div class="col-sm-8">
+			<p>영화 전체보기</p>
+		</div>
+		<div class="col-sm"></div>
+	</div>
+	<div class="row pd-t-50">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-8">
+			<ul>
+				<li>
+					<div class="card wd-100 ht-150">
+						<img
+							src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg"
+							class="card-img-top wd-180 ht-230" alt="">
+						<div class="card-body">...</div>
+					</div>
+
+				</li>
+				<li>
+					<div>
+						<img
+							src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg"
+							class="rounded float-left" alt="" width="150px" height="230ox">
+
+					</div>
+				</li>
+				<li>
+					<div>
+						<img
+							src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg"
+							class="rounded float-left" alt="" width="150px" height="230ox">
+
+					</div>
+				</li>
+				<li>
+					<div>
+						<img
+							src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg"
+							class="rounded float-left" alt="" width="150px" height="230ox">
+
+					</div>
+				</li>
+				<li>
+					<div>
+						<img
+							src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg"
+							class="rounded float-left" alt="" width="150px" height="230ox">
+
+					</div>
+				</li>
+			</ul>
+
+
+		</div>
+	</div>
+	<div class="col-sm-2"></div>
+
+
+
+
+
+
+
+
 
 
 </body>
 <footer>
-<jsp:include page="/WEB-INF/views/footer.jsp" />
+	<jsp:include page="/WEB-INF/views/footer.jsp" />
 </footer>
 </html>
