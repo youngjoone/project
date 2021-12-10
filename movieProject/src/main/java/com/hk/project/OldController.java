@@ -3,7 +3,7 @@ package com.hk.project;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-//슬빈짱
+//슬빈
 @Controller
 public class OldController {
 
