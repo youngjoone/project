@@ -6,7 +6,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
     <typeAliases>
       <typeAlias type="com.hk.project.member.vo.MemberVO" alias="MemberVO" />
-      <typeAlias type="com.hk.project.member.vo.NoticeVO" alias="NoticeVO" />
       
     </typeAliases>
 </configuration>
