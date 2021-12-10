@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="mapper.notice">
+
+   <!-- 테이블 컬럼과 VO가 1:1 매핑했을때 이름이 다르면 맞춰주기 위해 설정 -->
+   <resultMap id="noticeResult" type="NoticeVO">
+      <result property="noticeNO" column="noticeNO" />
+      <result property="category" column="category" />
+      <result property="nTitle" column="nTitle" />
+      <result property="nContent" column="nContent" />
+      <result property="date" column="date" />
+   </resultMap>
+   
+   <!-- list -->
+   <select id="selectAllNotices" resultMap="noticeResult">
+   		SELECT noticeNO, category, ntitle, ncontent, "date" 
+   		FROM P_NOTICE  
+   </select>
+</mapper>   
