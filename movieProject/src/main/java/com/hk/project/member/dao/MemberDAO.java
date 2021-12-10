@@ -16,7 +16,6 @@ public class MemberDAO {
 	public MemberVO isExisted(MemberVO memberVO) {
 		  //MemberVO login
 			memberVO = sqlSession.selectOne("mapper.member.isExisted", memberVO);
-			System.out.println("dao"+memberVO.toString());
 			return memberVO; //로그인 정보에 맞는 VO값
 		}
 }

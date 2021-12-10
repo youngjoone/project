@@ -17,7 +17,7 @@
 	
 	
 	<select id="isExisted" resultType="MemberVO">
-		SELECT ID, PW
+		SELECT ID, PW , BIRTH, NAME, TEL, EMAIL
 		FROM P_MEMBER
 		WHERE ID =#{id} AND PW =#{pw}
 	</select>

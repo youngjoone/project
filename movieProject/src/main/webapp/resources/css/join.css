@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.sign-wrapper mg-lg-r-50 mg-xl-r-60 {
+	margin-left: 30px;
+	margin-right: 30px;
+}
+.btn btn-secondary btn-block {
+	margin:30px;
+}
