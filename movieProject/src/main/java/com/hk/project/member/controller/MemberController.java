@@ -30,16 +30,13 @@ public class MemberController {
 	@RequestMapping(value="/movie/login", method=RequestMethod.POST)
 	public String loginDone(Model model, @ModelAttribute MemberVO memberVO, HttpSession session) {
 
+		System.out.println(memberVO.toString());
+		
 		// DB결과가 들어있는 null 혹은 사용자 정보 memberVO
 		memberVO = memberService.checkUser(memberVO); // select한 VO값
 		// VO에 담을꺼니까 타입도 MemberVO
-
-		if (memberVO == null) { // 로그인 정보 틀림
-			return "loginFail";
-		} else { // 로그인 성공
-			// 세션
-			session.setAttribute("login", memberVO); // 인터셉터에서 login으로 설정
-			return "loginDone";
-		}
+		System.out.println(memberVO.toString());
+		
+		return "";
 	}
 }

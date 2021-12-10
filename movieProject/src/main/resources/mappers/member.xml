@@ -11,14 +11,15 @@
 		<result column="pw" property="pw" />
 		<result column="birth" property="birth" />
 		<result column="name" property="name" />
-		<result column="email" property="email" />
 		<result column="tel" property="tel" />
+		<result column="email" property="email" />
 	</resultMap>
 	
-	<select id="checkUser" resultType="MemberVO">
-		SELECT id, pw, birth, name, email, tel
-		FROM P_MEMBER 
-		where id=#{id} and pw=#{pw}
+	
+	<select id="isExisted" resultType="MemberVO">
+		SELECT ID, PW
+		FROM P_MEMBER
+		WHERE ID =#{id} AND PW =#{pw}
 	</select>
 	
 	

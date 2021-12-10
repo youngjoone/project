@@ -13,7 +13,7 @@ public class MemberService {
 	MemberDAO memberDAO;
 
 	public MemberVO checkUser(MemberVO memberVO) {
-		return memberDAO.checkUser(memberVO);
+		return memberDAO.isExisted(memberVO);
 	}
 	
 }

@@ -29,15 +29,24 @@
 	<context:component-scan
 		base-package="com.hk.project" />
 
+
 	<!-- interceptor 정보 여기에 추가 -->
-	<!-- bean을 정의하고 -->
-<!-- 	<beans:bean id="LoginInterceptor"
-		class="com.hk.board.interceptor.LoginInterceptor" /> -->
+	<!-- bean을 정의하고  -->
+ 	<beans:bean id="LoginInterceptor" class="com.hk.project.member.interceptor.LoginInterceptor" />
 
-	<!-- <interceptors> <interceptor> <mapping path="/*" /> <exclude-mapping 
-		path="/login" /> <exclude-mapping path="/logout" /> <beans:ref bean="LoginInterceptor" 
-		/> </interceptor> </interceptors> -->
-
+	<interceptors>
+		<interceptor>
+			<mapping path="/*" />
+			<exclude-mapping path="/movie/login" />
+			<exclude-mapping path="/movie/logout" />
+			<exclude-mapping path="/movie/main" />
+			<exclude-mapping path="/movie/join" />
+			<exclude-mapping path="/movie/list" />
+			<exclude-mapping path="/movie/detail"/>
+			<beans:ref bean="LoginInterceptor" />
+		</interceptor>
+	</interceptors>
+	
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="52428800" />
