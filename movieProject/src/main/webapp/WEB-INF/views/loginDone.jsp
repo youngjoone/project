@@ -8,7 +8,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+
+<body onload="myFunction()">
+
+<script>
+function myFunction() {
+	alert("로그인 성공");
+	location.href = "main";
+}
+</script>
+
+
 
 </body>
 </html>

@@ -23,7 +23,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/movie/login", method=RequestMethod.GET)
 	public String login() {
-		//login form
+		//login form 
 		return "login";
 	}
 	
@@ -34,9 +34,28 @@ public class MemberController {
 		
 		// DB결과가 들어있는 null 혹은 사용자 정보 memberVO
 		memberVO = memberService.checkUser(memberVO); // select한 VO값
-		// VO에 담을꺼니까 타입도 MemberVO
-		System.out.println(memberVO.toString());
+		
+		if (memberVO == null) {
+			return "loginFail";
+		} else {
+			return "loginDone";
+		}
+	}
+	
+	@RequestMapping(value="/movie/logout", method=RequestMethod.GET)
+	public String logout() {
 		
 		return "";
+	}
+	
+	@RequestMapping(value="/movie/join", method=RequestMethod.GET)
+	public String join() {
+		return "join";
+	}
+	
+	@RequestMapping(value="/movie/join", method=RequestMethod.POST)
+	public String joinDone() {
+		
+		return "joinDone";
 	}
 }
