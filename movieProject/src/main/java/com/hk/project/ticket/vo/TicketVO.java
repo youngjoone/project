@@ -3,9 +3,9 @@ package com.hk.project.ticket.vo;
 public class TicketVO {
 	
 	private String id;
-	private String ticketno;
-	private String screendateno;
-	private String screenno;
+	private String ticketNo;
+	private String screenDateNo;
+	private String screenNo;
 	private String age;
 	
 	public String getId() {
@@ -14,23 +14,23 @@ public class TicketVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getTicketno() {
-		return ticketno;
+	public String getTicketNo() {
+		return ticketNo;
 	}
-	public void setTicketno(String ticketno) {
-		this.ticketno = ticketno;
+	public void setTicketNo(String ticketNo) {
+		this.ticketNo = ticketNo;
 	}
-	public String getScreendateno() {
-		return screendateno;
+	public String getScreenDateNo() {
+		return screenDateNo;
 	}
-	public void setScreendateno(String screendateno) {
-		this.screendateno = screendateno;
+	public void setScreenDateNo(String screenDateNo) {
+		this.screenDateNo = screenDateNo;
 	}
-	public String getScreenno() {
-		return screenno;
+	public String getScreenNo() {
+		return screenNo;
 	}
-	public void setScreenno(String screenno) {
-		this.screenno = screenno;
+	public void setScreenNo(String screenNo) {
+		this.screenNo = screenNo;
 	}
 	public String getAge() {
 		return age;
@@ -40,8 +40,9 @@ public class TicketVO {
 	}
 	@Override
 	public String toString() {
-		return "TicketVO [id=" + id + ", ticketno=" + ticketno + ", screendateno=" + screendateno + ", screenno="
-				+ screenno + ", age=" + age + "]";
+		return "TicketVO [id=" + id + ", ticketNo=" + ticketNo + ", screenDateNo=" + screenDateNo + ", screenNo="
+				+ screenNo + ", age=" + age + "]";
 	}
+	
 
 }

@@ -15,4 +15,10 @@
       <result property="date" column="date" />
    </resultMap>
    
+   <select id="selectAllNoticeList" resultMap="noticeResult">
+   <![CDATA[
+   		SELECT noticeNO, category, ntitle, ncontent, "date" FROM P_NOTICE
+   ]]>
+   </select>
+   
 </mapper>

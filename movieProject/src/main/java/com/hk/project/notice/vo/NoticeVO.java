@@ -4,18 +4,18 @@ import java.util.Date;
 
 public class NoticeVO {
 	
-	private Number noticeno;
+	private int noticeNo;
 	private String category;
-	private String ntitle;
-	private String ncontent;
+	private String nTitle;
+	private String nContent;
 	private Date date;
 	
 	
-	public Number getNoticeno() {
-		return noticeno;
+	public int getNoticeNo() {
+		return noticeNo;
 	}
-	public void setNoticeno(Number noticeno) {
-		this.noticeno = noticeno;
+	public void setNoticeNo(int noticeNo) {
+		this.noticeNo = noticeNo;
 	}
 	public String getCategory() {
 		return category;
@@ -23,17 +23,17 @@ public class NoticeVO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getNtitle() {
-		return ntitle;
+	public String getnTitle() {
+		return nTitle;
 	}
-	public void setNtitle(String ntitle) {
-		this.ntitle = ntitle;
+	public void setnTitle(String nTitle) {
+		this.nTitle = nTitle;
 	}
-	public String getNcontent() {
-		return ncontent;
+	public String getnContent() {
+		return nContent;
 	}
-	public void setNcontent(String ncontent) {
-		this.ncontent = ncontent;
+	public void setnContent(String nContent) {
+		this.nContent = nContent;
 	}
 	public Date getDate() {
 		return date;
@@ -41,12 +41,12 @@ public class NoticeVO {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
 	@Override
 	public String toString() {
-		return "NoticeVO [noticeno=" + noticeno + ", category=" + category + ", ntitle=" + ntitle + ", ncontent="
-				+ ncontent + ", date=" + date + "]";
+		return "NoticeVO [noticeNo=" + noticeNo + ", category=" + category + ", nTitle=" + nTitle + ", nContent="
+				+ nContent + ", date=" + date + "]";
 	}
 	
 	
+
 }
