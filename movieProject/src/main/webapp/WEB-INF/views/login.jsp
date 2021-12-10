@@ -38,6 +38,10 @@
 function sub(form){
 	form.submit();
 	
+	
+	
+	
+	
 }
 </script>
 
@@ -45,7 +49,7 @@ function sub(form){
     <link rel="shortcut icon" type="image/x-icon" href="../../assets/img/favicon.png">
 
     <!-- vendor css -->
-    <link href="../../lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href=/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="../../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
 
     <!-- DashForge CSS -->
