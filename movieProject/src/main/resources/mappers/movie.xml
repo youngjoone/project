@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="mapper.movie">
+	<resultMap type="MovieVO" id="movieResult">
+	<!-- resultMap을 사용할때 id 필요 (list 같은 상황에) -->
+		<result column="mid" property="mid" />
+		<result column="poster" property="poster" />
+		<result column="link" property="link" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="genre" property="genre" />
+		<result column="runTime" property="runTime" />
+		<result column="director" property="director" />
+		<result column="cast" property="cast" />
+		<result column="age" property="age" />
+		<result column="type" property="type" />
+		<result column="openDate" property="openDate" />
+		
+	</resultMap>
+	
+	
+	<select id="movieList" resultMap="movieResult">
+		SELECT MID, POSTER, LINK, TITLE, CONTENT, GENRE, RUNTIME, DIRECTOR, "CAST", AGE, "TYPE", OPENDATE
+		FROM P_MOVIE
+
+	</select>
+	
+	
+</mapper>

@@ -2,7 +2,7 @@ package com.hk.project.movie.vo;
 
 public class MovieVO {
 
-	private int mid;
+	private String mid;
 	private String poster;
 	private String link;
 	private String title;
@@ -14,10 +14,11 @@ public class MovieVO {
 	private String age;
 	private String type;
 	private String openDate;
-	public int getMid() {
+	
+	public String getMid() {
 		return mid;
 	}
-	public void setMid(int mid) {
+	public void setMid(String mid) {
 		this.mid = mid;
 	}
 	public String getPoster() {

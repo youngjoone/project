@@ -5,9 +5,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-      <typeAlias type="com.hk.project.member.vo.MemberVO" alias="MemberVO" />
-
-      <typeAlias type="com.hk.project.notice.vo.NoticeVO" alias="NoticeVO" />
-
+    	<typeAlias type="com.hk.project.member.vo.MemberVO" alias="MemberVO" />
+    	<typeAlias type="com.hk.project.notice.vo.NoticeVO" alias="NoticeVO" />
+		<typeAlias type="com.hk.project.movie.vo.MovieVO" alias="MovieVO" />
     </typeAliases>
 </configuration>

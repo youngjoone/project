@@ -81,50 +81,19 @@ a:hover {
 	
 	<div class="row pd-t-20">
 		<div class="col-sm"></div>
+		<c:forEach var="movieVO" items="${movieVOList}">
 		<div class="col-sm">
 			<div class="card">
 				<img
-					src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg"
-					class="card-img-top rounded" alt="">
+					src="${pageContext.request.contextPath}/resources/template/images/${movieVO.poster }"
+					class="card-img-top rounded" alt="${movieVO.title }" width="134px" height="280px">
 
 				<button type="button" class="btn btn-secondary btn-block" disabled>
 					<a href="">예매하기</a>
 				</button>
 			</div>
 		</div>
-		<div class="col-sm">
-			<div class="card">
-				<img
-					src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg"
-					class="card-img-top rounded" alt="">
-
-				<button type="button" class="btn btn-secondary btn-block" disabled>
-					<a href="">예매하기</a>
-				</button>
-			</div>
-		</div>
-		<div class="col-sm">
-			<div class="card">
-				<img
-					src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg"
-					class="card-img-top rounded" alt="">
-
-				<button type="button" class="btn btn-secondary btn-block" disabled>
-					<a href="">예매하기</a>
-				</button>
-			</div>
-		</div>
-		<div class="col-sm">
-			<div class="card">
-				<img
-					src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg"
-					class="card-img-top rounded" alt="">
-
-				<button type="button" class="btn btn-secondary btn-block" disabled>
-					<a href="">예매하기</a>
-				</button>
-			</div>
-		</div>
+		</c:forEach>
 		
 		<div class="col-sm"></div>
 
@@ -154,7 +123,7 @@ a:hover {
   </thead>
   <tbody>
     <c:forEach var="noticeVO" items="${noticeVOList}">
-	    <p><c:out value="${boardMap.title}" /></p>
+	    
 	    <tr>
      		<th scope="row">${noticeVO.noticeNO}</th>
      		<td>${noticeVO.category}</td>
