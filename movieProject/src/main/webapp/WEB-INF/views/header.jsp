@@ -61,11 +61,11 @@ p {
 			<ul class="nav nav-pills nav-fill">
 
 				<div class="d-flex align-items-start pd-l-200 pd-t-10">
-					<a href="/movie/login"><i data-feather="archive">로그인</i></a>
+					<a href="/movie/login">로그인</a>
 				</div>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<div class="d-flex align-items-start pd-t-10">
-					<a href="/movie/join"><i data-feather="archive">회원가입</i></a>
+					<a href="/movie/join">회원가입</a>
 				</div>
 
 			</ul>

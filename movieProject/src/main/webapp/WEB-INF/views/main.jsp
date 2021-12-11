@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html>
@@ -124,6 +125,7 @@ a:hover {
 				</button>
 			</div>
 		</div>
+		
 		<div class="col-sm"></div>
 
 	</div>
@@ -151,29 +153,18 @@ a:hover {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>구분</td>
-      <td><a href="">제목</a></td>
-      <td>작성일</td>
-     
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>구분</td>
-      <td><a href="">제목</a></td>
-      <td>작성일</td>
-      
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>구분</td>
-      <td><a href="">제목</a></td>
-      <td>작성일</td>
-      
-    </tr>
+    <c:forEach var="noticeVO" items="${noticeVOList}">
+	    <p><c:out value="${boardMap.title}" /></p>
+	    <tr>
+     		<th scope="row">${noticeVO.noticeNO}</th>
+     		<td>${noticeVO.category}</td>
+      		<td><a href="">${noticeVO.nTitle}</a></td>
+      		<td><fmt:formatDate value="${noticeVO.date}" pattern="yyyy/MM/dd"/></td>
+  	 	 </tr>
+    </c:forEach>
   </tbody>
 </table>
+
 	</div>
 	<div class="col-sm"></div>
 	
