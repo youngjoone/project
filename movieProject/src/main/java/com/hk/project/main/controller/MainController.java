@@ -27,4 +27,12 @@ public class MainController {
 		return "main";
 	}
 	
+	@RequestMapping(value="/admin/main", method={RequestMethod.GET , RequestMethod.POST})
+	public String adminMainPage(Model model) {
+		List<NoticeVO> noticeVOList = mainService.getNoticeVOList();
+		model.addAttribute("noticeVOList", noticeVOList);
+		List<MovieVO> movieVOList = mainService.getMovieVOList();
+		model.addAttribute("movieVOList", movieVOList);
+		return "adminMain";
+	}
 }

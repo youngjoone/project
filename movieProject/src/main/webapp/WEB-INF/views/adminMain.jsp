@@ -63,7 +63,7 @@ a:hover {
 }
 </style>
 <header>
-<jsp:include page="/WEB-INF/views/header.jsp" />
+<jsp:include page="/WEB-INF/views/adminHeader.jsp" />
 </header>
 <body>
 

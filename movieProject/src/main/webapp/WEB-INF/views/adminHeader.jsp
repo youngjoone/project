@@ -63,15 +63,15 @@ a:hover {
 
 		<div class="col-sm order-1"></div>
 		<div class="col-sm order-2">
-			<a href="/movie/main"><p>
+			<a href="/admin/main"><p>
 					<img src="${pageContext.request.contextPath}/resources/template/images/megabox2.jpg" alt="영화로고"
 						width=" 300px" height=" 100px">
 				</p></a>
 		</div>
 		<div class="col-sm order-3">
 			<p class="text-right mg-t-20 mg-r-20">
-				<a href="/movie/login">로그인</a>
-				<a class="mg-l-20" href="/movie/join">회원가입</a>
+				<a href="/movie/login"></a>
+				<a class="mg-l-20" href="/movie/join"></a>
 			</p>
 		</div>
 
@@ -103,20 +103,20 @@ a:hover {
 		<div class="col-sm order-1"></div>
 		<div class="col-sm order-2">
 			<ul class="nav nav-pills nav-fill">
-				<li class="nav-item"><a href="/movie/list" class="nav-link"><i
+				<li class="nav-item"><a href="/admin/list" class="nav-link"><i
 						data-feather="box">영화</i></a></li>
-				<li class="nav-item"><a href="/movie/booking" class="nav-link"><i
-						data-feather="archive">예매</i></a></li>
+				<li class="nav-item"><a href="/admin/booking/add" class="nav-link"><i
+						data-feather="archive">상영정보등록</i></a></li>
 
 			</ul>
 		</div>
 
 		<div class="col-sm order-3">
 			<ul class="nav nav-pills nav-fill">
-				<li class="nav-item"><a href="/movie/notice" class="nav-link"><i
+				<li class="nav-item"><a href="/admin/notice" class="nav-link"><i
 						data-feather="archive">공지사항</i></a></li>
-				<li class="nav-item"><a href="/movie/mypage" class="nav-link"><i
-						data-feather="archive">마이페이지</i></a></li>
+				<li class="nav-item"><a href="/admin/booking/list" class="nav-link"><i
+						data-feather="archive">예매현황</i></a></li>
 			</ul>
 		</div>
 
