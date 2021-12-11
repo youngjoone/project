@@ -16,4 +16,8 @@ public class MemberService {
 		return memberDAO.isExisted(memberVO);
 	}
 	
+	public String duplicateCheck(String id) {
+		return memberDAO.duplicateCheckID(id);
+	}
+	
 }

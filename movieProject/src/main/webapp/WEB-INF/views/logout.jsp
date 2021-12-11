@@ -8,17 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-
-<body onload="myFunction()">
-
-<script>
-function myFunction() {
-	alert("${name }님 환영합니다.");
-	location.href = "main";
-}
-</script>
-
-
-
+<body>
+${name }님 로그아웃
 </body>
 </html>

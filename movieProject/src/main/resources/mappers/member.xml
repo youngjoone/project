@@ -22,5 +22,9 @@
 		WHERE ID =#{id} AND PW =#{pw}
 	</select>
 	
-	
+	<select id="dupId" resultType="string">
+	SELECT ID
+	FROM P_MEMBER 
+	WHERE ID =#{id}
+</select>
 </mapper>
