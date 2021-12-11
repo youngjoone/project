@@ -28,7 +28,7 @@
 		WHERE ID =#{id}
 	</select>
 	
-	<insert id="insertArticle" parameterType="ArticleVO">
+	<insert id="joinUser" parameterType="MemberVO">
 		INSERT INTO STUDY.P_MEMBER
 		(ID, PW, BIRTH, NAME, TEL, EMAIL)
 		VALUES(#{id}, #{pw}, #{birth}, #{name}, #{tel}, #{email});
