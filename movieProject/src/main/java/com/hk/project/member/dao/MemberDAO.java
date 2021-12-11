@@ -26,4 +26,9 @@ public class MemberDAO {
 		String dupid = sqlSession.selectOne("mapper.member.dupId", id);
 		return dupid;
 	}
+
+	public int insertUser(MemberVO memberVO) {
+		int ret = sqlSession.insert("mapper.member.joinUser", memberVO);
+		return ret;
+	}
 }

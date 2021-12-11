@@ -19,5 +19,9 @@ public class MemberService {
 	public String duplicateCheck(String id) {
 		return memberDAO.duplicateCheckID(id);
 	}
+
+	public int joinUser(MemberVO memberVO) {
+		return memberDAO.insertUser(memberVO);
+	}
 	
 }

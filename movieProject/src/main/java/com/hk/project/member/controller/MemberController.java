@@ -82,8 +82,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/movie/join", method=RequestMethod.POST)
-	public String joinDone() {
+	public String joinDone(Model model, @ModelAttribute MemberVO memberVO) {
+		System.out.println("join="+memberVO.toString());
 		
+		int ret = memberService.joinUser(memberVO); 
+		model.addAttribute("ret", ret);
 		return "joinDone";
 	}
 }
