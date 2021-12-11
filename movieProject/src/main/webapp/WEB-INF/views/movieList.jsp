@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html>
@@ -52,10 +53,6 @@ ul {
 	list-style-type: none;
 	margin: 5px;
 }
-
-img {
-	margin: 15px;
-}
 </style>
 </head>
 <header>
@@ -70,68 +67,41 @@ img {
 		</div>
 		<div class="col-sm"></div>
 	</div>
-	<div class="row pd-t-50">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-8">
-			<ul>
-				<li>
-					<div class="card wd-100 ht-150">
-						<img
-							src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg"
-							class="card-img-top wd-180 ht-230" alt="">
-						<div class="card-body">...</div>
-					</div>
 
-				</li>
-				<li>
-					<div>
-						<img
-							src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg"
-							class="rounded float-left" alt="" width="150px" height="230ox">
+	<c:forEach var="movieVOList" items="${movieVO2DList}">
+	
+	<div class="row pd-t-20">		
+		<div class="col-sm"></div>
+		
+		<c:forEach var="movieVO" items="${movieVOList}">
+		<div class="col-sm">
+			<div class="card">
+				<img
+					src="${pageContext.request.contextPath}/resources/template/images/${movieVO.poster }"
+					class="card-img-top rounded" alt="${movieVO.title}" height="280px">
 
-					</div>
-				</li>
-				<li>
-					<div>
-						<img
-							src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg"
-							class="rounded float-left" alt="" width="150px" height="230ox">
-
-					</div>
-				</li>
-				<li>
-					<div>
-						<img
-							src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg"
-							class="rounded float-left" alt="" width="150px" height="230ox">
-
-					</div>
-				</li>
-				<li>
-					<div>
-						<img
-							src="${pageContext.request.contextPath}/resources/template/images/lalaland.jpg"
-							class="rounded float-left" alt="" width="150px" height="230ox">
-
-					</div>
-				</li>
-			</ul>
-
-
+				<button type="button" class="btn btn-secondary btn-block" disabled>
+					<a href="">예매하기</a>
+				</button>
+			</div>
 		</div>
-	</div>
-	<div class="col-sm-2"></div>
-
-
-
-
-
-
-
-
-
-
-</body>
+		</c:forEach>
+		
+		<!-- 마지막 UI 조정-->
+		<c:if test="${fn:length(movieVOList) != 4}">
+			<c:forEach begin="0" end="4" varStatus="loop">
+				<c:if test="${fn:length(movieVOList) < loop.index}">
+					<div class="col-sm"></div>
+				</c:if>
+			</c:forEach>
+		</c:if>
+		
+		<div class="col-sm"></div>
+	</div>	
+	
+	</c:forEach>
+	
+	</body>
 <footer>
 	<jsp:include page="/WEB-INF/views/footer.jsp" />
 </footer>

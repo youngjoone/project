@@ -44,6 +44,17 @@
 p {
 	text-align: center;
 }
+a:link {
+	color: black;
+}
+
+a:visited {
+	color: black;
+}
+
+a:hover {
+	color: black;
+}
 </style>
 <body>
 
@@ -58,17 +69,10 @@ p {
 				</p></a>
 		</div>
 		<div class="col-sm order-3">
-			<ul class="nav nav-pills nav-fill">
-
-				<div class="d-flex align-items-start pd-l-200 pd-t-10">
-					<a href="/movie/login">로그인</a>
-				</div>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<div class="d-flex align-items-start pd-t-10">
-					<a href="/movie/join">회원가입</a>
-				</div>
-
-			</ul>
+			<p class="text-right mg-t-20 mg-r-20">
+				<a href="/movie/login">로그인</a>
+				<a class="mg-l-20" href="/movie/join">회원가입</a>
+			</p>
 		</div>
 
 	</div>
