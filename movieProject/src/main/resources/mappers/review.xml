@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="mapper.review">
+
+   <!-- 테이블 컬럼과 VO가 1:1 매핑했을때 이름이 다르면 맞춰주기 위해 설정 -->
+   <resultMap id="reviewResult" type="ReviewVO">
+      <result property="id" column="id" />
+      <result property="mid" column="mid" />
+      <result property="rContent" column="rContent" />
+      <result property="score" column="score" />
+      <result property="rDate" column="rDate" />
+   </resultMap>
+   
+   <!-- list -->
+   <select id="selectMovieReview" resultMap="reviewResult">
+   		SELECT ID, MID, RCONTENT, SCORE, RDATE FROM P_REVIEW WHERE MID=#{MID}
+
+   </select>
+</mapper>   

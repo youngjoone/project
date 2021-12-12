@@ -10,12 +10,16 @@ import org.springframework.stereotype.Service;
 
 import com.hk.project.movie.dao.MovieDAO;
 import com.hk.project.movie.vo.MovieVO;
+import com.hk.project.review.dao.ReviewDAO;
+import com.hk.project.review.vo.ReviewVO;
 
 @Service
 public class MovieService {
 
 	@Autowired
 	MovieDAO movieDAO;
+	@Autowired
+	ReviewDAO reviewDAO;
 	
 	public List<List<MovieVO>> selectAllMovies(){
 		// init return value
@@ -47,11 +51,12 @@ public class MovieService {
 		return returnMovieVOList;
 	}
 	public Map<String,Object> detail(String mid){
-		System.out.println("무비서비스"+mid);
 		MovieVO movieVO = movieDAO.detail(mid);
-		
+		List<ReviewVO> reviewVO = reviewDAO.selectMovieReview(movieVO.getMid());
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("movieVO", movieVO);
+		map.put("reviewVO", reviewVO);
 		return map;
 	}
+	
 }

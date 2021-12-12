@@ -13,13 +13,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.project.movie.service.MovieService;
 import com.hk.project.movie.vo.MovieVO;
+import com.hk.project.review.service.ReviewService;
+import com.hk.project.review.vo.ReviewVO;
 
 @Controller
 public class MovieController {
 	
 	@Autowired
 	MovieService movieService;
-
+	@Autowired
+	ReviewService reviewService;
+	
+	
 	@RequestMapping(value="/movie/list", method={RequestMethod.GET , RequestMethod.POST})
 	public String movieList(Model model) {
 		
@@ -34,7 +39,10 @@ public class MovieController {
 		
 		Map<String,Object> map = movieService.detail(mid);
 		model.addAttribute("movieVO", map.get("movieVO"));
+		model.addAttribute("reviewVO", map.get("reviewVO"));
 		System.out.println(map.toString());
+		
+		
 		return "movieDetail";
 	}
 }

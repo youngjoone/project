@@ -54,7 +54,7 @@ p{
 </header>
 <body>
 <div class="row mg-t-30">
-	<div class="col-sm-2">2</div>
+	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
 		<div class="media">
   			<img src="${pageContext.request.contextPath}/resources/template/images/${movieVO.poster}" class="rounded mg-r-50" alt="" width="260px" height="374px">
@@ -73,7 +73,7 @@ p{
   			</div>
 		</div>
 	</div>
-	<div class="col-sm-2">2</div>
+	<div class="col-sm-2"></div>
 </div>
 <div class="row bd-t mg-t-50">
 	<div class="col mg-t-20"><p class="tx-30">관람평</p></div>
@@ -91,12 +91,16 @@ p{
 		</tr>
 	</thead>
 	<tbody>
+	<c:forEach var="reviewVO" items="${reviewVO}">
 		<tr>
-			<th scope="row">아이디</th>
-			<td>평점</td>
-			<td>한줄평</td>
+			<th scope="row">${reviewVO.id }</th>
+			<td>${reviewVO.score }</td>
+			<td>${reviewVO.rContent }</td>
 			
 		</tr>
+	</c:forEach>
+	
+		
 	</table>
 	</div>
 	<div class="col-sm-2"></div>
