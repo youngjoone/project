@@ -28,6 +28,10 @@
 		FROM P_MOVIE
 
 	</select>
-	
+	<select id="selectOne" resultMap="movieResult">
+		SELECT MID, POSTER, LINK, TITLE, CONTENT, GENRE, RUNTIME, DIRECTOR, "CAST", AGE, "TYPE", OPENDATE
+		FROM P_MOVIE WHERE MID=#{MID}
+
+	</select>
 	
 </mapper>

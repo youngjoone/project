@@ -1,7 +1,9 @@
 package com.hk.project.movie.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,7 @@ public class MovieService {
 		// get movie list
 		List<MovieVO> movieDaoList = movieDAO.selectAllMovies();
 		
-		// 4°³¾¿ Àß¶ó³Ö±â 
+		// 4ï¿½ï¿½ï¿½ï¿½ ï¿½ß¶ï¿½Ö±ï¿½ 
 		int count = 0;
 		List<MovieVO> tempMovieDaoList = new ArrayList<MovieVO>();
 		
@@ -37,11 +39,19 @@ public class MovieService {
 			}
 		}
 		
-		//  ³²Àº ¿µÈ­ ¸®½ºÆ® ³Ö±â
+		//  ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ö±ï¿½
 		if (count != 0) {
 			returnMovieVOList.add(tempMovieDaoList);	
 		}
 		
 		return returnMovieVOList;
+	}
+	public Map<String,Object> detail(String mid){
+		System.out.println("ë¬´ë¹„ì„œë¹„ìŠ¤"+mid);
+		MovieVO movieVO = movieDAO.detail(mid);
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("movieVO", movieVO);
+		return map;
 	}
 }

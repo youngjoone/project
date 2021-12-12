@@ -18,5 +18,9 @@ public class MovieDAO {
 		List<MovieVO> moviesList = sqlSession.selectList("mapper.movie.movieList");
 		return moviesList;
 	}
-	
+	public MovieVO detail(String mid) {
+		System.out.println("무비다오"+mid);
+		MovieVO movieVO = sqlSession.selectOne("mapper.movie.selectOne", mid);
+		return movieVO;
+	}
 }

@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -45,13 +44,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.dashboard.css">
 <style>
-p {
-	text-align: center;
-}
-
-ul {
-	list-style-type: none;
-	margin: 5px;
+p{
+	text-align:center;
 }
 </style>
 </head>
@@ -59,50 +53,55 @@ ul {
 	<jsp:include page="/WEB-INF/views/header.jsp" />
 </header>
 <body>
-
-	<div class="row pd-t-50 bd-b">
-		<div class="col-sm"></div>
-		<div class="col-sm-8">
-			<p>영화 전체보기</p>
+<div class="row mg-t-30">
+	<div class="col-sm-2">2</div>
+	<div class="col-sm-8">
+		<div class="media">
+  			<img src="${pageContext.request.contextPath}/resources/template/images/${movieVO.poster}" class="rounded mg-r-50" alt="" width="260px" height="374px">
+ 	 		<div class="media-body">
+    			<h2 class="mg-b-15 mg-t-10 tx-inverse">${movieVO.title }</h2>
+    			<h5>장르 : ${movieVO.genre }</h5>
+    			<h5>상영시간 : ${movieVO.runTime }</h5>
+    			<h5>감독 : ${movieVO.director }</h5>
+    			<h5>영상타입 : ${movieVO.type }</h5>
+    			<h5>연령 : ${movieVO.age }</h5>
+    			<h5>출연진 : ${movieVO.cast }</h5>
+    			<h5 class="mg-b-50">개봉날짜 : ${movieVO.openDate }</h5>
+    		
+    			<button type="button" class="btn btn-dark">예고편 보기</button>
+    			<button type="button" class="btn btn-dark">예매하기</button>
+  			</div>
 		</div>
-		<div class="col-sm"></div>
 	</div>
-
-	<c:forEach var="movieVOList" items="${movieVO2DList}">
-	
-	<div class="row pd-t-20">		
-		<div class="col-sm"></div>
-		
-		<c:forEach var="movieVO" items="${movieVOList}">
-		<div class="col-sm">
-			<div class="card">
-				<a href="detail?MID=${movieVO.mid }"><img
-					src="${pageContext.request.contextPath}/resources/template/images/${movieVO.poster }"
-					class="card-img-top rounded" alt="${movieVO.title}" height="280px"></a>
-
-				<button type="button" class="btn btn-secondary btn-block" disabled>
-					<span>별점</span>
-					<a href="">예매하기</a>
-				</button>
-			</div>
-		</div>
-		</c:forEach>
-		
-		<!-- 마지막 UI 조정-->
-		<c:if test="${fn:length(movieVOList) != 4}">
-			<c:forEach begin="0" end="4" varStatus="loop">
-				<c:if test="${fn:length(movieVOList) < loop.index}">
-					<div class="col-sm"></div>
-				</c:if>
-			</c:forEach>
-		</c:if>
-		
-		<div class="col-sm"></div>
-	</div>	
-	
-	</c:forEach>
-	
-	</body>
+	<div class="col-sm-2">2</div>
+</div>
+<div class="row bd-t mg-t-50">
+	<div class="col mg-t-20"><p class="tx-30">관람평</p></div>
+</div>
+<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-8">
+	<table class="table table-bordered">
+	<thead>
+		<tr>
+   			<th scope="col" class="col-md-1">아이디</th>
+			<th scope="col" class="col-md-1">평점</th>
+    		<th scope="col" class="col-md-9">한줄평</th>
+    		
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">아이디</th>
+			<td>평점</td>
+			<td>한줄평</td>
+			
+		</tr>
+	</table>
+	</div>
+	<div class="col-sm-2"></div>
+</div>
+</body>
 <footer>
 	<jsp:include page="/WEB-INF/views/footer.jsp" />
 </footer>
