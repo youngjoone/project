@@ -59,4 +59,7 @@ public class MovieService {
 		return map;
 	}
 	
+	public int addMovie(MovieVO movieVO) {
+		return movieDAO.addMovie(movieVO);
+	}
 }

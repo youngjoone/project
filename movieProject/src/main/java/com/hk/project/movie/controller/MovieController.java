@@ -45,4 +45,27 @@ public class MovieController {
 		
 		return "movieDetail";
 	}
+	
+	@RequestMapping(value="/admin/list", method={RequestMethod.GET , RequestMethod.POST})
+	public String adminMovieList(Model model) {
+		
+		List<List<MovieVO>> movieVO2DList =  movieService.selectAllMovies();
+		model.addAttribute("movieVO2DList", movieVO2DList);
+		
+		return "adminMovieList";
+	}
+	@RequestMapping(value="/admin/movie/add", method={RequestMethod.GET})
+	public String adminMovieAdd(Model model) {
+		
+		
+		return "adminMovieAdd";
+	}
+	
+	@RequestMapping(value="/admin/movie/add", method={RequestMethod.POST})
+	public String adminMovieAddDone(Model model,@ModelAttribute MovieVO movieVO) {
+		int ret = movieService.addMovie(movieVO);
+		model.addAttribute("ret", ret);
+		
+		return "adminMovieAddDone";
+	}
 }

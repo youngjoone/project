@@ -22,4 +22,9 @@ public class MovieDAO {
 		MovieVO movieVO = sqlSession.selectOne("mapper.movie.selectOne", mid);
 		return movieVO;
 	}
+	
+	public int addMovie(MovieVO movieVO) {
+		int ret = sqlSession.insert("mapper.movie.insertMovie", movieVO);
+		return ret;
+	}
 }

@@ -34,4 +34,11 @@
 
 	</select>
 	
+	<insert id="insertMovie" parameterType="movieVO">
+		INSERT INTO MOVIE.P_MOVIE
+		(MID, POSTER, LINK, TITLE, CONTENT, GENRE, RUNTIME, DIRECTOR, "CAST", AGE, "TYPE", OPENDATE)
+		VALUES(#{mid}, #{poster}, #{link}, #{title},#{content},#{genre},#{runTime},#{director},#{cast},#{age},#{type},#{openDate})
+
+
+	</insert>
 </mapper>
