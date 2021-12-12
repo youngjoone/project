@@ -75,6 +75,15 @@ p{
 	</div>
 	<div class="col-sm-2"></div>
 </div>
+<div class="row mg-t-30">
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+	<h3>영화 내용</h3>
+	<h5>${movieVO.content }</h5>
+</div>
+<div class="col-sm-2"></div>
+
+</div>
 <div class="row bd-t mg-t-50">
 	<div class="col mg-t-20"><p class="tx-30">관람평</p></div>
 </div>
