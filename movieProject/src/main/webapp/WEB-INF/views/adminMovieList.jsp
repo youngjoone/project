@@ -66,7 +66,7 @@ ul {
 			<p>영화 전체보기</p>
 		</div>
 		<div class="col-sm">
-			<button type="button" class="btn btn-dark mg-b-10" onclick="location.href='movie/add'">추가하기</button>
+			<button type="button" class="btn btn-danger mg-b-10" onclick="location.href='movie/add'">추가하기</button>
 		</div>
 	</div>
 

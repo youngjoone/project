@@ -68,4 +68,16 @@ public class MovieController {
 		
 		return "adminMovieAddDone";
 	}
+	@RequestMapping(value="/admin/detail", method={RequestMethod.GET , RequestMethod.POST})
+	public String adminMovieDetail(Model model,@RequestParam("MID") String mid,@ModelAttribute MovieVO movieVO) {
+		System.out.println(mid);
+		
+		Map<String,Object> map = movieService.detail(mid);
+		model.addAttribute("movieVO", map.get("movieVO"));
+		model.addAttribute("reviewVO", map.get("reviewVO"));
+		System.out.println(map.toString());
+		
+		
+		return "adminMovieDetail";
+	}
 }
