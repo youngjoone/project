@@ -60,12 +60,11 @@ public class MemberController {
 		return "logout";
 	}
 	
-	@RequestMapping(value = "/dupId", method = { RequestMethod.GET,
+	@RequestMapping(value = "/movie/dupId", method = { RequestMethod.GET,
 			RequestMethod.POST }, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public Map<String, Object> dupId(@RequestParam("id") String id) {
 		System.out.println("id = " + id);
-	    
 		Map<String, Object> map = new HashMap<String, Object>();
 		String dupId = memberService.duplicateCheck(id);
 		if (dupId == null) { // 중복X
@@ -73,7 +72,7 @@ public class MemberController {
 		} else { // 중복O
 			map.put("id", "true");
 		}
-		return map; // jsp를 찾는게 아니라 그냥 데이터만 client(ajax)로 리턴
+		return map; 
 	}
 	
 	@RequestMapping(value="/movie/join", method=RequestMethod.GET)
@@ -83,10 +82,13 @@ public class MemberController {
 	
 	@RequestMapping(value="/movie/join", method=RequestMethod.POST)
 	public String joinDone(Model model, @ModelAttribute MemberVO memberVO) {
+		
+		
 		System.out.println("join="+memberVO.toString());
 		
 		int ret = memberService.joinUser(memberVO); 
 		model.addAttribute("ret", ret);
+		model.addAttribute("name", memberVO.getName());
 		return "joinDone";
 	}
 }

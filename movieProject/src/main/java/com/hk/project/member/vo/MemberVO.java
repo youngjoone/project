@@ -2,10 +2,13 @@ package com.hk.project.member.vo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class MemberVO {
 
 	private String id;
 	private String pw;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birth;
 	private String name;
 	private int tel;

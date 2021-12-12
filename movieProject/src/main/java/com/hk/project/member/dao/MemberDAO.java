@@ -21,7 +21,7 @@ public class MemberDAO {
 	
 	public String duplicateCheckID(String id) {
 		//결과값에 id가 있으면 id값이 나오고,
-		//        id가 없으면 아무것도 안나오고
+		//        id가 없으면 null.
 		//return : String
 		String dupid = sqlSession.selectOne("mapper.member.dupId", id);
 		return dupid;

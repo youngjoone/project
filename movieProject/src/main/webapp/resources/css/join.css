@@ -8,3 +8,21 @@
 	margin:30px;
 }
 
+
+#checkDup {
+	font-size:13px;
+}
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #3c3c3c;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #3c3c3c;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #3c3c3c;
+}

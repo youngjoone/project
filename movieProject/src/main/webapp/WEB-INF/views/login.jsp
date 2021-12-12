@@ -48,7 +48,7 @@ function main(){
 
 </head>
 <body>
-<form action="/movie/login" method="post">
+
 <div class="container">
         <div class="media align-items-stretch justify-content-center ht-100p pos-relative pd-t-100">
           <div>
@@ -59,7 +59,10 @@ function main(){
           </div><!-- media-body -->
           
           <div class="sign-wrapper mg-lg-l-50 mg-xl-l-60">
+          
+          
             <div class="wd-100p">
+            <form action="/movie/login" method="post">
               <h3 class="tx-color-01 mg-b-5">LOGIN</h3>
               <p class="tx-color-03 tx-16 mg-b-40">Please sign in to continue.</p>
 
@@ -77,13 +80,19 @@ function main(){
               <br>
               
               <button class="btn btn-secondary btn-block">로그인</button>
-              <button class="btn btn-outline-dark btn-block" onclick="join()">회원가입</button>
-              <button class="btn btn-outline-dark btn-block" onclick="main()">홈페이지</button>
+            </form>
+            <br>
+            <button class="btn btn-outline-dark btn-block" onclick="join()">회원가입</button>
+		  	<button class="btn btn-outline-dark btn-block" onclick="main()">홈페이지</button>
             </div>
+            
+            
           </div><!-- sign-wrapper -->
+          
         </div><!-- media -->
       </div>    
-</form>
+
+
       
     <script src="${pageContext.request.contextPath}/resources/template/lib/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/template/lib/bootstrap/js/bootstrap.bundle.min.js"></script>

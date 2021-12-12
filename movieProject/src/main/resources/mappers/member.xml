@@ -29,9 +29,9 @@
 	</select>
 	
 	<insert id="joinUser" parameterType="MemberVO">
-		INSERT INTO STUDY.P_MEMBER
+		INSERT INTO P_MEMBER
 		(ID, PW, BIRTH, NAME, TEL, EMAIL)
-		VALUES(#{id}, #{pw}, #{birth}, #{name}, #{tel}, #{email});
+		VALUES(#{id}, #{pw}, #{birth}, #{name}, #{tel}, #{email})
 	</insert>
 	
 </mapper>
