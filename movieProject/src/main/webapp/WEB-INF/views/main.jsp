@@ -67,8 +67,6 @@ a:hover {
 </header>
 <body>
 
-
-
 	<div class="row bd-b pd-t-20">
 		<br>
 		<br>
