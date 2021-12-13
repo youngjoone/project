@@ -80,4 +80,21 @@ public class MovieController {
 		
 		return "adminMovieDetail";
 	}
+	@RequestMapping(value="/admin/update", method={RequestMethod.GET})
+	public String adminMovieUpdate(Model model,@ModelAttribute MovieVO movieVO) {
+		System.out.println("무비업데이트 movieVO="+movieVO);
+		Map<String, Object> map = movieService.detail(movieVO.getMid());
+		model.addAttribute("movieVO", map.get("movieVO"));	
+		System.out.println("무비업데이트"+map.toString());
+		
+		return "adminMovieUpdate";
+	}
+	@RequestMapping(value="/admin/update", method={RequestMethod.POST})
+	public String adminMovieUpdateDone(Model model,@ModelAttribute MovieVO movieVO) {
+		System.out.println(movieVO.toString());
+		int ret=movieService.updateMovie(movieVO);
+		model.addAttribute("ret", ret);
+		return "adminMovieUpdateDone";
+	}
+	
 }

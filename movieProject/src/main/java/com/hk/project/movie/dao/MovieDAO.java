@@ -27,4 +27,9 @@ public class MovieDAO {
 		int ret = sqlSession.insert("mapper.movie.insertMovie", movieVO);
 		return ret;
 	}
+	public int updateMovie(MovieVO movieVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.update("mapper.movie.updateMovie", movieVO);
+		return ret;
+	}
 }

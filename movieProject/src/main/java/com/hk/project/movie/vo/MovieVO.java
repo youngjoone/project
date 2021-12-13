@@ -94,5 +94,5 @@ public class MovieVO {
 				+ ", age=" + age + ", type=" + type + ", openDate=" + openDate + "]";
 	}
 	
-	
+	public MovieVO() {}
 }

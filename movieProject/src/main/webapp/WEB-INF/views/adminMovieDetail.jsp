@@ -50,7 +50,7 @@ p{
 </style>
 </head>
 <header>
-	<jsp:include page="/WEB-INF/views/header.jsp" />
+<jsp:include page="/WEB-INF/views/adminHeader.jsp" />
 </header>
 <body>
 <div class="row mg-t-30">
@@ -69,8 +69,32 @@ p{
     			<h5 class="mg-b-50">개봉날짜 : ${movieVO.openDate }</h5>
     		
     			<button type="button" class="btn btn-dark" onclick="window.open('${movieVO.link}')">예고편 보기</button>
-    			<button type="button" class="btn btn-danger" onclick="location.href='update'">수정하기</button>
+    			<button type="button" class="btn btn-danger" onclick="location.href='update?mid=${movieVO.mid}'" >수정하기</button>
     			<button type="button" class="btn btn-danger" onclick="location.href='delete'">삭제하기</button>
+    			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">모달?</button>
+    			<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
   			</div>
 		</div>
 	</div>

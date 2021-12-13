@@ -62,4 +62,7 @@ public class MovieService {
 	public int addMovie(MovieVO movieVO) {
 		return movieDAO.addMovie(movieVO);
 	}
+	public int updateMovie(MovieVO movieVO) {
+		return movieDAO.updateMovie(movieVO);
+	}
 }

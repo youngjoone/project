@@ -41,4 +41,10 @@
 
 
 	</insert>
+	
+	<update id="updateMovie" parameterType="movieVO">
+	UPDATE MOVIE.P_MOVIE
+	SET POSTER=#{poster}, LINK=#{link}, TITLE=#{title}, CONTENT=#{content}, GENRE=#{genre}, RUNTIME=#{runTime}, DIRECTOR=#{director}, "CAST"=#{cast}, AGE=#{age}, "TYPE"=#{type}, OPENDATE=#{openDate}
+	WHERE MID=#{mid}
+	</update>
 </mapper>
