@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 
-
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -105,7 +104,7 @@ a:hover {
 			<ul class="nav nav-pills nav-fill">
 				<li class="nav-item"><a href="/movie/list" class="nav-link"><i
 						data-feather="box">영화</i></a></li>
-				<li class="nav-item"><a href="/movie/booking" class="nav-link"><i
+				<li class="nav-item"><a href="/service/booking" class="nav-link"><i
 						data-feather="archive">예매</i></a></li>
 
 			</ul>
@@ -115,7 +114,7 @@ a:hover {
 			<ul class="nav nav-pills nav-fill">
 				<li class="nav-item"><a href="/movie/notice" class="nav-link"><i
 						data-feather="archive">공지사항</i></a></li>
-				<li class="nav-item"><a href="/movie/mypage" class="nav-link"><i
+				<li class="nav-item"><a href="/service/mypage" class="nav-link"><i
 						data-feather="archive">마이페이지</i></a></li>
 			</ul>
 		</div>

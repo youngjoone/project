@@ -36,14 +36,20 @@
 
 	<interceptors>
 		<interceptor>
-			<mapping path="/*" />
+			<!-- 로그인 인터셉터가 잡힐 페이지 -->
+			<mapping path="/admin/*" />
+			<mapping path="/service/*" /> <!-- 예매, 마이페이지 -->
+			
+			<!-- <mapping path="/reserve/*" />
+			<mapping path="/mypage/*" /> -->
 			
 			<exclude-mapping path="/movie/login" />
 			<exclude-mapping path="/movie/logout" />
-			
 			<exclude-mapping path="/movie/join" />
+			
+			<!-- <exclude-mapping path="/movie/join" />
 			<exclude-mapping path="/movie/list" />
-			<exclude-mapping path="/movie/detail"/>
+			<exclude-mapping path="/movie/detail"/> -->
 			
 			<beans:ref bean="LoginInterceptor" />
 		</interceptor>
