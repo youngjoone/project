@@ -69,7 +69,7 @@ p{
     			<h5 class="mg-b-50">개봉날짜 : ${movieVO.openDate }</h5>
     		
     			<button type="button" class="btn btn-dark" onclick="window.open('${movieVO.link}')">예고편 보기</button>
-    			<button type="button" class="btn btn-dark" onclick="location.href='booking'">예매하기</button>
+    			<button type="button" class="btn btn-dark" onclick="location.href='../service/booking?mid=${movieVO.mid}'">예매하기</button>
   			</div>
 		</div>
 	</div>

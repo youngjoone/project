@@ -32,4 +32,9 @@ public class MovieDAO {
 		int ret = sqlSession.update("mapper.movie.updateMovie", movieVO);
 		return ret;
 	}
+	public int deleteMovie(MovieVO movieVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.delete("mapper.movie.deleteMovie", movieVO);
+		return ret;
+	}
 }

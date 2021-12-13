@@ -47,4 +47,10 @@
 	SET POSTER=#{poster}, LINK=#{link}, TITLE=#{title}, CONTENT=#{content}, GENRE=#{genre}, RUNTIME=#{runTime}, DIRECTOR=#{director}, "CAST"=#{cast}, AGE=#{age}, "TYPE"=#{type}, OPENDATE=#{openDate}
 	WHERE MID=#{mid}
 	</update>
+	
+	<delete id ="deleteMovie" parameterType="movieVO">
+	DELETE FROM MOVIE.P_MOVIE
+	WHERE MID='${mid}'
+	
+	</delete>
 </mapper>

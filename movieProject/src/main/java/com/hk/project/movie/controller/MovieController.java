@@ -96,5 +96,12 @@ public class MovieController {
 		model.addAttribute("ret", ret);
 		return "adminMovieUpdateDone";
 	}
-	
+	@RequestMapping(value="/admin/delete", method={RequestMethod.POST})
+	public String adminMovieDelete(Model model,@ModelAttribute MovieVO movieVO) {
+		System.out.println("무비 딜리트"+movieVO);
+		
+		int ret = movieService.deleteMovie(movieVO);
+		model.addAttribute("ret", ret);
+		return "adminDelete";
+	}
 }

@@ -65,4 +65,8 @@ public class MovieService {
 	public int updateMovie(MovieVO movieVO) {
 		return movieDAO.updateMovie(movieVO);
 	}
+	public int deleteMovie(MovieVO movieVO) {
+		// TODO Auto-generated method stub
+		return movieDAO.deleteMovie(movieVO);
+	}
 }
