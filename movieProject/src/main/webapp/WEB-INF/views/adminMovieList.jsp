@@ -82,10 +82,11 @@ ul {
 					src="${pageContext.request.contextPath}/resources/template/images/${movieVO.poster }"
 					class="card-img-top rounded" alt="${movieVO.title}" height="280px"></a>
 
-				<button type="button" class="btn btn-secondary btn-block" disabled>
-					<span>평점${movieVO.score }</span>
-					<a href="">예매하기</a>
-				</button>
+				
+				<div class="btn-group" role="group" aria-label="Basic example">
+					<button type="button" class="btn btn-dark  " disabled>평점 ${movieVO.score }</button>
+					<button type="button" class="btn btn-light  " onclick="location.href=''">예매하기</button>
+				</div>
 			</div>
 		</div>
 		</c:forEach>
