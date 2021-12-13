@@ -32,28 +32,21 @@
 
 	<!-- interceptor 정보 여기에 추가 -->
 	<!-- bean을 정의하고  -->
-<!--  	<beans:bean id="LoginInterceptor" class="com.hk.project.member.interceptor.LoginInterceptor" />
+  	<beans:bean id="LoginInterceptor" class="com.hk.project.member.interceptor.LoginInterceptor" />
 
 	<interceptors>
 		<interceptor>
-			로그인 인터셉터가 잡힐 페이지
+			<!-- 로그인 인터셉터가 잡힐 페이지 -->
 			<mapping path="/admin/*" />
-			<mapping path="/service/*" /> 예매, 마이페이지
-			
-			<mapping path="/reserve/*" />
-			<mapping path="/mypage/*" />
+			<mapping path="/service/*" /> <!-- 예매, 마이페이지 -->
 			
 			<exclude-mapping path="/movie/login" />
 			<exclude-mapping path="/movie/logout" />
 			<exclude-mapping path="/movie/join" />
 			
-			<exclude-mapping path="/movie/join" />
-			<exclude-mapping path="/movie/list" />
-			<exclude-mapping path="/movie/detail"/>
-			
 			<beans:ref bean="LoginInterceptor" />
 		</interceptor>
-	</interceptors> -->
+	</interceptors>
 	
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

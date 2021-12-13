@@ -37,7 +37,7 @@ function login(){
 <div class="content content-fixed content-auth-alt">
       <div class="container ht-100p tx-center">
         <div class="ht-100p d-flex flex-column align-items-center justify-content-center">
-          <div class="wd-70p wd-sm-250 wd-lg-300 mg-b-15"><img src="${pageContext.request.contextPath}/resources/img/check.png" class="img-fluid" alt="check" width="100"></div>
+          <div class="wd-70p wd-sm-250 wd-lg-300 mg-b-15"><img src="${pageContext.request.contextPath}/resources/template/images/check.png" class="img-fluid" alt="check" width="100"></div>
           <h1 class="tx-color-01 tx-24 tx-sm-32 tx-lg-36 mg-xl-b-5">회원가입이 <b>완료</b>되었습니다.</h1>
           <h6 class="tx-16 tx-sm-18 tx-lg-20 tx-normal mg-b-20">${name }님의 회원가입을 축하합니다.</h6>
           <div class="mg-b-40"><button onclick="login()" class="btn btn-lg btn-dark bd-2 pd-x-30">로그인</button>

@@ -44,4 +44,9 @@
 		WHERE ID =#{id}
 	</select>
 	
+	<update id="infoUpdate" parameterType="MemberVO">
+		UPDATE P_MEMBER
+		SET PW=#{pw}, NAME=#{name}, TEL=#{tel}, EMAIL=#{email}
+		WHERE ID =#{id}
+	</update>
 </mapper>

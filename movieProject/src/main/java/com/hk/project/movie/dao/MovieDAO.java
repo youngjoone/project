@@ -37,4 +37,5 @@ public class MovieDAO {
 		int ret = sqlSession.delete("mapper.movie.deleteMovie", movieVO);
 		return ret;
 	}
+
 }

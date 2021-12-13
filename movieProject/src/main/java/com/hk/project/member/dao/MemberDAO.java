@@ -36,4 +36,14 @@ public class MemberDAO {
 		MemberVO memberVO = sqlSession.selectOne("mapper.member.viewMyPage",id);
 		return memberVO;
 	}
+
+	public MemberVO infoView(String id) {
+		MemberVO memberVO = sqlSession.selectOne("mapper.member.viewMyPage",id);
+		return memberVO; //회원정보 보기에 쓰던 sql
+	}
+	
+	public int infoUpdate(MemberVO memberVO) {
+		int ret = sqlSession.update("mapper.member.infoUpdate", memberVO);
+		return ret;
+	}
 }

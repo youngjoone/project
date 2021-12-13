@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
-<!DOCTYPE html>
-<html>
+
 
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -28,9 +27,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- vendor css -->
 <link href="${pageContext.request.contextPath}/resources/template/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/lib/template/ionicons/css/ionicons.min.css"
+<link href="${pageContext.request.contextPath}/resources/template/lib/ionicons/css/ionicons.min.css"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/lib/template/jqvmap/jqvmap.min.css"
+<link href="${pageContext.request.contextPath}/resources/template/lib/jqvmap/jqvmap.min.css"
 	rel="stylesheet">
 
 <!-- DashForge CSS -->
@@ -54,8 +53,20 @@ a:visited {
 a:hover {
 	color: black;
 }
-</style>
 
+#search{
+margin-bottom: 7px;
+}
+</style>
+<script>
+window.onload() = function(){ /* 수정하기 클릭시 */
+	if(${login}!=null){//로그인 되어있으면
+		document.getElementById("logout").style.display = "block";
+		document.getElementById("login").style.display = "none";
+	}
+	return;
+}
+</script>
 
 	<div class="row">
 
@@ -67,10 +78,17 @@ a:hover {
 						width=" 300px" height=" 100px">
 				</p></a>
 		</div>
-		<div class="col-sm order-3">
+		<div class="col-sm order-3" id="login">
 			<p class="text-right mg-t-20 mg-r-20">
 				<a href="/movie/login">로그인</a>
 				<a class="mg-l-20" href="/movie/join">회원가입</a>
+			</p>
+		</div>
+		
+		<div class="col-sm order-3" style="display:none" id="logout">
+			<p class="text-right mg-t-20 mg-r-20">
+				${login.name }님
+				<a class="mg-l-20" href="/movie/logout">로그아웃</a>
 			</p>
 		</div>
 
@@ -82,7 +100,7 @@ a:hover {
 		<div class="col-sm order-4"></div>
 		<div class="col-sm order-5"></div>
 		<div class="col-sm order-6">
-			<div class="search-form pd-r-35">
+			<div class="search-form pd-r-35" id="search">
 				<input type="search" class="form-control" placeholder="Search">
 				<button class="btn" type="button">
 					<i data-feather="search"></i>
@@ -120,5 +138,4 @@ a:hover {
 		</div>
 
 		<div class="col-sm order-4"></div>
-
-</html>
+	</div>

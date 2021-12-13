@@ -26,27 +26,24 @@
 	
 	<select id="movieList" resultMap="movieResult">
 		SELECT pm.MID ,pm.POSTER ,pm.LINK ,pm.TITLE ,pm.CONTENT ,pm.GENRE ,pm.RUNTIME ,pm.DIRECTOR ,pm."CAST" ,pm.AGE ,pm."TYPE" ,pm.OPENDATE ,pmavg.score
-FROM P_MOVIE pm ,
-	(SELECT pm.MID ,AVG(pr.SCORE) score
-	FROM P_REVIEW pr ,P_MOVIE pm 
-	WHERE pr.MID(+) = pm.MID
-	GROUP BY pm.MID ) pmavg
-WHERE pm.MID =pmavg.mid
-ORDER BY pm.MID
+		FROM P_MOVIE pm ,
+			(SELECT pm.MID ,AVG(pr.SCORE) score
+			FROM P_REVIEW pr ,P_MOVIE pm 
+			WHERE pr.MID(+) = pm.MID
+			GROUP BY pm.MID ) pmavg
+		WHERE pm.MID =pmavg.mid
+		ORDER BY pm.MID
 
 	</select>
 	<select id="selectOne" resultMap="movieResult">
 		SELECT MID, POSTER, LINK, TITLE, CONTENT, GENRE, RUNTIME, DIRECTOR, "CAST", AGE, "TYPE", OPENDATE
 		FROM P_MOVIE WHERE MID=#{MID}
-
 	</select>
 	
 	<insert id="insertMovie" parameterType="movieVO">
 		INSERT INTO MOVIE.P_MOVIE
 		(MID, POSTER, LINK, TITLE, CONTENT, GENRE, RUNTIME, DIRECTOR, "CAST", AGE, "TYPE", OPENDATE)
 		VALUES(#{mid}, #{poster}, #{link}, #{title},#{content},#{genre},#{runTime},#{director},#{cast},#{age},#{type},#{openDate})
-
-
 	</insert>
 	
 	<update id="updateMovie" parameterType="movieVO">
@@ -57,7 +54,8 @@ ORDER BY pm.MID
 	
 	<delete id ="deleteMovie" parameterType="movieVO">
 	DELETE FROM MOVIE.P_MOVIE
-	WHERE MID='${mid}'
-	
+	WHERE MID='#{mid}'
 	</delete>
+
+	
 </mapper>

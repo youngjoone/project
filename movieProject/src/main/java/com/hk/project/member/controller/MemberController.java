@@ -42,11 +42,13 @@ public class MemberController {
 		if (memberVO == null) { //로그인 정보 없음
 			return "loginFail";
 		} else { //로그인 정보 있음
+			session.setAttribute("login", memberVO);
+			//원래가려던 페이지 정보
+			
+			
 			if(memberVO.getVerify()==99) { //관리자일때
-				model.addAttribute("name", memberVO.getName());
 				return "redirect:/admin/main"; // /admin/main으로 가도록
 			} else { //일반유저일때
-				model.addAttribute("name", memberVO.getName());
 				return "loginDone";
 			}
 		}
@@ -59,11 +61,11 @@ public class MemberController {
 		String name="";
 		if(session.getAttribute("login") != null && session != null) {
 			MemberVO memberVO = (MemberVO) session.getAttribute("login");
-			System.out.println(memberVO.toString());
 			name = memberVO.getName();
 		} else {
 			System.out.println("세션 없음");
 		}
+		System.out.println("name="+name);
 		model.addAttribute("name", name); 
 		session.invalidate(); //세션 없애기
 		return "logout";
@@ -101,21 +103,55 @@ public class MemberController {
 		return "joinDone";
 	}
 	
-	@RequestMapping(value="/movie/mypage", method=RequestMethod.GET)
-	public String mypage(Model model, @RequestParam("id") String id, HttpSession session) {
+	@RequestMapping(value="/service/mypage", method=RequestMethod.GET)
+	public String mypage(Model model, HttpSession session) {
 		
-		//회원정보
-		MemberVO memberVO = (MemberVO) session.getAttribute("login"); //memberVO
-		System.out.println("memberVO="+memberVO);
+		// 회원정보
+		MemberVO memberVO = (MemberVO) session.getAttribute("login"); // memberVO
+		String id = memberVO.getId();
 		
-		id = memberVO.getId();
-		memberVO = memberService.viewMyPage(id);
-		model.addAttribute("memberVO", memberVO);
-		
-		//예매정보
-		//id값을 movie테이블로
-//		MovieVO movieVO = movieService.viewMyBooking(id);
+//		memberVO = memberService.viewMyPage(id);
+//		model.addAttribute("memberVO", memberVO);
+//		
+//		//예매정보
+//		//id값을 movie테이블로
+//		MovieVO movieVO = memberService.viewMyPage(id);
 //		model.addAttribute("movieVO", movieVO);
+		
+		Map<String, Object> map = memberService.viewMyPage(id);
+		System.out.println("map="+map);
+		model.addAttribute("memberVO", map.get("memberVO"));
+		model.addAttribute("ticketList", map.get("ticketList"));
+		
 		return "mypage";
 	}
+	
+	@RequestMapping(value="/service/mypage/update", method=RequestMethod.GET)
+	public String infoView(Model model, HttpSession session) {
+	
+		MemberVO memberVO = (MemberVO) session.getAttribute("login");
+		String id = memberVO.getId();
+		memberVO = memberService.infoView(id);
+		model.addAttribute("memberVO", memberVO);
+		
+		return "infoView";
+	}
+	
+	@RequestMapping(value="/service/mypage/update", method=RequestMethod.POST)
+	public String infoUpdate(Model model, @ModelAttribute MemberVO memberVO) {
+	
+		memberService.infoUpdate(memberVO);
+		return "redirect:../mypage";
+	}	
+	
+	/////////////
+	@RequestMapping(value="/detail", method=RequestMethod.GET)
+	public String movieInfo(Model model, @RequestParam("mid") String mid, HttpSession session) {
+		
+		session.setAttribute("mid", mid);
+		
+		return "mypage";
+	}
+	
+	
 }

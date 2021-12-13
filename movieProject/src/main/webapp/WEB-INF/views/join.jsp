@@ -81,7 +81,7 @@ $(document).ready(function() {
 				</div>
               <h4 class="tx-color-01 mg-b-5"><b>회원가입</b></h4>
 			<div class="input-group">
-  				<input type="text" name="id" id="userId" class="form-control" placeholder="아이디" maxlength="14" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+  				<input type="text" name="id" id="userId" class="form-control" placeholder="*아이디" maxlength="14" aria-label="Recipient's username" aria-describedby="button-addon2" required>
   				<div class="input-group-append">
     				<button class="btn btn-outline-secondary" type="button" id="button-addon2">중복확인</button>
   				</div>
@@ -91,23 +91,26 @@ $(document).ready(function() {
                 <div class="d-flex justify-content-between mg-b-5">
                   <label class="mg-b-0-f"></label>
                 </div>
-                <input type="password" name="pw" class="form-control" placeholder="비밀번호" required>
+                <input type="password" name="pw" class="form-control" placeholder="*비밀번호" required>
               </div>
               <div class="form-group">
-                <input type="text" name="name" class="form-control" placeholder="이름">
+                <input type="text" name="name" class="form-control" placeholder="*이름" maxlength="15">
               </div>
               <div class="form-group">
                 <label></label>
                 <input type="date" name="birth" id="birth" value="" class="form-control" placeholder="" required>
 	          </div>
-              <div class="form-group">
-                <label></label>
-                <input type="tel" name="tel" id="tel" class="form-control" placeholder="전화번호" required>
-              </div>
+              <div class="input-group">
+  				<div class="input-group-prepend">
+    				<span class="input-group-text">*010</span>
+  				</div>
+  				<input id="tel" type="text" name="tel" class="form-control" placeholder="휴대폰번호 (숫자 8자리만 입력하세요)" maxlength="8" required>
+			</div><br>
               <div class="form-group">
                 <label></label>
                 <input type="text" name="email" class="form-control" placeholder="이메일">
               </div>
+              <br>
               <button class="btn btn-secondary btn-block">회원가입</button>
               </form>
               <p></p>
