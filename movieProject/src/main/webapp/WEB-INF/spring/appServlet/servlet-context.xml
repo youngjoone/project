@@ -37,12 +37,14 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/*" />
+			
 			<exclude-mapping path="/movie/login" />
 			<exclude-mapping path="/movie/logout" />
-			<exclude-mapping path="/movie/main" />
+			
 			<exclude-mapping path="/movie/join" />
 			<exclude-mapping path="/movie/list" />
 			<exclude-mapping path="/movie/detail"/>
+			
 			<beans:ref bean="LoginInterceptor" />
 		</interceptor>
 	</interceptors>

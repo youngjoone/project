@@ -37,8 +37,7 @@ function main(){
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.auth.css">
 
-	<link href="${pageContext.request.contextPath}/resources/css/modal.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/css/join.css" rel="stylesheet">
 	
 <style>
 #modal.modal-overlay {
@@ -53,7 +52,7 @@ function main(){
         <div class="media align-items-stretch justify-content-center ht-100p pos-relative pd-t-100">
           <div>
             <div class="mx-wd-400">
-              <img src="${pageContext.request.contextPath}/resources/img/poster.jpg" class="rounded img-fluid" alt="">
+              <img src="${pageContext.request.contextPath}/resources/img/poster.jpg" id="poster" class="rounded img-fluid" alt="">
             </div>
             
           </div><!-- media-body -->
@@ -63,20 +62,18 @@ function main(){
           
             <div class="wd-100p">
             <form action="/movie/login" method="post">
-              <h3 class="tx-color-01 mg-b-5">LOGIN</h3>
-              <p class="tx-color-03 tx-16 mg-b-40">Please sign in to continue.</p>
-
+            <div id="logoImage">
+            	<img src="${pageContext.request.contextPath}/resources/template/images/megabox.png" alt="" id="megabox">
+			</div>
+			<div>
+			  <label id="login"><b>로그인</b></label><br>
               <div class="form-group">
-                <label></label>
                 <input type="text" name="id" class="form-control" placeholder="아이디" required>
               </div>
               <div class="form-group">
-                <div class="d-flex justify-content-between mg-b-5">
-                  <label class="mg-b-0-f"></label>
-                </div>
                 <input type="password" name="pw" class="form-control" placeholder="비밀번호" required>
               </div>
-              
+            </div>
               <br>
               
               <button class="btn btn-secondary btn-block">로그인</button>

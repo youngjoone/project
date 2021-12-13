@@ -13,6 +13,7 @@ public class MemberVO {
 	private String name;
 	private int tel;
 	private String email;
+	private int verify;
 	
 	public String getId() {
 		return id;
@@ -50,9 +51,16 @@ public class MemberVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public int getVerify() {
+		return verify;
+	}
+	public void setVerify(int verify) {
+		this.verify = verify;
+	}
+	
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", pw=" + pw + ", birth=" + birth + ", name=" + name + ", tel=" + tel + ", email="
-				+ email + "]";
+				+ email + ", verify=" + verify + "]";
 	}
 }

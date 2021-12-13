@@ -23,5 +23,9 @@ public class MemberService {
 	public int joinUser(MemberVO memberVO) {
 		return memberDAO.insertUser(memberVO);
 	}
+
+	public MemberVO viewMyPage(String id) {
+		return memberDAO.viewMyPage(id);
+	}
 	
 }

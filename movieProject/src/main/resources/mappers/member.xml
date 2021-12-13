@@ -13,25 +13,35 @@
 		<result column="name" property="name" />
 		<result column="tel" property="tel" />
 		<result column="email" property="email" />
+		<result column="verify" property="verify" />
 	</resultMap>
 	
-	
+	<!-- 로그인 -->
 	<select id="isExisted" resultType="MemberVO">
-		SELECT ID, PW , BIRTH, NAME, TEL, EMAIL
+		SELECT ID, PW , BIRTH, NAME, TEL, EMAIL, verify
 		FROM P_MEMBER
 		WHERE ID =#{id} AND PW =#{pw}
 	</select>
 	
+	<!-- 회원가입 아이디 중복체크 -->
 	<select id="dupId" resultType="string">
 		SELECT ID
 		FROM P_MEMBER 
 		WHERE ID =#{id}
 	</select>
 	
+	<!-- 회원가입 -->
 	<insert id="joinUser" parameterType="MemberVO">
 		INSERT INTO P_MEMBER
-		(ID, PW, BIRTH, NAME, TEL, EMAIL)
-		VALUES(#{id}, #{pw}, #{birth}, #{name}, #{tel}, #{email})
+		(ID, PW, BIRTH, NAME, TEL, EMAIL, VERIFY)
+		VALUES(#{id}, #{pw}, #{birth}, #{name}, #{tel}, #{email}, 0)
 	</insert>
+	
+	<!-- 마이페이지 회원정보 -->
+	<select id="viewMyPage" resultType="MemberVO">
+		SELECT ID, PW , BIRTH, NAME, TEL, EMAIL, verify
+		FROM P_MEMBER 
+		WHERE ID =#{id}
+	</select>
 	
 </mapper>

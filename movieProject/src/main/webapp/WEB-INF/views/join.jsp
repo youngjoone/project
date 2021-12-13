@@ -17,7 +17,6 @@
 <script>
 $(document).ready(function() {
     $('#button-addon2').click(function() {
-    	
         $.ajax({
                 type: 'POST',
                 url: 'dupId',
@@ -45,22 +44,10 @@ $(document).ready(function() {
          }); //end ajax 
     }); //end on 
 });
-
-
-/* 
-    var cleaveC = new Cleave('#inputDate', {
-    	  date: true,
-    	  datePattern: ['Y', 'm', 'd']
-    	}); */
     
     function main(){
     	window.location.href = "main";
     }
-    	
-   /*  function joinUser(){
-    	console.log(document.getElementById("birth").value);
-    	console.log(document.getElementById("tel").value);
-    } */
 </script>
 
     <!-- vendor css -->
@@ -81,7 +68,7 @@ $(document).ready(function() {
           
           <div class="media-body pd-y-30 pd-lg-x-50 pd-xl-x-60 align-items-center d-none d-lg-flex pos-relative">
             <div class="mx-lg-wd-500 mx-xl-wd-550">
-              <img src="https://via.placeholder.com/1280x1225" class="img-fluid" alt="">
+              <img src="https://via.placeholder.com/1280x1225" id="poster" class="img-fluid" alt="">
             </div>
           </div><!-- media-body -->
           
@@ -89,12 +76,14 @@ $(document).ready(function() {
           
             <div class="pd-t-20 wd-100p">
             <form action="join" method="post">
+            	<div id="logoImage">
+            		<img src="${pageContext.request.contextPath}/resources/template/images/megabox.png" alt="" id="megabox">
+				</div>
               <h4 class="tx-color-01 mg-b-5"><b>회원가입</b></h4>
-              <br>
 			<div class="input-group">
   				<input type="text" name="id" id="userId" class="form-control" placeholder="아이디" maxlength="14" aria-label="Recipient's username" aria-describedby="button-addon2" required>
   				<div class="input-group-append">
-    				<button onclick="check()" class="btn btn-outline-secondary" type="button" id="button-addon2">중복확인</button>
+    				<button class="btn btn-outline-secondary" type="button" id="button-addon2">중복확인</button>
   				</div>
 			</div>
 			<div id="checkDup"></div>
@@ -108,7 +97,7 @@ $(document).ready(function() {
                 <input type="text" name="name" class="form-control" placeholder="이름">
               </div>
               <div class="form-group">
-                <label>생년월일</label>
+                <label></label>
                 <input type="date" name="birth" id="birth" value="" class="form-control" placeholder="" required>
 	          </div>
               <div class="form-group">
@@ -119,7 +108,6 @@ $(document).ready(function() {
                 <label></label>
                 <input type="text" name="email" class="form-control" placeholder="이메일">
               </div>
-			   <br>
               <button class="btn btn-secondary btn-block">회원가입</button>
               </form>
               <p></p>

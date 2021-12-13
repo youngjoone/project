@@ -16,12 +16,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.project.member.service.MemberService;
 import com.hk.project.member.vo.MemberVO;
+import com.hk.project.movie.service.MovieService;
+import com.hk.project.movie.vo.MovieVO;
 
 @Controller
 public class MemberController {
 
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	MovieService movieService;
 	
 	@RequestMapping(value="/movie/login", method=RequestMethod.GET)
 	public String login() {
@@ -32,16 +36,19 @@ public class MemberController {
 	@RequestMapping(value="/movie/login", method=RequestMethod.POST)
 	public String loginDone(Model model, @ModelAttribute MemberVO memberVO, HttpSession session) {
 
-		System.out.println(memberVO.toString());
-		
 		// DB결과가 들어있는 null 혹은 사용자 정보 memberVO
 		memberVO = memberService.checkUser(memberVO); // select한 VO값
 		
-		if (memberVO == null) {
+		if (memberVO == null) { //로그인 정보 없음
 			return "loginFail";
-		} else {
-			model.addAttribute("name", memberVO.getName());
-			return "loginDone";
+		} else { //로그인 정보 있음
+			if(memberVO.getVerify()==99) { //관리자일때
+				model.addAttribute("name", memberVO.getName());
+				return "redirect:/admin/main"; // /admin/main으로 가도록
+			} else { //일반유저일때
+				model.addAttribute("name", memberVO.getName());
+				return "loginDone";
+			}
 		}
 	}
 	
@@ -50,10 +57,12 @@ public class MemberController {
 		//기존에 세션이 있으면 로그아웃
 				//세션
 		String name="";
-		MemberVO memberVO = null;
 		if(session.getAttribute("login") != null && session != null) {
-			memberVO = (MemberVO) session.getAttribute("login");
+			MemberVO memberVO = (MemberVO) session.getAttribute("login");
+			System.out.println(memberVO.toString());
 			name = memberVO.getName();
+		} else {
+			System.out.println("세션 없음");
 		}
 		model.addAttribute("name", name); 
 		session.invalidate(); //세션 없애기
@@ -90,5 +99,23 @@ public class MemberController {
 		model.addAttribute("ret", ret);
 		model.addAttribute("name", memberVO.getName());
 		return "joinDone";
+	}
+	
+	@RequestMapping(value="/movie/mypage", method=RequestMethod.GET)
+	public String mypage(Model model, @RequestParam("id") String id, HttpSession session) {
+		
+		//회원정보
+		MemberVO memberVO = (MemberVO) session.getAttribute("login"); //memberVO
+		System.out.println("memberVO="+memberVO);
+		
+		id = memberVO.getId();
+		memberVO = memberService.viewMyPage(id);
+		model.addAttribute("memberVO", memberVO);
+		
+		//예매정보
+		//id값을 movie테이블로
+//		MovieVO movieVO = movieService.viewMyBooking(id);
+//		model.addAttribute("movieVO", movieVO);
+		return "mypage";
 	}
 }

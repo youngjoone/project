@@ -31,4 +31,9 @@ public class MemberDAO {
 		int ret = sqlSession.insert("mapper.member.joinUser", memberVO);
 		return ret;
 	}
+
+	public MemberVO viewMyPage(String id) {
+		MemberVO memberVO = sqlSession.selectOne("mapper.member.viewMyPage",id);
+		return memberVO;
+	}
 }
