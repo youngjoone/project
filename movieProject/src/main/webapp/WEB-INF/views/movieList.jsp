@@ -81,7 +81,7 @@ ul {
 					class="card-img-top rounded" alt="${movieVO.title}" height="280px"></a>
 
 				<button type="button" class="btn btn-secondary btn-block" disabled>
-					<span>별점</span>
+					<span>평점${movieVO.score }</span>
 					<a href="">예매하기</a>
 				</button>
 			</div>

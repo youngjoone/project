@@ -27,10 +27,8 @@ public class MovieController {
 	
 	@RequestMapping(value="/movie/list", method={RequestMethod.GET , RequestMethod.POST})
 	public String movieList(Model model) {
-		
 		List<List<MovieVO>> movieVO2DList =  movieService.selectAllMovies();
 		model.addAttribute("movieVO2DList", movieVO2DList);
-		
 		return "movieList";
 	}
 	@RequestMapping(value="/movie/detail", method={RequestMethod.GET , RequestMethod.POST})
@@ -48,9 +46,9 @@ public class MovieController {
 	
 	@RequestMapping(value="/admin/list", method={RequestMethod.GET , RequestMethod.POST})
 	public String adminMovieList(Model model) {
-		
 		List<List<MovieVO>> movieVO2DList =  movieService.selectAllMovies();
 		model.addAttribute("movieVO2DList", movieVO2DList);
+		System.out.println("무비리스트"+movieVO2DList.toString());
 		
 		return "adminMovieList";
 	}
