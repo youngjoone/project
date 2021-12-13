@@ -10,18 +10,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <title>공지사항</title>
 <style>
+
 table{ 
 	width : 1000px; 
 	border-top : 1px solid black;
-	border-bottom : 1px solid #C8C8C8;		
+	border-bottom : 1px solid #C8C8C8;
+	
 }
 
 table, th, td{
 	border-collapse : collapse;
 	padding : 5px;
 	border-bottom : 1px solid #C8C8C8;
+	margin-bottom: 30px;
 }
 	
 th{
@@ -75,15 +80,61 @@ td{
 	border-radius: 20px;
 	margin: 0 auto;
 }
+input[type=button] {
+	text-align:right; 
+	margin-top: 30px;
+}
+
+.pagination {
+  display: inline-block;
+  text-align: center;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+
 </style>
+<script>
+function muldelete() { 
+   // form을 넘김.
+   var form = document.getElementsByName("muldelForm");
+   form[0].submit();
+   return true;
+}
+</script>
 </head>
 <body>
+<header>
+<jsp:include page="/WEB-INF/views/adminHeader.jsp" />
+</header>
+	<div id="container" align="right">
+	<input type="button" onclick="location.href='add'" class="w3-button w3-dark-grey w3-round w3-padding-small" value="등록">
+	<input type="button" onclick="return muldelete()" class="w3-button w3-dark-grey w3-round w3-padding-small" value="삭제"><br><br>
+	
+	</div>
+	<form name="muldelForm" action="muldelete">
 	<div>
-	<input class="cls" type="button" onclick="return muldelete()" value="삭제하기">
 	  <table id="container">
 		<thead>
 			<tr>
-				<th id="col1" class="bor">선택</td>
+				<th id="col1" class="bor">선택</th>
 				<th id="col1" class="bor">번호</th>
 				<th id="col2" class="bor">구분</th>
 				<th id="col3" class="bor">제목</th>
@@ -101,21 +152,27 @@ td{
 				</tr>
 			</c:when>
 			<c:when test="${!empty noticesList}">
-				<c:forEach var="noticeVO" items="${noticesList}" end="5" varStatus="noticeNum">
+				<c:forEach var="noticeVO" items="${noticesList}" end="9" varStatus="noticeNum">
 
 					<tr align="center">
-						<td width="5%" class="bor"> <input type="checkbox" name="chkbox" value="${article.articleNO}">
+						<td width="5%" class="bor"> <input type="checkbox" name="chkbox" value="${notice.noticeVO}">
 						<td scope="row" class="bor">${noticeNum.count}</td>
 						<td scope="row" class="bor">${noticeVO.category}</td>
-						<td scope="row" class="bor">${noticeVO.nTitle}</td>
+						<td scope="row" class="bor">
+							<a href="update?noticeNO=${noticeVO.noticeNO}">${noticeVO.nTitle}</a>
+						</td>
 						<td scope="row" class="bor"><fmt:formatDate value="${noticeVO.date}" pattern="yyyy/MM/dd" /></td>
 					</tr>
+					
 				</c:forEach>
 			</c:when>
 		</c:choose>
-
 	</table>
-
-  </div>	
+  </div>
+  </form>
+<footer>
+   <jsp:include page="/WEB-INF/views/footer.jsp" />
+</footer>
+  	
 </body>
 </html>

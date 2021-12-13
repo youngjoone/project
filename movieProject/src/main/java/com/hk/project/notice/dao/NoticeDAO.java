@@ -22,4 +22,28 @@ public class NoticeDAO {
 		return noticesList;
 	}
 
+	public int addNotice(NoticeVO noticeVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.insert("mapper.notice.insertNotice", noticeVO);
+		return ret;
+	}
+
+	public NoticeVO selectNotice(int noticeNO) {
+		// TODO Auto-generated method stub
+		NoticeVO noticeVO = sqlSession.selectOne("mapper.notice.selectOneNotice", noticeNO);
+		return noticeVO;
+	}
+
+	public int updateNotice(NoticeVO noticeVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.update("mapper.notice.updateNotice", noticeVO);
+		return ret;
+	}
+
+	public int deleteNotice(int noticeNO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.delete("mapper.notice.deleteNotice", noticeNO);
+		return ret;
+	}
+
 }

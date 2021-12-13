@@ -17,7 +17,36 @@
    
    <!-- list -->
    <select id="selectAllNotices" resultMap="noticeResult">
-   		SELECT noticeNO, category, ntitle, ncontent, "date" 
-   		FROM P_NOTICE  
+   		SELECT noticeNO, category, nTitle, nContent, "date" 
+   		FROM P_NOTICE
+   		ORDER BY "date" DESC  
    </select>
+   
+   <!-- add -->
+   <insert id="insertNotice" parameterType="NoticeVO">
+   <![CDATA[
+       	INSERT INTO P_NOTICE
+		(NOTICENO, CATEGORY, NTITLE, NCONTENT, "date")
+		VALUES((SELECT MAX(NOTICENO)+1 FROM P_NOTICE), #{category}, #{nTitle}, #{nContent}, sysdate)
+   ]]>
+   </insert>
+   
+   <!-- update (select) -->
+   <select id="selectOneNotice" resultType="NoticeVO">
+   		SELECT noticeNo, category, nTitle, nContent, "date" FROM p_notice
+		WHERE NOTICENO=#{noticeNO}
+   </select>
+   
+   <!-- update (update) -->
+   <update id="updateNotice" parameterType="NoticeVO">
+    UPDATE P_NOTICE
+	SET CATEGORY=#{category}, NTITLE=#{nTitle}, NCONTENT=#{nContent} 
+	WHERE NOTICENO=#{noticeNO}
+   </update>
+   
+   <delete id="deleteNotice">
+    DELETE FROM P_NOTICE
+	WHERE NOTICENO=#{noticeNO}
+   </delete>
+   
 </mapper>   
