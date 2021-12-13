@@ -75,7 +75,7 @@ public class NoticeController {
 		return "adminNoticeDelete";
 	}
 	
-	@RequestMapping(value="/muldelete", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/notice/muldelete", method=RequestMethod.GET)
 	public String noticeMulDelete(@RequestParam("chkbox") List<Integer> noticeNOs) {
 		
 		System.out.println("noticeNOs : " + noticeNOs.toString());

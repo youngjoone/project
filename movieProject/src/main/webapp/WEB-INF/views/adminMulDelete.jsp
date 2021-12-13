@@ -9,7 +9,8 @@
 <body>
 <script>
       setTimeout(function(){
-         location.href='../list';
+    	 confirm("삭제되었습니다.");
+         location.href='/admin/notice/list';
          
       },0000)
    

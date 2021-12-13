@@ -155,7 +155,7 @@ function muldelete() {
 				<c:forEach var="noticeVO" items="${noticesList}" end="9" varStatus="noticeNum">
 
 					<tr align="center">
-						<td width="5%" class="bor"> <input type="checkbox" name="chkbox" value="${notice.noticeVO}">
+						<td width="5%" class="bor"> <input type="checkbox" name="chkbox" value="${noticeVO.noticeNO}">
 						<td scope="row" class="bor">${noticeNum.count}</td>
 						<td scope="row" class="bor">${noticeVO.category}</td>
 						<td scope="row" class="bor">
