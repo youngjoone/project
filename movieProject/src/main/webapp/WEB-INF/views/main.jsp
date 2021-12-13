@@ -82,7 +82,7 @@ a:hover {
 		<c:forEach var="movieVO" items="${movieVOList}" end="3">
 		<div class="col-sm">
 			<div class="card">
-				<a href=""><img
+				<a href="detail?MID=${movieVO.mid }"><img
 					src="${pageContext.request.contextPath}/resources/template/images/${movieVO.poster }"
 					class="card-img-top rounded" alt="${movieVO.title }" width="134px" height="280px"></a>
 

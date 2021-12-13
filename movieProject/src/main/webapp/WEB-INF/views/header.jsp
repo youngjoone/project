@@ -4,8 +4,8 @@
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
+
+
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -39,7 +39,7 @@
 	href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.dashboard.css">
-</head>
+
 <style>
 p {
 	text-align: center;
@@ -56,7 +56,7 @@ a:hover {
 	color: black;
 }
 </style>
-<body>
+
 
 	<div class="row">
 
@@ -121,5 +121,5 @@ a:hover {
 		</div>
 
 		<div class="col-sm order-4"></div>
-</body>
+
 </html>

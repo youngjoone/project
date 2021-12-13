@@ -4,8 +4,7 @@
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
+
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -42,8 +41,8 @@
 <style>
 p{text-align:center;}
 </style>
-</head>
-<body>
+
+
 <br>
 <div class="row bd-t">
 <div class="col-sm order-1"></div>
@@ -61,5 +60,5 @@ p{text-align:center;}
 
 
 </div>
-</body>
+
 </html>
