@@ -8,5 +8,12 @@
 </head>
 <body>
 업데이트 끝
+<script>
+setTimeout(function(){
+	location.href='list';
+	
+},0000)
+
+</script>
 </body>
 </html>

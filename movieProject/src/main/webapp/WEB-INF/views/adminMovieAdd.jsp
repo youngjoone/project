@@ -61,7 +61,7 @@ p {
 <div class="row mg-t-30">
 	<div class="col-sm-3"></div>
 	<div class="col-sm-6">
-		<form name="movieAddForm" method="post" action="update">
+		<form name="movieAddForm" method="post" action="add">
 		
 			<div class="form-group">
     			<label for="formGroupExampleInput" class="d-block">영화 일련번호</label>

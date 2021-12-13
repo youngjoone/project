@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-영화추가완료
+<script>
+		setTimeout(function(){
+			location.href='../list';
+			
+		},0000)
+	
+</script>
 </body>
 </html>

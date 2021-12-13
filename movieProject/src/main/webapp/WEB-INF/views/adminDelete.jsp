@@ -6,7 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
-성공했나 딜리트?
+<script>
+		setTimeout(function(){
+			location.href='list';
+			
+		},0000)
+	
+</script>
 </body>
 </html>

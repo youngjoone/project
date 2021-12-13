@@ -55,6 +55,8 @@ p{
 			formName.submit();
 			
 		}
+		
+	
 </script>
 </head>
 <header>
@@ -78,8 +80,7 @@ p{
     		
     			<button type="button" class="btn btn-dark" onclick="window.open('${movieVO.link}')">예고편 보기</button>
     			<button type="button" class="btn btn-danger" onclick="location.href='update?mid=${movieVO.mid}'" >수정하기</button>
-    			<button type="button" class="btn btn-danger" onclick="location.href='delete'">삭제하기</button>
-    			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">모달?</button>
+    			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">삭제하기</button>
     			
 
 
