@@ -1,5 +1,7 @@
 package com.hk.project.join.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,9 +14,9 @@ public class BookingDAO {
 	@Autowired
 	SqlSession sqlSession;
 
-	public BookingVO bookingInfo(String id) {
-		BookingVO bookingVO = sqlSession.selectOne("mapper.booking.bookingInfo", id);
-		return bookingVO;
+	public List<BookingVO> bookingInfo(String id) {
+		List<BookingVO> bookingList = sqlSession.selectList("mapper.booking.bookingInfo",id);
+		return bookingList;
 	}
 	
 }

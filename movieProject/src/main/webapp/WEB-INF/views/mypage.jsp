@@ -35,6 +35,7 @@ function sub(frm){
 	frm.submit();
 	alert("한줄평이 등록되었습니다.");
 }
+
 </script>
 
 </head>
@@ -121,12 +122,13 @@ function sub(frm){
 	  			<c:when test="${!empty ticketList }" >
 					<c:forEach var="ticket" items="${ticketList}" varStatus="ticketNum">
 							<tr>
-								<td width="90" class="tx-nowrap">${ticketNum.count}</td>
-								<td width="100" class="tx-nowrap">
-									<a href="" data-toggle="modal" data-target="#Modal1">${ticket.ticketNo}</a>
+								<td width="90" class="tx-center">${ticketNum.count}</td>
+								<td width="100" class="tx-center">
+									<a href="" data-toggle="modal" data-target="#Modal1" id="tno1">${ticket.ticketNo}</a>
+									<input type="hidden" name="ticketNo" id="tno2" value="${ticket.ticketNo}">
 								</td>
 								<td width="600"></td>
-	              				<td width="100" class="tx-nowrap"><button class="btn btn-secondary" data-toggle="modal" data-target="#Modal2">한줄평</button></td>
+	              				<td width="100" class="tx-center"><button class="btn btn-secondary" data-toggle="modal" data-target="#Modal2">한줄평</button></td>
 	              	  		</tr>
 					</c:forEach>
 				</c:when>

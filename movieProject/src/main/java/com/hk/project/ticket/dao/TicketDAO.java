@@ -18,4 +18,5 @@ public class TicketDAO {
 		List<TicketVO> ticketList = sqlSession.selectList("mapper.ticket.myBooking",id);
 		return ticketList;
 	}
+
 }

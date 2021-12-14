@@ -23,9 +23,13 @@ public class MemberService {
 
 	@Autowired
 	MemberDAO memberDAO;
+	@Autowired
 	MovieDAO movieDAO;
+	@Autowired
 	TicketDAO ticketDAO;
+	@Autowired
 	ReviewDAO reviewDAO;
+	@Autowired
 	BookingDAO bookingDAO ;
 
 	public MemberVO checkUser(MemberVO memberVO) {
@@ -45,6 +49,7 @@ public class MemberService {
 		//key : memberVO / movieVO
 		//value : vo값
 		Map<String, Object> map = new HashMap<String, Object>();
+		
 		MemberVO memberVO = memberDAO.viewMyPage(id);
 		map.put("memberVO", memberVO);
 		
@@ -57,10 +62,10 @@ public class MemberService {
 //		ReviewVO review = reviewDAO.selectReview(id); 
 //		map.put("review", review);
 		
-		//ticketNo를 파라메터로 예매정보 가져오는 메소드
-		//1개
-		BookingVO bookingVO = bookingDAO.bookingInfo(id);
-		map.put("bookingVO", bookingVO);
+		//id를 파라메터로 예매정보 가져오는 메소드
+		//list
+		List<BookingVO> bookingList = bookingDAO.bookingInfo(id);
+		map.put("bookingList", bookingList);
 		
 		return map;
 	}

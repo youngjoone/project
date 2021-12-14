@@ -20,6 +20,8 @@ import com.hk.project.member.service.MemberService;
 import com.hk.project.member.vo.MemberVO;
 import com.hk.project.movie.service.MovieService;
 import com.hk.project.movie.vo.MovieVO;
+import com.hk.project.ticket.dao.TicketDAO;
+import com.hk.project.ticket.service.TicketService;
 
 @Controller
 public class MemberController {
@@ -28,6 +30,8 @@ public class MemberController {
 	MemberService memberService;
 	@Autowired
 	MovieService movieService;
+	@Autowired
+	TicketService ticketService;
 	
 	@RequestMapping(value="/movie/login", method=RequestMethod.GET)
 	public String login() {
@@ -110,41 +114,14 @@ public class MemberController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("login"); // memberVO
 		String id = memberVO.getId();
 		
-//		memberVO = memberService.viewMyPage(id);
-//		model.addAttribute("memberVO", memberVO);
-//		
-//		//예매정보
-//		//id값을 movie테이블로
-//		MovieVO movieVO = memberService.viewMyPage(id);
-//		model.addAttribute("movieVO", movieVO);
-		
 		Map<String, Object> map = memberService.viewMyPage(id);
 		System.out.println("map="+map);
 		model.addAttribute("memberVO", map.get("memberVO"));
 		model.addAttribute("ticketList", map.get("ticketList"));
-		model.addAttribute("bookingVO", map.get("bookingVO"));
+		model.addAttribute("bookingList", map.get("bookingList"));
 		
 		return "mypage";
 	}
-	
-//	@RequestMapping(value = "/service/mypage/sendTno", method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json; charset=utf8")
-//	@ResponseBody
-//	public Map<String, Object> sendTno(@RequestParam("ticketNo") String ticketNo) {
-//		System.out.println("ticketNo = " + ticketNo);
-//	    
-//		//json에서 K-V 형태로 데이터를 처리하기 때문에 Map 형식으로 리턴
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		// service에서 아이디가 중복인지 체크하는 모듈 ( service, dao, member.xml...)
-//		String sendTno = bookingDAO.
-//		// dupId : 'lee'(중복O) or 'null'(중복X)
-//		// 중복이면 true, 아니면 false라는 String반환
-//		if (dupId == null) { // 중복X
-//			map.put("id", "false");
-//		} else { // 중복O
-//			map.put("id", "true");
-//		}
-//		return map; // jsp를 찾는게 아니라 그냥 데이터만 client(ajax)로 리턴
-//	}
 	
 	@RequestMapping(value="/service/mypage/review", method=RequestMethod.POST)
 	public String mypageReview(Model model, HttpSession session) {
