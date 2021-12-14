@@ -37,5 +37,10 @@ public class MovieDAO {
 		int ret = sqlSession.delete("mapper.movie.deleteMovie", movieVO);
 		return ret;
 	}
+	public MovieVO dupMid(String mid) {
+		// TODO Auto-generated method stub
+		MovieVO dupMid = sqlSession.selectOne("mapper.movie.selectOne", mid);
+		return dupMid;
+	}
 
 }

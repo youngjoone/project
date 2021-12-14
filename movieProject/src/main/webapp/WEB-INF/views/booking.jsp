@@ -23,43 +23,54 @@
 		<div class="col-sm-2">왼쪽여벡</div>
 
 		<div class="col-sm-3 mg-t-30 bd-r">
-			<div>영화선택</div>
+			<div class="tx-14 tx-bold tx-gray-700 tx-spacing-5">영화선택</div>
+			<!-- 메인에서 오면 선택 안되어있게, 리스트에서 예매하기 누르면 미리 선택되어 있게 -->
 			<select class="custom-select" size="20" multiple>
 
-				<option value="1">영화1</option>
-				<option value="2">영화2</option>
-				<option value="3">영화3</option>
+				<option value="1" class="tx-20 tx-bold">영화1</option>
+				<option value="2" class="tx-20 tx-bold">영화2</option>
+				<option value="3" class="tx-20 tx-bold">영화3</option>
 			</select>
 
 		</div>
 		<div class="col-sm-5 mg-t-30">
-			<div>날짜 시간 선택</div>
-			<div>
-				<button type="button" class="btn btn-sm btn-outline-dark">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">월/일</button>
-			</div>
-			<div class="mg-t-30 bd-t"><br>상영관번호+상영관+영화타입(2D)</div>
+			<div class="tx-14 tx-bold tx-gray-700 tx-spacing-5">날짜 시간 선택</div>
+			<!--ajax로 데이터 받아서 foreach  -->
 			<div class="mg-t-20">
-				<button type="button" class="btn btn-sm btn-outline-dark">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+			</div>
+			<div class="mg-t-30 bd-t tx-14 tx-bold tx-gray-700 tx-spacing-5"><br>상영관번호+상영관+영화타입(2D)</div>
+			<!--ajax로 데이터 받아서 foreach  -->
+			
+			<div class="mg-t-20">
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
 			</div>
 		</div>
 		<div class="col-sm-2">오른쪽여백</div>

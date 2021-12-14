@@ -27,6 +27,8 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- 스윗 알렛 -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- vendor css -->
 <link
 	href="${pageContext.request.contextPath}/resources/template/lib/@fortawesome/fontawesome-free/css/all.min.css"
@@ -47,7 +49,37 @@
 p {
 	text-align: center;
 }
+
 </style>
+<script> 
+$(document).ready(function() {
+    $('#mid').change(function() {
+       
+        $.ajax({
+                type: 'POST',
+                url: '/dupMid',	//경로
+                dataType: "json",	//return하는 data 타입
+                data: {"mid": $('#mid').val()},	//서버로 보내는 ?id=id
+                success: function(data) {
+                   // data.server에서 보낸 mapId
+                   
+                   if(data.id == 'false') { swal("중복 아님!"); $('#mid').css("background-color", "white");}
+                   else { 
+                	  
+                	   swal("중복 입니다!");
+                      // 입력한 값을 지우고 
+                      // focus 를 다시 이동하고
+                      $('#mid').val("");
+                      $('#mid').focus();
+                      $('#mid').css("background-color", "pink");
+                   }
+                }, 
+                error: function(request,status,error) {	//실행이 실패하면
+                   alert('에러!! : ' + request.responseText + ":"+error);
+                }
+         }); //end ajax 
+    }); //end on 
+}); </script>
 </head>
 <header>
 <jsp:include page="/WEB-INF/views/adminHeader.jsp" />
@@ -65,7 +97,7 @@ p {
 		
 			<div class="form-group">
     			<label for="formGroupExampleInput" class="d-block">영화 일련번호</label>
-   				<input type="text" class="form-control" name="mid" placeholder="영화 일련번호" required>
+   				<input type="text" class="form-control" name="mid" placeholder="영화 일련번호"  id="mid" required>
  			</div>
  			<div class="form-group">
     			<label for="formGroupExampleInput" class="d-block">영화 포스터</label>

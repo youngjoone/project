@@ -142,13 +142,13 @@ p{
 				</div>
 				<div class="modal-body">게시물을 정말 삭제하시겠습니까?</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" onclick="clickDel(boardInfo)">삭제하기</button>
+					<button type="button" class="btn btn-primary" onclick="clickDel(delete)">삭제하기</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
 				</div>
 			</div>
 		</div>
 	</div>
-<form name="boardInfo">
+<form name="delete">
 <input type="hidden" name="mid" value="${movieVO.mid}">
 </form>
 

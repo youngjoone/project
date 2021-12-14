@@ -69,4 +69,10 @@ public class MovieService {
 		// TODO Auto-generated method stub
 		return movieDAO.deleteMovie(movieVO);
 	}
+	
+	public MovieVO dupMid(String mid) {
+		// TODO Auto-generated method stub
+		MovieVO dupMid = movieDAO.dupMid(mid);
+		return dupMid;
+	}
 }
