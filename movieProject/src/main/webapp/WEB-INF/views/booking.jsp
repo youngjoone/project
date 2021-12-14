@@ -37,7 +37,7 @@
 			<div class="tx-14 tx-bold tx-gray-700 tx-spacing-5">날짜 시간 선택</div>
 			<!--ajax로 데이터 받아서 foreach  -->
 			<div class="mg-t-20">
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+				<input type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" value="월/일">
 				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
 				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
 				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
@@ -75,10 +75,7 @@
 		</div>
 		<div class="col-sm-2">오른쪽여백</div>
 	</div>
-	<script>
-	function(){$('#datepicker1').datepicker();}
-
-	</script>
+	
 </body>
 <footer>
 <jsp:include page="/WEB-INF/views/footer.jsp" />
