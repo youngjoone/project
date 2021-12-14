@@ -78,17 +78,29 @@ function fn_modify_article(obj){ /* 수정반영하기 클릭시 */
 	obj.submit();
 }
 
-function fn_remove_article(articleNO){ /* 삭제하기 */
+function fn_remove_article(noticeNO){ /* 삭제하기 */
 	/* 진짜 삭제하시겠습니까 -> 묻기 */
 	var yesno = confirm("정말 삭제하시겠습니까?");
 	/* yesno, trur */
 	if(yesno == true){
-		location.href = "delete?noticeNO="+noticeNO;
-	} else if (yesno == false){
-		location.href = "list";
+		location.href = "delete?noticeNO="+noticeNO; 
 		
+	} else if (yesno == false){
+		location.href = "list";	
+	}	
+}
+
+function readURL(input){
+	/* console.log(input.files) */
+	if(input.files && input.files[0]){
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$('#preview').attr('src',e.target.result);
+		}
+		reader.readAsDataURL(input.files[0]);
 	}
-} 
+}
+
 </script> 
 <title>공지사항</title>
 </head>
@@ -119,7 +131,7 @@ function fn_remove_article(articleNO){ /* 삭제하기 */
       <div class="customer_btn">
       	 <input type="button" class="w3-button w3-dark-grey w3-round w3-padding-small" value="수정" onClick="fn_enable(this.form)"/>
          <input type=button class="w3-button w3-dark-grey w3-round w3-padding-small" value="목록" onclick="location.href='list'" />
-         <input type="button" class="w3-button w3-dark-grey w3-round w3-padding-small" value="삭제" onclick="fn_remove_article(${articleVO.articleNO})"/>
+         <input type="button" class="w3-button w3-dark-grey w3-round w3-padding-small" value="삭제" onclick="fn_remove_article(${noticeVO.noticeNO})"/>
       </div>
    </div>
 
