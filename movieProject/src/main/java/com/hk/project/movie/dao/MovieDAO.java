@@ -15,9 +15,15 @@ public class MovieDAO {
 	SqlSession sqlSession;
 	
 	public List<MovieVO> selectAllMovies(){
+		List<MovieVO> moviesList = sqlSession.selectList("mapper.movie.movieListReview");
+		return moviesList;
+	}
+	
+	public List<MovieVO> allMovies(){
 		List<MovieVO> moviesList = sqlSession.selectList("mapper.movie.movieList");
 		return moviesList;
 	}
+	
 	public MovieVO detail(String mid) {
 		MovieVO movieVO = sqlSession.selectOne("mapper.movie.selectOne", mid);
 		return movieVO;

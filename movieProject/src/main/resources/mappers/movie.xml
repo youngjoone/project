@@ -23,8 +23,13 @@
 		
 	</resultMap>
 	
-	
 	<select id="movieList" resultMap="movieResult">
+		SELECT MID, POSTER, LINK, TITLE, CONTENT, GENRE, RUNTIME, DIRECTOR, "CAST", AGE, "TYPE", OPENDATE
+		FROM MOVIE.P_MOVIE
+
+	</select>
+	
+	<select id="movieListReview" resultMap="movieResult">
 		SELECT pm.MID ,pm.POSTER ,pm.LINK ,pm.TITLE ,pm.CONTENT ,pm.GENRE ,pm.RUNTIME ,pm.DIRECTOR ,pm."CAST" ,pm.AGE ,pm."TYPE" ,pm.OPENDATE ,pmavg.score
 		FROM P_MOVIE pm ,
 			(SELECT pm.MID ,AVG(pr.SCORE) score
