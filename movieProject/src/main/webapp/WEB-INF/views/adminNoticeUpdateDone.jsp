@@ -18,7 +18,7 @@ function backToList(obj){
 	<script>
       setTimeout(function(){
     	 var yesno = confirm("수정되었습니다.");
-         location.href='../list';
+         location.href='/admin/notice/list';
          
       },0000)
       </script>
@@ -28,7 +28,7 @@ function backToList(obj){
 	<script>
       setTimeout(function(){
     	 var yesno = confirm("수정에 실패하였습니다.");
-         location.href='../list';
+         location.href='/admin/notice/list';
          
       },0000)
       </script>
