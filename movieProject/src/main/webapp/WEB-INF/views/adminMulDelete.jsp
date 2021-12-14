@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 선택삭제</title>
+<title>관리자 공지사항 선택삭제</title>
 </head>
 <body>
 <script>

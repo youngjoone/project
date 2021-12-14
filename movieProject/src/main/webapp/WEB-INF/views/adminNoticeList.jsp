@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<title>공지사항</title>
+<title>관리자 공지사항</title>
 <style>
 
 table{ 
@@ -79,6 +79,7 @@ td{
 	width: 55%;
 	border-radius: 20px;
 	margin: 0 auto;
+	
 }
 input[type=button] {
 	text-align:right; 
@@ -124,14 +125,14 @@ function muldelete() {
 <header>
 <jsp:include page="/WEB-INF/views/adminHeader.jsp" />
 </header>
-	<div id="container" align="right">
+	<div id="container" align="right" style="margin-top:50px;">
 	<input type="button" onclick="location.href='add'" class="w3-button w3-dark-grey w3-round w3-padding-small" value="등록">
 	<input type="button" onclick="return muldelete()" class="w3-button w3-dark-grey w3-round w3-padding-small" value="삭제"><br><br>
 	
 	</div>
 	<form name="muldelForm" action="muldelete">
 	<div>
-	  <table id="container">
+	  <table id="container" style="margin-bottom:120px;">
 		<thead>
 			<tr>
 				<th id="col1" class="bor">선택</th>

@@ -29,6 +29,15 @@ public class NoticeController {
 		return "adminNoticeList";
 	}
 	
+	@RequestMapping(value="/movie/notice", method= {RequestMethod.GET , RequestMethod.POST})
+	public String movieNoticeList(Model model) {
+		
+		List<NoticeVO> noticesList = noticeService.listNotices();
+		model.addAttribute("noticesList", noticesList);
+		
+		return "noticeList";
+	}
+	
 	@RequestMapping(value="/admin/notice/add", method=RequestMethod.GET)
 	public String noticeAdd(Model model) {
 		
@@ -57,15 +66,25 @@ public class NoticeController {
 		return "adminNoticeView";
 	}
 	
+	@RequestMapping(value="/movie/notice/view" , method=RequestMethod.GET)
+	public String movienoticeView(Model model, @RequestParam("noticeNO") int noticeNO) {
+		
+		NoticeVO noticeVO = noticeService.viewNotice(noticeNO);
+		model.addAttribute("noticeVO", noticeVO);
+		
+		return "noticeView";
+	}
+	
 	@RequestMapping(value="/admin/notice/update", method=RequestMethod.POST)
 	public String noticeUpdate(Model model, @ModelAttribute NoticeVO noticeVO) {
 		int ret = noticeService.modNotice(noticeVO);
 		model.addAttribute("ret", ret);
+		System.out.println("ret = " + ret);
 		
 		return "adminNoticeUpdateDone";
 	}
 	
-	@RequestMapping(value="/admin/notice/delete", method= RequestMethod.POST)
+	@RequestMapping(value="/admin/notice/delete", method= {RequestMethod.POST, RequestMethod.GET})
 	public String noticeDelete(Model model, @RequestParam("noticeNO") int noticeNO) {
 		
 		int ret = noticeService.removeNotice(noticeNO);

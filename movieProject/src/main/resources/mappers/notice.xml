@@ -40,7 +40,7 @@
    <!-- update (update) -->
    <update id="updateNotice" parameterType="NoticeVO">
     UPDATE P_NOTICE
-	SET CATEGORY=#{category}, NTITLE=#{nTitle}, NCONTENT=#{nContent} 
+	SET NTITLE=#{nTitle}, NCONTENT=#{nContent} 
 	WHERE NOTICENO=#{noticeNO}
    </update>
    

@@ -26,7 +26,7 @@ function chageLangSelect() {
 
 
 </script>
-<title>공지사항 추가</title>
+<title>관리자 공지사항 추가</title>
 <style>
 table{ 
 	border-top : 1px solid black;

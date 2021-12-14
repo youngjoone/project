@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+   pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
-	request.setCharacterEncoding("UTF-8");
+   request.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html>
 <html>
@@ -20,13 +20,7 @@
 .top_title_faq .stit_area em { line-height: 16px; vertical-align: middle; }
 .top_title_faq .stit_area .check_tit_area{margin-left:30px;}
 .top_title_faq .stit_area .check_num, .top_title_faq .stit_area .regist_day{margin-left:9px;font-size:12px ;font-family:'Verdana'; color: #222;}
-.movie_grade .egg_point .title {
-    font-size: 24px;
-    line-height: 30px;
-    position: absolute;
-    top: 35px;
-    left: 0;
-}
+
 .movie_grade .chart_total .title {
     position: relative;
     padding-top: 28px;
@@ -36,59 +30,63 @@
     color: #222222;
     font-weight: 500;
 }
-.real-rating .title {
-    font-size: 17px;
-    color: #212224;
-    font-weight: 500;
-    line-height: 1.8em;
-}
-.real-rating .title strong {
-    color: #fb4357;
+
+.title {
+	font-size: large;
 }
 .customer_btn {
-	margin:20px 0px 30px 0px;text-align:right;
+   margin:20px 0px 30px 0px;text-align:right;
 }
 
 .btm_sup_list .check_writ_area .check_num{display:inline-block;width:72px;margin-left:5px;font-size:12px ;font-family:'Verdana';text-align:right;*display:inline;*zoom:1;}
 
 .container {
-	width: 55%;
-	border-radius: 20px;
-	margin: 0 auto;
+   width: 55%;
+   border-radius: 20px;
+   margin: 0 auto;
+   margin-top: 90px;
+   margin-bottom: 150px;
 }
 
+.customer_btn {
+   margin:20px 0px 30px 0px;text-align:center;
+}
 </style>
-
-<title>Insert title here</title>
-</head>
-<body>
-<header>
-   <jsp:include page="/WEB-INF/views/header.jsp" />
-</header>
-	<div class="board_view_area container">
-		<ul class="top_title_faq">
-			<li class="title" name="nTitle">${noticeVO.nTitle }</li>
-			<li class="stit_area">
-				<span>등록일<fmt:formatDate value="${noticeVO.date}" pattern="yyyy/MM/dd" /></span>
-				<span class="check_tit_area">조회수 <em class="check_num">862</em></span>
-			</li>
-		</ul>
-		<div class="view_area">
-			<p><span style="width: 100%" name="nContent">${noticeVO.nContent}</span><br/>
-				<span style="font-family:맑은 고딕"></span></p>
-		</div>
-		<div class="customer_btn">
-			<input type=button class="w3-button w3-dark-grey w3-round w3-padding-small" value="목록보기" onClick="backToList(this.form)" />
-		</div>
-	</div>
 <script type="text/javascript">
 function backToList(obj){
 	obj.action = "list";
 	obj.submit();
 }
 </script>
+
+<title>공지사항</title>
+</head>
+<body>
+<header>
+   <jsp:include page="/WEB-INF/views/header.jsp" />
+</header>
+   <div class="board_view_area container">
+      <ul class="top_title_faq">
+         <li class="title" name="nTitle" style="font-size:14px; font-weight: bold;">
+         	<em class="check_num">[ ${noticeVO.category } ]</em>
+         	<em style="margin-left:10px;"> ${noticeVO.nTitle } </em>
+         </li>
+         <li class="stit_area">
+            <span style="margin-right:10px;">등록일<fmt:formatDate value="${noticeVO.date}" pattern="yyyy/MM/dd" /></span>
+            <span class="check_tit_area">조회수 <em class="check_num">862</em></span>
+         </li>
+      </ul>
+      <div class="view_area">
+         <span style="margin-left:30px" name="nContent">${noticeVO.nContent}</span><br/>
+         <span style="font-family:맑은 고딕"></span>
+      </div>
+      <div class="customer_btn">
+         <input style="margin-top:120px;" type=button class="w3-button w3-dark-grey w3-round" value="목록보기" onclick="location.href='../notice'" />
+      </div>
+   </div>
+
 <footer>
    <jsp:include page="/WEB-INF/views/footer.jsp" />
-</footer>	
+</footer>   
 </body>
 </html>

@@ -79,10 +79,8 @@ td{
 	width: 55%;
 	border-radius: 20px;
 	margin: 0 auto;
-}
-input[type=button] {
-	text-align:right; 
-	margin-top: 30px;
+	margin-top: 100px;
+	margin-bottom: 150px;
 }
 
 .pagination {
@@ -109,21 +107,29 @@ input[type=button] {
   border-radius: 5px;
 }
 
+figcaption{
+	font-size : 25px;
+	font-weight: bold;
+}
 
+#title{
+	font-size: 40px;
+	color : black;
+}
 </style>
 
 </head>
 <body>
 <header>
-<jsp:include page="/WEB-INF/views/adminHeader.jsp" />
+   <jsp:include page="/WEB-INF/views/header.jsp" />
 </header>
 
-	<form name="muldelForm" action="muldelete">
+	<form>
 	<div>
+
 	  <table id="container">
 		<thead>
 			<tr>
-				<th id="col1" class="bor">선택</th>
 				<th id="col1" class="bor">번호</th>
 				<th id="col2" class="bor">구분</th>
 				<th id="col3" class="bor">제목</th>
@@ -144,11 +150,10 @@ input[type=button] {
 				<c:forEach var="noticeVO" items="${noticesList}" end="9" varStatus="noticeNum">
 
 					<tr align="center">
-						<td width="5%" class="bor"> <input type="checkbox" name="chkbox" value="${notice.noticeVO}">
 						<td scope="row" class="bor">${noticeNum.count}</td>
 						<td scope="row" class="bor">${noticeVO.category}</td>
 						<td scope="row" class="bor">
-							<a href="update?noticeNO=${noticeVO.noticeNO}">${noticeVO.nTitle}</a>
+							<a href="notice/view?noticeNO=${noticeVO.noticeNO}">${noticeVO.nTitle}</a>
 						</td>
 						<td scope="row" class="bor"><fmt:formatDate value="${noticeVO.date}" pattern="yyyy/MM/dd" /></td>
 					</tr>

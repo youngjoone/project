@@ -11,7 +11,7 @@ function backToList(obj){
 	obj.submit();
 }
 </script>
-<title>공지사항 업데이트</title>
+<title>관리자 공지사항 업데이트</title>
 </head>
 <body>
 <c:if test="${ret>0 }">
