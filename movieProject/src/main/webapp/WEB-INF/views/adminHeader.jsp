@@ -38,9 +38,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.dashboard.css">
 <style>
-p {
-	text-align: center;
-}
+
 a:link {
 	color: black;
 }
@@ -52,7 +50,9 @@ a:visited {
 a:hover {
 	color: black;
 }
-
+.center{
+	text-align:center;
+}
 #search{
 margin-bottom: 7px;
 }
@@ -73,13 +73,13 @@ function myFunction() { /* 수정하기 클릭시 */
 
 		<div class="col-sm order-1"></div>
 		<div class="col-sm order-2">
-			<a href="/admin/main"><p>
+			<a href="/admin/main"><p class="center">
 					<img src="${pageContext.request.contextPath}/resources/template/images/megabox2.jpg" alt="영화로고"
 						width=" 300px" height=" 100px">
 				</p></a>
 		</div>
 		<div class="col-sm order-3" id="login">
-			<p class="text-right mg-t-20 mg-r-20">
+			<p class="text-right mg-t-20 mg-r-20 center">
 				<a href="/movie/login"></a>
 				<a class="mg-l-20" href="/movie/join"></a>
 				<a class="mg-l-20" href="/movie/logout">로그아웃</a>
@@ -87,7 +87,7 @@ function myFunction() { /* 수정하기 클릭시 */
 		</div>
 		
 		<div class="col-sm order-3" style="display:none" id="logout">
-			<p class="text-right mg-t-20 mg-r-20">
+			<p class="text-right mg-t-20 mg-r-20 center">
 				${login.name }님
 				<a class="mg-l-20" href="/movie/logout">로그아웃</a>
 			</p>

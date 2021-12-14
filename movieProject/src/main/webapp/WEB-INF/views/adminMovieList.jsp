@@ -62,7 +62,7 @@ ul {
 
 	<div class="row pd-t-50 bd-b">
 		<div class="col-sm"></div>
-		<div class="col-sm-8">
+		<div class="col-sm-8 tx-14 tx-bold tx-gray-700 tx-spacing-5">
 			<p>영화 전체보기</p>
 		</div>
 		<div class="col-sm">
@@ -104,7 +104,6 @@ ul {
 	</div>	
 	
 	</c:forEach>
-	
 	</body>
 <footer>
 	<jsp:include page="/WEB-INF/views/footer.jsp" />
