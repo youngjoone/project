@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="mapper.age">
+	<resultMap type="AgeVO" id="ageResult">
+	<!-- resultMap을 사용할때 id 필요 (list 같은 상황에) -->
+		<result column="age" property="age" />
+		<result column="price" property="price" />
+		
+		
+	</resultMap>
+</mapper>
