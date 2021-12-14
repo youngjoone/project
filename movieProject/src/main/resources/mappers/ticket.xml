@@ -21,6 +21,7 @@
 		WHERE pt.ID = pm.ID 
 		AND pm.ID = #{id}
 	</select>
+
 	
 	
 </mapper>

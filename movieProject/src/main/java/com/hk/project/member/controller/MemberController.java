@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.hk.project.join.vo.BookingVO;
 import com.hk.project.member.service.MemberService;
 import com.hk.project.member.vo.MemberVO;
 import com.hk.project.movie.service.MovieService;
@@ -121,8 +122,36 @@ public class MemberController {
 		System.out.println("map="+map);
 		model.addAttribute("memberVO", map.get("memberVO"));
 		model.addAttribute("ticketList", map.get("ticketList"));
+		model.addAttribute("bookingVO", map.get("bookingVO"));
 		
 		return "mypage";
+	}
+	
+//	@RequestMapping(value = "/service/mypage/sendTno", method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json; charset=utf8")
+//	@ResponseBody
+//	public Map<String, Object> sendTno(@RequestParam("ticketNo") String ticketNo) {
+//		System.out.println("ticketNo = " + ticketNo);
+//	    
+//		//json에서 K-V 형태로 데이터를 처리하기 때문에 Map 형식으로 리턴
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		// service에서 아이디가 중복인지 체크하는 모듈 ( service, dao, member.xml...)
+//		String sendTno = bookingDAO.
+//		// dupId : 'lee'(중복O) or 'null'(중복X)
+//		// 중복이면 true, 아니면 false라는 String반환
+//		if (dupId == null) { // 중복X
+//			map.put("id", "false");
+//		} else { // 중복O
+//			map.put("id", "true");
+//		}
+//		return map; // jsp를 찾는게 아니라 그냥 데이터만 client(ajax)로 리턴
+//	}
+	
+	@RequestMapping(value="/service/mypage/review", method=RequestMethod.POST)
+	public String mypageReview(Model model, HttpSession session) {
+		//
+		
+		
+		return "redirect:../mypage";
 	}
 	
 	@RequestMapping(value="/service/mypage/update", method=RequestMethod.GET)

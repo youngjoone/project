@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="mapper.booking">
+	<resultMap type="BookingVO" id="bookingResult">
+	<!-- resultMap을 사용할때 id 필요 (list 같은 상황에) -->
+		<result column="id" property="id" />
+		<result column="ticketNo" property="ticketNo" />
+		<result column="title" property="title" />
+		<result column="screenTime" property="screenTime" />
+		<result column="seat" property="seat" />
+		<result column="price" property="price" />
+		<result column="age" property="age" />
+	</resultMap>
+	
+	<!-- ticketNo별 예매내역 -->
+	<select id="bookingInfo" resultType="BookingVO">
+		SELECT pm.ID ,pt.TICKETNO ,pm2.TITLE , ps.SCREENTIME ,ps2.SEAT ,pa.PRICE ,pa.AGE 
+		FROM P_MEMBER pm ,P_TICKET pt ,P_REVIEW pr ,P_MOVIE pm2 ,P_SCREENDATE ps ,P_SCREEN ps2 ,P_AGE pa 
+		WHERE pm.ID = pt.ID
+		AND pt.ID = pr.ID 
+		AND pr.MID = pm2.MID 
+		AND ps.SCREENDATENO = pt.SCREENDATENO 
+		AND ps2.SCREENNO = pt.SCREENNO 
+		AND pt.AGE = pa.AGE 
+		AND pt.ID =#{id};
+	</select>
+	
+	
+</mapper>

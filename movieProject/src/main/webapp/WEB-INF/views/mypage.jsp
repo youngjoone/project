@@ -18,7 +18,24 @@
 	padding-top: 80px;
 }
 
+#select{
+display: inline;
+width: 65px;
+}
+div.pjm1{
+padding:0;
+}
+
 </style>
+
+<script>
+function sub(frm){
+	frm.action="mypage/review";
+	frm.method="post"
+	frm.submit();
+	alert("한줄평이 등록되었습니다.");
+}
+</script>
 
 </head>
 <body>
@@ -93,19 +110,23 @@
             <tr>
             	<td></td>
             	<td>티켓번호</td>
-            	<td>후기</td>
+            	<td></td>
+            	<td width="">후기</td>
             </tr>
             <tr>
             <c:choose>
 	  			<c:when test="${empty ticketList }">
-	    			<tr><td colspan="3" style="text-align: center;">예매내역이 없습니다.</td></tr>
+	    			<tr><td colspan="4">예매내역이 없습니다.</td></tr>
 	  			</c:when>
 	  			<c:when test="${!empty ticketList }" >
 					<c:forEach var="ticket" items="${ticketList}" varStatus="ticketNum">
 							<tr>
-								<td class="tx-nowrap">${ticketNum.count}</td>
-								<td class="tx-nowrap"><a href="">${ticket.ticketNo}</a></td>
-	              				<td class="tx-nowrap"><button class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">한줄평</button></td>
+								<td width="90" class="tx-nowrap">${ticketNum.count}</td>
+								<td width="100" class="tx-nowrap">
+									<a href="" data-toggle="modal" data-target="#Modal1">${ticket.ticketNo}</a>
+								</td>
+								<td width="600"></td>
+	              				<td width="100" class="tx-nowrap"><button class="btn btn-secondary" data-toggle="modal" data-target="#Modal2">한줄평</button></td>
 	              	  		</tr>
 					</c:forEach>
 				</c:when>
@@ -118,42 +139,87 @@
 <br>
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- 예매확인 Modal -->
+<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
+    <form name="frm">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><b>한줄평 작성</b></h5>
+        <h5 class="modal-title" id="exampleModalLabel"><b>예매정보</b></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-      
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label"></label>
-            <input type="text" class="form-control" id="recipient-name">
-            <select class="custom-select">
-            	<option selected>Open this select menu</option>
-            	<option value="1">1</option>
-            	<option value="2">2</option>
-            	<option value="3">3</option>
-            	<option value="4">4</option>
-            	<option value="5">5</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-        
-      </div>
+	      <div class="modal-body">
+			<table class="table table-invoice bd-b">
+              <tr>
+                <td class="tx-center">영화제목</td>
+                <td class="tx-center"></td>
+              </tr>
+              <tr>
+                <td class="tx-center">상영정보</td>
+                <td class="tx-center"></td>
+              </tr>
+              <tr>
+                <td class="tx-center">가격</td>
+                <td class="tx-center"></td>
+              </tr>
+              <tr>
+                <td class="tx-center">인원</td>
+                <td class="tx-center"></td>
+              </tr>
+          </table>
+		</div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      	<button type="button" class="btn btn-primary">확인</button>
+        <button type="button" class="btn btn-secondary">예매취소</button>
       </div>
+     </form> 
+    </div>
+  </div>
+</div>
+
+<!-- 한줄평 Modal -->
+<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+    <form name="frm">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><b>한줄평</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	      <div class="modal-body">
+			<div class="row">
+				<div class="col-1 pjm1"></div>
+				<div class="col-1 pjm1">
+					<div class="form-group">
+						<select class="custom-select" id="select" name="score">
+							<option selected disabled>평점</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-9 pjm1">
+				<div class="form-group">
+						<textarea class="form-control" name="rContent" id="message-text" placeholder="한줄평을 작성해주세요" style="display: inline; width: 600px;"></textarea>
+						<input type="hidden" name="id" value="${memberVO.id }">
+						<input type="hidden" name="id" value="${memberVO.id }">
+				</div>
+				</div>
+				<div class="col-1 pjm1"></div>
+			</div>
+		</div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-primary" onclick="sub(frm)">등록</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+      </div>
+     </form> 
     </div>
   </div>
 </div>

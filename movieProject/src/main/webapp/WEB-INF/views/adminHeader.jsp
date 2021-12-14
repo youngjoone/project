@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-
+<head>
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -67,7 +65,8 @@ function myFunction() { /* 수정하기 클릭시 */
 	}
 }
 </script>
-
+</head>
+<body onload="myFunction()">
 	<div class="row">
 
 
@@ -78,16 +77,17 @@ function myFunction() { /* 수정하기 클릭시 */
 						width=" 300px" height=" 100px">
 				</p></a>
 		</div>
+		<!-- 로그인 전 -->
 		<div class="col-sm order-3" id="login">
-			<p class="text-right mg-t-20 mg-r-20 center">
-				<a href="/movie/login"></a>
-				<a class="mg-l-20" href="/movie/join"></a>
-				<a class="mg-l-20" href="/movie/logout">로그아웃</a>
+			<p class="text-right mg-t-20 mg-r-20">
+				<a href="/movie/login">로그인</a>
+				<a class="mg-l-20" href="/movie/join">회원가입</a>
 			</p>
 		</div>
 		
+		<!-- 로그인 후 -->
 		<div class="col-sm order-3" style="display:none" id="logout">
-			<p class="text-right mg-t-20 mg-r-20 center">
+			<p class="text-right mg-t-20 mg-r-20">
 				${login.name }님
 				<a class="mg-l-20" href="/movie/logout">로그아웃</a>
 			</p>
@@ -138,4 +138,5 @@ function myFunction() { /* 수정하기 클릭시 */
 		</div>
 
 		<div class="col-sm order-4"></div>
-</html>
+</div>
+</body>

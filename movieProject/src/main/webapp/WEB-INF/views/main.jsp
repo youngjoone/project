@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page session="false"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,10 +33,10 @@
 	href="${pageContext.request.contextPath}/resources/template/lib/@fortawesome/fontawesome-free/css/all.min.css"
 	rel="stylesheet">
 <link
-	href="${pageContext.request.contextPath}/resources/lib/template/ionicons/css/ionicons.min.css"
+	href="${pageContext.request.contextPath}/resources/template/lib/ionicons/css/ionicons.min.css"
 	rel="stylesheet">
 <link
-	href="${pageContext.request.contextPath}/resources/lib/template/jqvmap/jqvmap.min.css"
+	href="${pageContext.request.contextPath}/resources/template/lib/jqvmap/jqvmap.min.css"
 	rel="stylesheet">
 
 <!-- DashForge CSS -->
@@ -62,17 +62,17 @@ a:hover {
 	color: black;
 }
 </style>
+
+<body>
 <header>
 <jsp:include page="/WEB-INF/views/header.jsp" />
 </header>
-<body>
-
 	<div class="row bd-b pd-t-20">
 		<br>
 		<br>
 		<div class="col-sm"></div>
 		<div class="col-sm tx-14 tx-bold tx-gray-700 tx-spacing-5">
-			<p>현재 상영작</p>
+			<p>현재 상영작 ${login.name }</p>
 		</div>
 		<div class="col-sm"></div>
 	</div>
@@ -85,7 +85,6 @@ a:hover {
 				<a href="detail?MID=${movieVO.mid }"><img
 					src="${pageContext.request.contextPath}/resources/template/images/${movieVO.poster }"
 					class="card-img-top rounded" alt="${movieVO.title }" width="134px" height="280px"></a>
-
 				<button type="button" class="btn btn-secondary btn-block" disabled>
 					<a href="">예매하기</a>
 				</button>
@@ -136,8 +135,10 @@ a:hover {
 	<div class="col-sm"></div>
 	
 </div>
-</body>
+
 <footer>
 <jsp:include page="/WEB-INF/views/footer.jsp" />
 </footer>
+</body>
+
 </html>
