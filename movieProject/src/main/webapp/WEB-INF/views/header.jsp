@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 
+<head>
 
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -59,15 +59,18 @@ margin-bottom: 7px;
 }
 </style>
 <script>
-window.onload() = function(){ /* 수정하기 클릭시 */
-	if(${login}!=null){//로그인 되어있으면
+function myFunction() { /* 수정하기 클릭시 */
+	if(${!empty login }){//로그인 되어있으면
 		document.getElementById("logout").style.display = "block";
 		document.getElementById("login").style.display = "none";
+	} else {
+		return;
 	}
-	return;
 }
 </script>
+</head>
 
+<body onload="myFunction()">
 	<div class="row">
 
 
@@ -78,6 +81,8 @@ window.onload() = function(){ /* 수정하기 클릭시 */
 						width=" 300px" height=" 100px">
 				</p></a>
 		</div>
+		
+		<!-- 로그인 전 -->
 		<div class="col-sm order-3" id="login">
 			<p class="text-right mg-t-20 mg-r-20">
 				<a href="/movie/login">로그인</a>
@@ -85,6 +90,7 @@ window.onload() = function(){ /* 수정하기 클릭시 */
 			</p>
 		</div>
 		
+		<!-- 로그인 후 -->
 		<div class="col-sm order-3" style="display:none" id="logout">
 			<p class="text-right mg-t-20 mg-r-20">
 				${login.name }님
@@ -139,3 +145,4 @@ window.onload() = function(){ /* 수정하기 클릭시 */
 
 		<div class="col-sm order-4"></div>
 	</div>
+</body>

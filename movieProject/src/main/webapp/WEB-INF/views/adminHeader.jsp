@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 
@@ -53,7 +52,21 @@ a:visited {
 a:hover {
 	color: black;
 }
+
+#search{
+margin-bottom: 7px;
+}
 </style>
+<script>
+function myFunction() { /* 수정하기 클릭시 */
+	if(${!empty login }){//로그인 되어있으면
+		document.getElementById("logout").style.display = "block";
+		document.getElementById("login").style.display = "none";
+	} else {
+		return;
+	}
+}
+</script>
 
 	<div class="row">
 
@@ -65,10 +78,18 @@ a:hover {
 						width=" 300px" height=" 100px">
 				</p></a>
 		</div>
-		<div class="col-sm order-3">
+		<div class="col-sm order-3" id="login">
 			<p class="text-right mg-t-20 mg-r-20">
 				<a href="/movie/login"></a>
 				<a class="mg-l-20" href="/movie/join"></a>
+				<a class="mg-l-20" href="/movie/logout">로그아웃</a>
+			</p>
+		</div>
+		
+		<div class="col-sm order-3" style="display:none" id="logout">
+			<p class="text-right mg-t-20 mg-r-20">
+				${login.name }님
+				<a class="mg-l-20" href="/movie/logout">로그아웃</a>
 			</p>
 		</div>
 
@@ -80,12 +101,11 @@ a:hover {
 		<div class="col-sm order-4"></div>
 		<div class="col-sm order-5"></div>
 		<div class="col-sm order-6">
-			<div class="search-form pd-r-35">
+			<div class="search-form pd-r-35" id="search">
 				<input type="search" class="form-control" placeholder="Search">
 				<button class="btn" type="button">
 					<i data-feather="search"></i>
 				</button>
-
 			</div>
 		</div>
 

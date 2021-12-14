@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hk.project.member.service.MemberService;
 import com.hk.project.member.vo.MemberVO;
@@ -34,7 +35,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/movie/login", method=RequestMethod.POST)
-	public String loginDone(Model model, @ModelAttribute MemberVO memberVO, HttpSession session) {
+	public String loginDone(Model model, @ModelAttribute MemberVO memberVO, HttpSession session,RedirectAttributes redirectAttributes) {
 
 		// DB결과가 들어있는 null 혹은 사용자 정보 memberVO
 		memberVO = memberService.checkUser(memberVO); // select한 VO값
@@ -44,8 +45,6 @@ public class MemberController {
 		} else { //로그인 정보 있음
 			session.setAttribute("login", memberVO);
 			//원래가려던 페이지 정보
-			
-			
 			if(memberVO.getVerify()==99) { //관리자일때
 				return "redirect:/admin/main"; // /admin/main으로 가도록
 			} else { //일반유저일때
