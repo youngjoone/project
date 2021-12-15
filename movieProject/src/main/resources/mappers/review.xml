@@ -36,6 +36,6 @@
    <insert id="insertReview" parameterType="ReviewVO">
    		INSERT INTO P_REVIEW
 		(ID, MID, RCONTENT, SCORE, RDATE, TICKETNO)
-		VALUES('2', 'M01', '내용', 2, sysdate, 'T01')
+		VALUES(#{id}, #{mid}, #{rContent}, #{score}, sysdate, #{ticketNo})
    </insert>
 </mapper>   

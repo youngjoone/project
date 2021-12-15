@@ -15,6 +15,7 @@
 		<result column="age" property="age" />
 	</resultMap>
 	
+	<!-- 예매내역 -->
 	<select id="myBooking" resultMap="ticketResult">
 		SELECT pm.ID , pt.TICKETNO , pt.SCREENDATENO ,pt.SCREENNO ,pt.SEATNO ,pt.AGE ,pr.SCORE 
 		FROM P_MEMBER pm ,P_TICKET pt ,P_REVIEW pr 
@@ -23,6 +24,13 @@
 		AND pm.ID = #{id}
 		ORDER BY pt.TICKETNO 
 	</select>
+	
+	<!-- 예매취소 -->
+	<delete id="cancleTicket" >
+		DELETE FROM P_TICKET
+		WHERE TICKETNO=#{ticketNo}
+	</delete>
+	
 
 	
 	

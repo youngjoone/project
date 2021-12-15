@@ -48,6 +48,7 @@ public class ReviewVO {
 		this.ticketNo = ticketNo;
 	}
 	
+
 	@Override
 	public String toString() {
 		return "ReviewVO [id=" + id + ", mid=" + mid + ", rContent=" + rContent + ", score=" + score + ", rDate="

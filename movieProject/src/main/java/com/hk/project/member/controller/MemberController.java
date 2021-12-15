@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.RequestWrapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -129,13 +130,20 @@ public class MemberController {
 		return "mypage";
 	}
 	
+	@RequestMapping(value="/service/mypage", method=RequestMethod.POST)
+	public String bookCancle(Model model, @RequestParam("ticketNo") String ticketNo) {
+		
+		ticketService.cancleTicket(ticketNo);
+		
+		return "redirect:/service/mypage";
+	}
+	
 	@RequestMapping(value="/service/mypage/review", method=RequestMethod.POST)
 	public String mypageReview(Model model, @ModelAttribute ReviewVO reviewVO) {
 		//insert review
 		
-		System.out.println(reviewVO.toString());
-		int ret = reviewService.insertReview(reviewVO);
-		model.addAttribute("ret", ret);
+		//System.out.println("-----------------"+reviewVO.toString());
+		reviewService.insertReview(reviewVO);
 		
 		return "redirect:../mypage";
 	}

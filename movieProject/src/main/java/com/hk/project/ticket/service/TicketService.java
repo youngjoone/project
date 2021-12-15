@@ -11,4 +11,8 @@ public class TicketService {
 	@Autowired
 	TicketDAO ticketDAO;
 
+	public int cancleTicket(String ticketNo) {
+		return ticketDAO.cancleTicket(ticketNo);
+	}
+
 }

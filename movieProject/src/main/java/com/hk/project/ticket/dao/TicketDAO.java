@@ -19,4 +19,9 @@ public class TicketDAO {
 		return ticketList;
 	}
 
+	public int cancleTicket(String ticketNo) {
+		int ret = sqlSession.delete("mapper.ticket.cancleTicket", ticketNo);
+		return 0;
+	}
+
 }

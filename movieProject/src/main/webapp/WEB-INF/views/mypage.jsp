@@ -29,16 +29,32 @@ padding:0;
 </style>
 
 <script>
-function sub(frm){
+/* 리뷰작성 */
+function review(frm){
 	frm.action="mypage/review";
 	frm.method="post"
 	frm.submit();
 }
 
-$('#tno1').on('click', function(e){
-	  e.preventDefault();
-	  $('#Modal1').modal('show').find('.modal-content').load($(this).attr('href'));
-	});
+/* 예매취소 */
+function cancle(tno){
+	var yesno = confirm("취소하시겠습니까?");
+	/* yesno, trur */
+	if(yesno == true){
+		var form = document.createElement("form");
+		form.setAttribute("method","post");
+		form.setAttribute("action","mypage");
+		var tnoInput = document.createElement("input");
+		tnoInput.setAttribute("type","hidden");
+		tnoInput.setAttribute("name","ticketNo");
+		tnoInput.setAttribute("value",tno);
+		form.appendChild(tnoInput);
+		document.body.appendChild(form);
+		form.submit();
+	} else if (yesno == false){
+		return;
+	}	
+}
 
 </script>
 
@@ -194,7 +210,7 @@ $('#tno1').on('click', function(e){
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">확인</button>
-						<button type="button" class="btn btn-primary">예매취소</button>
+						<button type="button" class="btn btn-primary" onclick="cancle('${book.ticketNo }')">예매취소</button>
 					</div>
 				</form>
 			</div>
@@ -203,11 +219,11 @@ $('#tno1').on('click', function(e){
 </c:forEach>
 
 <!-- 한줄평 Modal -->
-<c:forEach var="review" items="${bookingList}" varStatus="reviewNum"> <!-- ticketList의 ticketNo랑 같이 submit -->
-<div class="modal fade" id="review${reviewNum.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<c:forEach var="book" items="${bookingList}" varStatus="bookNum"> 
+<div class="modal fade" id="review${bookNum.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-    <form name="frm${reviewNum.index }">
+    <form name="frm${bookNum.index }">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><b>한줄평</b></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -232,17 +248,16 @@ $('#tno1').on('click', function(e){
 				<div class="col-9 pjm1">
 				<div class="form-group">
 						<textarea class="form-control" name="rContent" id="message-text" placeholder="한줄평을 작성해주세요" style="display: inline; width: 600px;"></textarea>
-						<input type="hidden" name="id" value="${memberVO.id }">
-						<input type="hidden" name="id" value="${memberVO.id }">
 				</div>
 				</div>
 				<div class="col-1 pjm1"></div>
 			</div>
-			<input type="hidden" name="id" id="id" value="${memberVO.id }">
-			<input type="hidden" name="mid" id="mid" value="${review.mid }">
+			<input type="hidden" name="id" id="id" value="${memberVO.id }" />
+			<input type="hidden" name="mid" id="mid" value="${book.mid }" />
+			<input type="hidden" name="ticketNo" id="ticketNo" value="${book.ticketNo }" />
 		</div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-primary" onclick="sub(frm${reviewNum.index })">등록</button>
+      	<button type="button" class="btn btn-primary" onclick="review(frm${bookNum.index })">등록</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
       </div>
      </form> 
