@@ -72,7 +72,7 @@ a:hover {
 		<br>
 		<div class="col-sm"></div>
 		<div class="col-sm tx-14 tx-bold tx-gray-700 tx-spacing-5">
-			<p>현재 상영작 ${login.name }</p>
+			<p>현재 상영작</p>
 		</div>
 		<div class="col-sm"></div>
 	</div>

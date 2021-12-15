@@ -36,6 +36,11 @@ function sub(frm){
 	alert("한줄평이 등록되었습니다.");
 }
 
+$('#tno1').on('click', function(e){
+	  e.preventDefault();
+	  $('#Modal1').modal('show').find('.modal-content').load($(this).attr('href'));
+	});
+
 </script>
 
 </head>
@@ -44,7 +49,6 @@ function sub(frm){
 <jsp:include page="/WEB-INF/views/header.jsp" />
 </header>
 
-<!-- 모달 : data-toggle="modal" -->
 
 <div class="row" id="memberInfo">
 	<div class="col-1"></div>
@@ -124,11 +128,10 @@ function sub(frm){
 							<tr>
 								<td width="90" class="tx-center">${ticketNum.count}</td>
 								<td width="100" class="tx-center">
-									<a href="" data-toggle="modal" data-target="#Modal1" id="tno1">${ticket.ticketNo}</a>
-									<input type="hidden" name="ticketNo" id="tno2" value="${ticket.ticketNo}">
+									<a href="" data-toggle="modal" data-target="#Modal${ticketNum.index}" id="tno1">${ticket.ticketNo}</a>
 								</td>
 								<td width="600"></td>
-	              				<td width="100" class="tx-center"><button class="btn btn-secondary" data-toggle="modal" data-target="#Modal2">한줄평</button></td>
+	              				<td width="100" class="tx-center"><button class="btn btn-secondary" data-toggle="modal" data-target="#review${ticketNum.index}">한줄평</button></td>
 	              	  		</tr>
 					</c:forEach>
 				</c:when>
@@ -142,50 +145,65 @@ function sub(frm){
 
 
 <!-- 예매확인 Modal -->
-<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<c:forEach var="book" items="${bookingList}" varStatus="bookNum">
+<div class="modal fade" id="Modal${bookNum.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-    <form name="frm">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><b>예매정보</b></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-	      <div class="modal-body">
-			<table class="table table-invoice bd-b">
-              <tr>
-                <td class="tx-center">영화제목</td>
-                <td class="tx-center"></td>
-              </tr>
-              <tr>
-                <td class="tx-center">상영정보</td>
-                <td class="tx-center"></td>
-              </tr>
-              <tr>
-                <td class="tx-center">가격</td>
-                <td class="tx-center"></td>
-              </tr>
-              <tr>
-                <td class="tx-center">인원</td>
-                <td class="tx-center"></td>
-              </tr>
-          </table>
-		</div>
-      <div class="modal-footer">
-      	<button type="button" class="btn btn-primary">확인</button>
-        <button type="button" class="btn btn-secondary">예매취소</button>
-      </div>
-     </form> 
-    </div>
+				<form name="frm">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">
+							<b>예매정보</b>
+						</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<table class="table table-invoice bd-b">
+							<tr>
+								<td class="tx-center">티켓번호</td>
+								<td class="tx-center">${book.ticketNo }</td>
+							</tr>
+							<tr>
+								<td class="tx-center">영화제목</td>
+								<td class="tx-center">${book.title }</td>
+							</tr>
+							<tr>
+								<td class="tx-center">상영날짜</td>
+								<td class="tx-center"><fmt:formatDate pattern="yyyy년 MM월 dd일 hh:mm" value="${book.screenTime }"/></td>
+							</tr>
+							<tr>
+								<td class="tx-center">상영관</td>
+								<td class="tx-center">${book.screenNo }관 / ${book.seat }석</td>
+							</tr>
+							<tr>
+								<td class="tx-center">가격</td>
+								<td class="tx-center">${book.price }</td>
+							</tr>
+							<tr>
+								<td class="tx-center">인원</td>
+								<td class="tx-center">${book.age }</td>
+							</tr>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">확인</button>
+						<button type="button" class="btn btn-primary">예매취소</button>
+					</div>
+				</form>
+			</div>
   </div>
 </div>
+</c:forEach>
 
 <!-- 한줄평 Modal -->
-<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<c:forEach var="review" items="${bookingList}" varStatus="reviewNum"> <!-- ticketList의 ticketNo랑 같이 submit -->
+<div class="modal fade" id="review${reviewNum.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-    <form name="frm">
+    <form name="frm${reviewNum.index }">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><b>한줄평</b></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -216,16 +234,18 @@ function sub(frm){
 				</div>
 				<div class="col-1 pjm1"></div>
 			</div>
+			<input type="hidden" name="id" value="${memberVO.id }">
+			<input type="hidden" name="mid" value="${review.mid }">
 		</div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-primary" onclick="sub(frm)">등록</button>
+      	<button type="button" class="btn btn-primary" onclick="sub(frm${reviewNum.index })">등록</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
       </div>
      </form> 
     </div>
   </div>
 </div>
-
+</c:forEach>
 
 <footer>
 <jsp:include page="/WEB-INF/views/footer.jsp" />

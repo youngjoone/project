@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.HttpSessionRequiredException;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +22,8 @@ import com.hk.project.member.service.MemberService;
 import com.hk.project.member.vo.MemberVO;
 import com.hk.project.movie.service.MovieService;
 import com.hk.project.movie.vo.MovieVO;
+import com.hk.project.review.service.ReviewService;
+import com.hk.project.review.vo.ReviewVO;
 import com.hk.project.ticket.dao.TicketDAO;
 import com.hk.project.ticket.service.TicketService;
 
@@ -32,6 +36,8 @@ public class MemberController {
 	MovieService movieService;
 	@Autowired
 	TicketService ticketService;
+	@Autowired
+	ReviewService reviewService;
 	
 	@RequestMapping(value="/movie/login", method=RequestMethod.GET)
 	public String login() {
@@ -124,9 +130,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/service/mypage/review", method=RequestMethod.POST)
-	public String mypageReview(Model model, HttpSession session) {
-		//
+	public String mypageReview(Model model, @ModelAttribute ReviewVO reviewVO) {
+		//insert review
 		
+		System.out.println(reviewVO.toString());
+		int ret = reviewService.insertReview(reviewVO);
+		model.addAttribute("ret", ret);
 		
 		return "redirect:../mypage";
 	}

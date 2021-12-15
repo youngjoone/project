@@ -78,6 +78,10 @@ public class MemberService {
 		return memberDAO.infoUpdate(memberVO);
 	}
 
+//	public BookingVO selectTno(String ticketNo) {
+//		return bookingDAO.selectTno(ticketNo);
+//	}
+
 	
 	
 }

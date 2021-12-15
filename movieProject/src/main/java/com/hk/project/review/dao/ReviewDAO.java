@@ -18,4 +18,9 @@ public class ReviewDAO {
 		List<ReviewVO> selectMovieReview = sqlSession.selectList("mapper.review.selectMovieReview",mid);
 		return selectMovieReview;
 	}
+
+	public int insertReview(ReviewVO reviewVO) {
+		int ret = sqlSession.insert("mapper.review.insertReview", reviewVO);
+		return ret;
+	}
 }

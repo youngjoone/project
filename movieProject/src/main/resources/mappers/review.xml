@@ -33,6 +33,8 @@
    
    <!-- 리뷰작성 -->
    <insert id="insertReview" parameterType="ReviewVO">
-   		
+   		INSERT INTO P_REVIEW
+		(ID, MID, RCONTENT, SCORE, RDATE)
+		VALUES(#{id}, #{mid}, #{rContent}, #{score}, sysdate)
    </insert>
 </mapper>   

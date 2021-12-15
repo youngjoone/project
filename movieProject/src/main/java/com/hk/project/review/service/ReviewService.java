@@ -13,6 +13,10 @@ public class ReviewService {
 
 	@Autowired
 	ReviewDAO reviewDAO;
+
+	public int insertReview(ReviewVO reviewVO) {
+		return reviewDAO.insertReview(reviewVO);
+	}
 	
 	
 }

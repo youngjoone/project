@@ -6,6 +6,7 @@ public class BookingVO {
 
 	private String id;
 	private String ticketNo;
+	private String mid;
 	private String title;
 	private Date screenTime;
 	private String screenNo;
@@ -24,6 +25,12 @@ public class BookingVO {
 	}
 	public void setTicketNo(String ticketNo) {
 		this.ticketNo = ticketNo;
+	}
+	public String getMid() {
+		return mid;
+	}
+	public void setMid(String mid) {
+		this.mid = mid;
 	}
 	public String getTitle() {
 		return title;
@@ -61,10 +68,10 @@ public class BookingVO {
 	public void setAge(String age) {
 		this.age = age;
 	}
+	
 	@Override
 	public String toString() {
-		return "BookingVO [id=" + id + ", ticketNo=" + ticketNo + ", title=" + title + ", screenTime=" + screenTime
-				+ ", screenNo=" + screenNo + ", seat=" + seat + ", price=" + price + ", age=" + age + "]";
+		return "BookingVO [id=" + id + ", ticketNo=" + ticketNo + ", mid=" + mid + ", title=" + title + ", screenTime="
+				+ screenTime + ", screenNo=" + screenNo + ", seat=" + seat + ", price=" + price + ", age=" + age + "]";
 	}
-	
 }
