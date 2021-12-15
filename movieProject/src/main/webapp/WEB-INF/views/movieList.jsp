@@ -82,7 +82,7 @@ ul {
 
 				<div class="btn-group" role="group" aria-label="Basic example">
 					<button type="button" class="btn btn-dark  " disabled>평점 ${movieVO.score }</button>
-					<button type="button" class="btn btn-light  " onclick="location.href=''">예매하기</button>
+					<button type="button" class="btn btn-light  " onclick="location.href='../service/booking?mid=${movieVO.mid}'">예매하기</button>
 				</div>
 			</div>
 		</div>

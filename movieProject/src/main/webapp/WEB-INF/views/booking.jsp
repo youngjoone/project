@@ -61,7 +61,7 @@
 				여러가지 영화중에서 하나만 고를수 있어야함 그리고 취소하고 다른영화 고르는법? -->
 			<!-- 메인에서 오면 선택 안되어있게, 리스트에서 예매하기 누르면 미리 선택되어 있게 -->
 			<div class="tx-14 tx-bold tx-gray-700 tx-spacing-5">영화선택</div>
-			<select class="custom-select" size="20" name="mid" multiple>
+			<select class="custom-select" size="20" id='movieSelectBox' name="mid" onclick="getMMDD()" multiple>
 				<c:forEach var="movieVO" items="${movieVO }">
 					<option value="${movieVO.mid }" class="tx-20 tx-bold tx-spacing-2 tx-lato ">${movieVO.title }</option>
 				</c:forEach>
@@ -72,21 +72,7 @@
 		<!-- 선택한 영화와 조인한 후 날짜 나와야함-->
 			<div class="tx-14 tx-bold tx-gray-700 tx-spacing-5">날짜 시간 선택</div>
 			<!--ajax로 데이터 받아서 foreach  -->
-			<div class="mg-t-20">
-				<input type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" value="월/일">
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">월/일</button>
+			<div class="mg-t-20" id='selectScreenBox'>
 			</div>
 			<div class="mg-t-30 bd-t tx-14 tx-bold tx-gray-700 tx-spacing-5"><br>상영관번호+상영관+영화타입(2D)</div>
 			<!--ajax로 데이터 받아서 foreach  -->
@@ -111,8 +97,74 @@
 		</div>
 		<div class="col-sm-2">오른쪽여백</div>
 	</div>
-	
+	<input type="hidden" id="selectedMid" value=${selectedMid}>	
 </body>
+<script type="text/javascript">
+	function removeMMDD() {
+		$("#selectScreenBox").children().remove();
+	}
+
+	function resetSelectScreenBox() {
+		$("#selectScreenBox").children().removeClass("active");
+		$("#selectScreenBox").children().attr("aria-pressed", "false");
+	}
+	
+	function reselectScreenBox(param) {
+		$("#selectScreenBox").children().attr("aria-pressed", "true").removeClass("active");
+		$("#selectScreenBox").children().attr("aria-pressed", "false");
+		
+		// 문자열로 치환
+		param = String(param);
+		var yy = param.substr(0, 4)
+		var mm = param.substr(5, 2)
+		var dd = param.substr(7, 2)
+		
+		console.log(yy, mm, dd);
+		// ajax로 상영관 번호, 상영관, 영화타입
+	}
+	
+	$(document).ready(function(){
+	   var selectedMid = $("#selectedMid").val();
+	   
+	   if (selectedMid) {
+		   $('#movieSelectBox').val(selectedMid).attr("selected", "selected");
+	   }
+	   
+	   
+	});
+	
+	function selectMovie() {
+		resetSelectScreenBox();
+	}
+	
+	//선택한 영화에 대한 mid를 보내서 DB에서 조인한 후 값을 뿌려주는 ajax 작성
+	function getMMDD() {
+		// init MMDD
+		removeMMDD();
+		
+		var selectMovie = $("#movieSelectBox option:selected").val();
+		
+		$.ajax({
+                type: 'POST',
+                url: '/selectMid',
+                dataType: "json",
+                data: {"mid": selectMovie},
+                success: function(data) {
+                   console.log(data);
+                   
+                   for (var i = 0; i < data.length; i++) {
+                	   var yymmdd = data[i].year + data[i].month + data[i].day;
+                	   var buttonHtml = '<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" data-toggle="button" onclick="reselectScreenBox('+ yymmdd+')">';
+                	   buttonHtml += data[i].month + '/' + data[i].day+'</button>';					            	   
+                	   $('#selectScreenBox').append(buttonHtml);
+                   };
+                },
+                error: function(request,status,error) {
+                   alert('에러!! : ' + request.responseText + ":"+error);
+                }
+         }); //end ajax 	
+	}
+</script>
 <footer>
 <jsp:include page="/WEB-INF/views/footer.jsp" />
 </footer>

@@ -5,6 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hk.project.join.dao.BookingDAO;
+import com.hk.project.join.dao.BookingDateDAO;
+import com.hk.project.join.vo.BookingDateVO;
+import com.hk.project.join.vo.BookingVO;
 import com.hk.project.movie.dao.MovieDAO;
 import com.hk.project.movie.vo.MovieVO;
 
@@ -13,9 +17,18 @@ public class BookingService {
 
 	@Autowired
 	MovieDAO movieDAO;
+	@Autowired
+	BookingDAO bookingDAO;
+	@Autowired
+	BookingDateDAO bookingDateDAO;
 	
-	public List<MovieVO> movieList(){
+	public List<MovieVO> bookingMovieList(){
 		
-		return movieDAO.allMovies();
+		return movieDAO.bookingMovieList();
+	}
+
+	public List<BookingDateVO> getMMDD(String mid) {
+		// TODO Auto-generated method stub
+		return bookingDateDAO.getMMDD(mid);
 	}
 }

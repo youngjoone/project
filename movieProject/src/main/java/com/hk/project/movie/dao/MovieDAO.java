@@ -49,4 +49,10 @@ public class MovieDAO {
 		return dupMid;
 	}
 
+	public List<MovieVO> bookingMovieList() {
+		// TODO Auto-generated method stub
+		List<MovieVO> movieVO = sqlSession.selectList("mapper.movie.bookingMovieList");
+		return movieVO;
+	}
+
 }

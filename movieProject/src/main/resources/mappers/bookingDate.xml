@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="mapper.bookingDate">
+	<resultMap type="BookingDateVO" id="bookingDateResult">
+	<!-- resultMap을 사용할때 id 필요 (list 같은 상황에) -->
+		<result column="mid" property="mid" />
+		<result column="screenNO" property="SCREENNO" />
+		<result column="type" property="type" />
+		<result column="year" property="year" />
+		<result column="month" property="month" />
+		<result column="day" property="day" />
+		<result column="hour" property="hour" />
+		<result column="minute" property="minute" />
+		
+		
+	</resultMap>
+	
+	<select id="getMMDD" resultMap="bookingDateResult">
+	SELECT DISTINCT MID, 
+	TO_CHAR(SCREENTIME, 'YYYY') AS year,
+	TO_CHAR(SCREENTIME, 'MM') AS month,
+	TO_CHAR(SCREENTIME, 'DD') AS day
+	FROM P_SCREENDATE 
+	WHERE MID = #{mid}
+
+	
+	</select>
+	
+</mapper>

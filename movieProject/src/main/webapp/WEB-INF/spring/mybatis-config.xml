@@ -14,5 +14,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.hk.project.age.vo.AgeVO" alias="AgeVO" />
 		<typeAlias type="com.hk.project.screen.vo.ScreenVO" alias="ScreenVO" />
 		<typeAlias type="com.hk.project.screendate.vo.ScreenDateVO" alias="ScreenDateVO" />
+		<typeAlias type="com.hk.project.join.vo.BookingDateVO" alias="BookingDateVO" />
     </typeAliases>
 </configuration>

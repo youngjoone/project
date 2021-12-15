@@ -62,5 +62,16 @@
 	WHERE MID='#{mid}'
 	</delete>
 
+	<select id="bookingMovieList" resultMap="movieResult">
+		SELECT pm.TITLE, pm.MID 
+		FROM P_MOVIE pm 
+		JOIN (
+		SELECT P_SCREENDATE.MID 
+		FROM P_SCREENDATE 
+		GROUP BY P_SCREENDATE.MID 
+		) ps
+		ON pm.mid = ps.MID 
+
+	</select>
 	
 </mapper>

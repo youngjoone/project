@@ -66,12 +66,12 @@ $(document).ready(function() {
                    if(data.id == 'false') { swal("중복 아님!"); $('#mid').css("background-color", "white");}
                    else { 
                 	  
-                	   swal("중복 입니다!");
+                	   swal("이미 존재하는 일련번호 입니다!");
                       // 입력한 값을 지우고 
                       // focus 를 다시 이동하고
                       $('#mid').val("");
                       $('#mid').focus();
-                      $('#mid').css("background-color", "pink");
+                      $('#mid').css("background-color", "rgb(53, 38, 105)");
                    }
                 }, 
                 error: function(request,status,error) {	//실행이 실패하면

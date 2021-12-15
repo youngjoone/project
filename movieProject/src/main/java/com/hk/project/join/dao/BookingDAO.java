@@ -19,6 +19,8 @@ public class BookingDAO {
 		return bookingList;
 	}
 
+	
+
 //	public BookingVO selectTno(String ticketNo) {
 //		BookingVO bookingVO = sqlSession.selectOne("mapper.booking.selectInfo", ticketNo);
 //		return bookingVO;
