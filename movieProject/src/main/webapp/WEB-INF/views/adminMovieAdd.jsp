@@ -150,14 +150,17 @@ $(document).ready(function() {
    				<input type="text" class="form-control" name="openDate" placeholder="yyyy.mm.dd">
  			</div>
  			<button class="btn btn-primary" type="submit">등록</button>
- 			<button class="btn btn-secondary" type="cancel">취소</button>
+ 			<button class="btn btn-secondary" type="button" >취소</button>
  		
 		</form>
+		<button class="btn btn-secondary" type="button" >취소</button>
 	</div>
 	<div class="col-sm-3"></div>
 
 </div>
-
+<script>
+	function (){}
+</script>
 </body>
 <footer>
 	<jsp:include page="/WEB-INF/views/footer.jsp" />
