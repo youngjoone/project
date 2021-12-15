@@ -34,7 +34,6 @@ public class NoticeController {
 		
 		List<NoticeVO> noticesList = noticeService.listNotices();
 		model.addAttribute("noticesList", noticesList);
-		
 		return "noticeList";
 	}
 	

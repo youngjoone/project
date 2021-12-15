@@ -130,7 +130,7 @@ function myFunction() { /* 수정하기 클릭시 */
 
 		<div class="col-sm order-3">
 			<ul class="nav nav-pills nav-fill">
-				<li class="nav-item"><a href="/admin/notice" class="nav-link"><i
+				<li class="nav-item"><a href="/admin/notice/list" class="nav-link"><i
 						data-feather="archive">공지사항</i></a></li>
 				<li class="nav-item"><a href="/admin/booking/list" class="nav-link"><i
 						data-feather="archive">예매현황</i></a></li>
