@@ -16,11 +16,12 @@
 	</resultMap>
 	
 	<select id="myBooking" resultMap="ticketResult">
-		SELECT pt.ID , pt.TICKETNO , pt.SCREENDATENO ,pt.SCREENNO ,pt.SEATNO ,pt.AGE 
-		FROM P_MEMBER pm ,P_TICKET pt 
-		WHERE pt.ID = pm.ID 
-		AND pm.ID=#{id}
-		ORDER BY pt.TICKETNO
+		SELECT pm.ID , pt.TICKETNO , pt.SCREENDATENO ,pt.SCREENNO ,pt.SEATNO ,pt.AGE ,pr.SCORE 
+		FROM P_MEMBER pm ,P_TICKET pt ,P_REVIEW pr 
+		WHERE pt.ID = pm.ID
+		AND pt.TICKETNO =pr.TICKETNO(+)
+		AND pm.ID = #{id}
+		ORDER BY pt.TICKETNO 
 	</select>
 
 	

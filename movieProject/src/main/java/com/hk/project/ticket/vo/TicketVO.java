@@ -7,6 +7,8 @@ public class TicketVO {
 	private String screenDateNo;
 	private String screenNo;
 	private String age;
+	//리뷰유무확인차
+	private int score;
 	
 	public String getId() {
 		return id;
@@ -38,11 +40,17 @@ public class TicketVO {
 	public void setAge(String age) {
 		this.age = age;
 	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
 	@Override
 	public String toString() {
 		return "TicketVO [id=" + id + ", ticketNo=" + ticketNo + ", screenDateNo=" + screenDateNo + ", screenNo="
-				+ screenNo + ", age=" + age + "]";
+				+ screenNo + ", age=" + age + ", score=" + score + "]";
 	}
-	
 
+	
 }

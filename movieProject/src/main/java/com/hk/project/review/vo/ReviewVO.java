@@ -9,6 +9,7 @@ public class ReviewVO {
 	private String rContent;
 	private int score;
 	private Date rDate;
+	private String ticketNo;
 	
 	public String getId() {
 		return id;
@@ -40,12 +41,16 @@ public class ReviewVO {
 	public void setrDate(Date rDate) {
 		this.rDate = rDate;
 	}
+	public String getTicketNo() {
+		return ticketNo;
+	}
+	public void setTicketNo(String ticketNo) {
+		this.ticketNo = ticketNo;
+	}
 	
 	@Override
 	public String toString() {
 		return "ReviewVO [id=" + id + ", mid=" + mid + ", rContent=" + rContent + ", score=" + score + ", rDate="
-				+ rDate + "]";
+				+ rDate + ", ticketNo=" + ticketNo + "]";
 	}
-	
-	
 }

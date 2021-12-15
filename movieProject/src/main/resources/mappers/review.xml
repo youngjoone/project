@@ -13,6 +13,7 @@
       <result property="rContent" column="rContent" />
       <result property="score" column="score" />
       <result property="rDate" column="rDate" />
+      <result property="ticketNo" column="ticketNo" />
    </resultMap>
    
    <!-- list -->
@@ -34,7 +35,7 @@
    <!-- 리뷰작성 -->
    <insert id="insertReview" parameterType="ReviewVO">
    		INSERT INTO P_REVIEW
-		(ID, MID, RCONTENT, SCORE, RDATE)
-		VALUES(#{id}, #{mid}, #{rContent}, #{score}, sysdate)
+		(ID, MID, RCONTENT, SCORE, RDATE, TICKETNO)
+		VALUES('2', 'M01', '내용', 2, sysdate, 'T01')
    </insert>
 </mapper>   

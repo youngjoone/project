@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <style type="text/css">
 
 #edit{
@@ -33,7 +33,6 @@ function sub(frm){
 	frm.action="mypage/review";
 	frm.method="post"
 	frm.submit();
-	alert("한줄평이 등록되었습니다.");
 }
 
 $('#tno1').on('click', function(e){
@@ -128,10 +127,15 @@ $('#tno1').on('click', function(e){
 							<tr>
 								<td width="90" class="tx-center">${ticketNum.count}</td>
 								<td width="100" class="tx-center">
-									<a href="" data-toggle="modal" data-target="#Modal${ticketNum.index}" id="tno1">${ticket.ticketNo}</a>
+									<a href="" data-toggle="modal" data-target="#Modal${ticketNum.index}" id="tno1" style="text-decoration: underline;">${ticket.ticketNo}</a>
 								</td>
 								<td width="600"></td>
-	              				<td width="100" class="tx-center"><button class="btn btn-secondary" data-toggle="modal" data-target="#review${ticketNum.index}">한줄평</button></td>
+								<c:if test="${ticket.score ==0 }"> <!-- 리뷰가 없으면 -->
+									<td width="100" class="tx-center"><button class="btn btn-secondary reviewChk" data-toggle="modal" data-target="#review${ticketNum.index}">한줄평</button></td>
+								</c:if>
+	              				<c:if test="${ticket.score > 0 }"> <!-- 리뷰가 존재하면 -->
+									<td width="100" class="tx-center"><button class="btn btn-secondary reviewChk" data-toggle="modal" data-target="#review${ticketNum.index}" disabled>한줄평</button></td>
+								</c:if>
 	              	  		</tr>
 					</c:forEach>
 				</c:when>
@@ -234,8 +238,8 @@ $('#tno1').on('click', function(e){
 				</div>
 				<div class="col-1 pjm1"></div>
 			</div>
-			<input type="hidden" name="id" value="${memberVO.id }">
-			<input type="hidden" name="mid" value="${review.mid }">
+			<input type="hidden" name="id" id="id" value="${memberVO.id }">
+			<input type="hidden" name="mid" id="mid" value="${review.mid }">
 		</div>
       <div class="modal-footer">
       	<button type="button" class="btn btn-primary" onclick="sub(frm${reviewNum.index })">등록</button>
