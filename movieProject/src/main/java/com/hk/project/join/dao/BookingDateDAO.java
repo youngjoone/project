@@ -28,4 +28,9 @@ public class BookingDateDAO {
 		List<BookingDateVO> getHHMM = sqlSession.selectList("mapper.bookingDate.getHHMM", MMDDmap);
 		return getHHMM;
 	}
+	
+	public int selectScreenDateNo() {
+		int screenDateNo = sqlSession.selectOne("mapper.bookingDate.getScreenDateNoLast");
+		return screenDateNo;
+	}
 }

@@ -11,7 +11,14 @@
 		<result column="screenTime" property="screenTime" />
 		<result column="mid" property="mid" />
 		<result column="screenNO" property="screenNO" />
-		
-		
 	</resultMap>
+	
+	<!-- 상영정보 입력 -->
+	<insert id="insertScreenDate" parameterType="ScreenDateVO">
+		INSERT INTO P_SCREENDATE
+		(SCREENDATENO, SCREENTIME, MID, SCREENNO)
+		VALUES(#{screenDateNO}, #{screenTime}, #{mid}, #{screenNO})
+	</insert>
+	
+	
 </mapper>

@@ -25,9 +25,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- vendor css -->
 <link href="${pageContext.request.contextPath}/resources/template/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/lib/template/ionicons/css/ionicons.min.css"
+<link href="${pageContext.request.contextPath}/resources/template/lib/ionicons/css/ionicons.min.css"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/lib/template/jqvmap/jqvmap.min.css"
+<link href="${pageContext.request.contextPath}/resources/template/lib/jqvmap/jqvmap.min.css"
 	rel="stylesheet">
 
 <!-- DashForge CSS -->

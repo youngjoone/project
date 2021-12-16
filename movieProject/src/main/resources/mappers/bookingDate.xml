@@ -15,8 +15,6 @@
 		<result column="day" property="day" />
 		<result column="hour" property="hour" />
 		<result column="minute" property="minute" />
-		
-		
 	</resultMap>
 	
 	<select id="getMMDD" resultMap="bookingDateResult">
@@ -26,9 +24,8 @@
 	TO_CHAR(SCREENTIME, 'DD') AS day
 	FROM P_SCREENDATE 
 	WHERE MID = #{mid}
-
-	
 	</select>
+	
 	<select id="getHHMM" resultMap="bookingDateResult" parameterType="hashMap">
 	SELECT DISTINCT 
    ps.MID, 
@@ -45,6 +42,11 @@
 	WHERE ps.MID = #{mid}
 	AND TO_CHAR(ps.SCREENTIME, 'MM')  = #{mm}
 	AND TO_CHAR(ps.SCREENTIME, 'DD')  = #{dd}
+	</select>
+	
+	<select id="getScreenDateNoLast" resultType="int">
+		SELECT MAX(TO_NUMBER(SUBSTR(screenDateno,2))) 
+		FROM P_SCREENDATE
 	</select>
 	
 </mapper>

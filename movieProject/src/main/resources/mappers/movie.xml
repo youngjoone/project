@@ -25,8 +25,7 @@
 	
 	<select id="movieList" resultMap="movieResult">
 		SELECT MID, POSTER, LINK, TITLE, CONTENT, GENRE, RUNTIME, DIRECTOR, "CAST", AGE, "TYPE", OPENDATE
-		FROM MOVIE.P_MOVIE
-
+		FROM P_MOVIE
 	</select>
 	
 	<select id="movieListReview" resultMap="movieResult">
@@ -46,19 +45,19 @@
 	</select>
 	
 	<insert id="insertMovie" parameterType="movieVO">
-		INSERT INTO MOVIE.P_MOVIE
+		INSERT INTO P_MOVIE
 		(MID, POSTER, LINK, TITLE, CONTENT, GENRE, RUNTIME, DIRECTOR, "CAST", AGE, "TYPE", OPENDATE)
 		VALUES(#{mid}, #{poster}, #{link}, #{title},#{content},#{genre},#{runTime},#{director},#{cast},#{age},#{type},#{openDate})
 	</insert>
 	
 	<update id="updateMovie" parameterType="movieVO">
-	UPDATE MOVIE.P_MOVIE
+	UPDATE P_MOVIE
 	SET POSTER=#{poster}, LINK=#{link}, TITLE=#{title}, CONTENT=#{content}, GENRE=#{genre}, RUNTIME=#{runTime}, DIRECTOR=#{director}, "CAST"=#{cast}, AGE=#{age}, "TYPE"=#{type}, OPENDATE=#{openDate}
 	WHERE MID=#{mid}
 	</update>
 	
 	<delete id ="deleteMovie" parameterType="movieVO">
-	DELETE FROM MOVIE.P_MOVIE
+	DELETE FROM P_MOVIE
 	WHERE MID='#{mid}'
 	</delete>
 
@@ -71,7 +70,11 @@
 		GROUP BY P_SCREENDATE.MID 
 		) ps
 		ON pm.mid = ps.MID 
-
+	</select>
+	
+	<select id="movieListSelect" resultMap="movieResult">
+		SELECT MID ,TITLE FROM P_MOVIE
+		ORDER BY MID
 	</select>
 	
 </mapper>

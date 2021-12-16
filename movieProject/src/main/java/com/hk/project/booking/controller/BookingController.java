@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,12 +16,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hk.project.booking.service.BookingService;
 import com.hk.project.join.vo.BookingDateVO;
 import com.hk.project.movie.vo.MovieVO;
+import com.hk.project.screendate.service.ScreenDateService;
+import com.hk.project.screendate.vo.ScreenDateVO;
 
 @Controller
 public class BookingController {
 
 	@Autowired
 	BookingService bookingService;
+	@Autowired
+	ScreenDateService screenDateService; 
 	
 	@RequestMapping(value="/service/booking", method={RequestMethod.GET , RequestMethod.POST})
 	public String bookingMain(Model model, String mid) {
@@ -75,5 +80,23 @@ public class BookingController {
 		getHHMM	=bookingService.getHHMM(MMDDmap);	
   
 		return getHHMM;
+	}
+	
+	@RequestMapping(value="/admin/booking/add", method=RequestMethod.GET)
+	public String bookingAdd(Model model) {
+		//movie 테이블에서 영화 선택할 수 있게 (mid, title list)
+		List<MovieVO> movieVOList = bookingService.selectMovieList();
+		model.addAttribute("movieVOList", movieVOList);
+		
+		int screenDateNo = bookingService.selectScreenDateNo();
+		model.addAttribute("screenDateNo", screenDateNo);
+		return "bookingAdd";
+	}
+	
+	@RequestMapping(value="/admin/booking/add", method=RequestMethod.POST)
+	public String bookingAddDone(Model model, @ModelAttribute ScreenDateVO screenDateVO) {
+		
+		screenDateService.insertScreenDate(screenDateVO);
+		return "bookingAddDone";
 	}
 }

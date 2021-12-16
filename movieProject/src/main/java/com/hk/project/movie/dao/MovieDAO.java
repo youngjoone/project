@@ -55,4 +55,9 @@ public class MovieDAO {
 		return movieVO;
 	}
 
+	//관리자 상영정보입력
+	public List<MovieVO> movieList() {
+		List<MovieVO> movieList = sqlSession.selectList("mapper.movie.movieListSelect");
+		return movieList;
+	}
 }

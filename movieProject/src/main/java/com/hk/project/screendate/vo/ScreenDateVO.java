@@ -2,9 +2,12 @@ package com.hk.project.screendate.vo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class ScreenDateVO {
 
 	public String screenDateNO;
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	public Date screenTime;
 	public String mid;
 	public String screenNO;

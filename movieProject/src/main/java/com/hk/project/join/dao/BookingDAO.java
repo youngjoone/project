@@ -18,6 +18,8 @@ public class BookingDAO {
 		List<BookingVO> bookingList = sqlSession.selectList("mapper.booking.bookingInfo",id);
 		return bookingList;
 	}
+	
+
 
 	
 
