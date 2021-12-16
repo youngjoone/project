@@ -1,6 +1,7 @@
 package com.hk.project.booking.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,28 @@ public class BookingController {
 				
 //		map.put("id","true"); // 중복이면 true, 아니면 false라는 String반환   
 		return getMMDD;
+	}
+	
+	@RequestMapping(value="/selectMMDD",method= { RequestMethod.GET , RequestMethod.POST },produces = "application/json; charset=utf8")	//http protocol
+	@ResponseBody
+	public List<BookingDateVO> chkMMDD(@RequestParam("mid") String mid,@RequestParam("yy") String yy,@RequestParam("mm") String mm,@RequestParam("dd") String dd) { 
+		// jsp 화면을 줄필요가 없으므로. 
+		// 사용자 유무만 확인해주면 된다.
+		// 클라이언트->서버에 요청할때는 String으로 
+		// 서버->클라이언트에 답변할때는 JSON으로
+		System.out.println("mid"+mid);
+		System.out.println("yy"+yy);
+		System.out.println("mm"+mm);
+		System.out.println("dd"+dd);
+		
+		List<BookingDateVO> getHHMM = new ArrayList<BookingDateVO>();
+		HashMap<String,Object> MMDDmap = new HashMap<String,Object>();
+		MMDDmap.put("mid", mid);
+		MMDDmap.put("yy", yy);
+		MMDDmap.put("mm", mm);
+		MMDDmap.put("dd", dd);
+		getHHMM	=bookingService.getHHMM(MMDDmap);	
+  
+		return getHHMM;
 	}
 }

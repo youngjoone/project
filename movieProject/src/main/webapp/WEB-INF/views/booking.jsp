@@ -77,22 +77,8 @@
 			<div class="mg-t-30 bd-t tx-14 tx-bold tx-gray-700 tx-spacing-5"><br>상영관번호+상영관+영화타입(2D)</div>
 			<!--ajax로 데이터 받아서 foreach  -->
 			<!-- 영화와 위 날짜와 조인해 맞는 상영시간이 나와야함  -->
-			<div class="mg-t-20">
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
-				<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10">상영시간</button>
+			<div class="mg-t-20" id="selectHHMM">
+				
 			</div>
 		</div>
 		<div class="col-sm-2">오른쪽여백</div>
@@ -116,11 +102,36 @@
 		// 문자열로 치환
 		param = String(param);
 		var yy = param.substr(0, 4)
-		var mm = param.substr(5, 2)
-		var dd = param.substr(7, 2)
+		var mm = param.substr(4, 2)
+		var dd = param.substr(6, 2)
 		
 		console.log(yy, mm, dd);
 		// ajax로 상영관 번호, 상영관, 영화타입
+		var selectMovie = $("#movieSelectBox option:selected").val();
+		
+		removeHHMM();
+		
+		$.ajax({
+                type: 'POST',
+                url: '/selectMMDD',
+                dataType: "json",
+                data: {"mid": selectMovie,"yy":yy,"mm":mm,"dd":dd},
+                success: function(data) {
+                   console.log(data);
+                   for( var i =0;i<data.length; i++){
+                	   var screenNO = data[i].screenNO
+                	   var type = data[i].type
+                	   var hhmm = data[i].hour + data[i].minute
+                	   
+                	   var HHMMHtml =  '<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" data-toggle="button">'+data[i].hour+'시'+data[i].minute+'분'+'</button>'
+                	   $('#selectHHMM').append(HHMMHtml);
+                   };
+                  
+                },
+                error: function(request,status,error) {
+                   alert('에러!! : ' + request.responseText + ":"+error);
+                }
+         }); //end ajax
 	}
 	
 	$(document).ready(function(){
@@ -164,6 +175,10 @@
                 }
          }); //end ajax 	
 	}
+	function removeHHMM() {
+		$("#selectHHMM").children().remove();
+	}
+	
 </script>
 <footer>
 <jsp:include page="/WEB-INF/views/footer.jsp" />

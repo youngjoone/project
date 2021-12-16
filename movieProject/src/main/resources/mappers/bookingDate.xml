@@ -8,7 +8,7 @@
 	<resultMap type="BookingDateVO" id="bookingDateResult">
 	<!-- resultMap을 사용할때 id 필요 (list 같은 상황에) -->
 		<result column="mid" property="mid" />
-		<result column="screenNO" property="SCREENNO" />
+		<result column="screenNO" property="screenNO" />
 		<result column="type" property="type" />
 		<result column="year" property="year" />
 		<result column="month" property="month" />
@@ -28,6 +28,23 @@
 	WHERE MID = #{mid}
 
 	
+	</select>
+	<select id="getHHMM" resultMap="bookingDateResult" parameterType="hashMap">
+	SELECT DISTINCT 
+   ps.MID, 
+   ps.SCREENNO,
+   pm."TYPE" ,
+   TO_CHAR(ps.SCREENTIME, 'YYYY') AS year,
+   TO_CHAR(ps.SCREENTIME, 'MM') AS month,
+   TO_CHAR(ps.SCREENTIME, 'DD') AS day,
+   TO_CHAR(ps.SCREENTIME, 'HH') AS hour,
+   TO_CHAR(ps.SCREENTIME, 'MI') AS minute
+	FROM P_SCREENDATE ps
+	JOIN P_MOVIE pm 
+	ON ps.MID = pm.MID 
+	WHERE ps.MID = #{mid}
+	AND TO_CHAR(ps.SCREENTIME, 'MM')  = #{mm}
+	AND TO_CHAR(ps.SCREENTIME, 'DD')  = #{dd}
 	</select>
 	
 </mapper>
