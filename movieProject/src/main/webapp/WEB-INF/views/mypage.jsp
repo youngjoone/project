@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,6 +57,10 @@ function cancle(tno){
 	}	
 }
 
+function noCancle(){
+	alert('상영일자가 지나 취소할 수 없습니다.');
+}
+
 </script>
 
 </head>
@@ -90,7 +95,9 @@ function cancle(tno){
               </tr>
               <tr>
                 <td class="tx-nowrap">휴대폰번호</td>
-                <td class="tx-nowrap">010-${memberVO.tel }</td>
+                <td class="tx-nowrap">
+                <c:set var="tel" value="${memberVO.tel}" />
+                010-${fn:substring(tel,0,4) }-${fn:substring(tel,4,8) }</td>
               </tr>
               <tr>
                 <td class="tx-nowrap">이메일</td>
@@ -122,9 +129,9 @@ function cancle(tno){
 <br>
 
 <div class="row">
-	<div class="col-1"></div>
-	<div class="col-10"><br>
-		<h4><b>예매확인</b></h4>
+	<div class="col-2"></div>
+	<div class="col-8"><br>
+		<h3 style="text-align: center;"><b>예매확인</b></h3><br>
 		<table class="table table-invoice bd rounded-40" style="text-align: center;">
             <tbody>
             <tr>
@@ -141,16 +148,16 @@ function cancle(tno){
 	  			<c:when test="${!empty ticketList }" >
 					<c:forEach var="ticket" items="${ticketList}" varStatus="ticketNum">
 							<tr>
-								<td width="90" class="tx-center">${ticketNum.count}</td>
-								<td width="100" class="tx-center">
-									<a href="" data-toggle="modal" data-target="#Modal${ticketNum.index}" id="tno1" style="text-decoration: underline;">${ticket.ticketNo}</a>
+								<td width="10%" class="tx-center">${ticketNum.count}</td>
+								<td width="15%" class="tx-center">${ticket.ticketNo}</td>
+								<td width="60%" class="tx-left">
+									<a href="" data-toggle="modal" data-target="#Modal${ticketNum.index}" id="tno1" style="text-decoration: underline;">예매정보</a>
 								</td>
-								<td width="600"></td>
 								<c:if test="${ticket.score ==0 }"> <!-- 리뷰가 없으면 -->
-									<td width="100" class="tx-center"><button class="btn btn-secondary reviewChk" data-toggle="modal" data-target="#review${ticketNum.index}">한줄평</button></td>
+									<td width="15%" class="tx-center"><button class="btn btn-secondary reviewChk" data-toggle="modal" data-target="#review${ticketNum.index}">한줄평</button></td>
 								</c:if>
 	              				<c:if test="${ticket.score > 0 }"> <!-- 리뷰가 존재하면 -->
-									<td width="100" class="tx-center"><button class="btn btn-secondary reviewChk" data-toggle="modal" data-target="#review${ticketNum.index}" disabled>한줄평</button></td>
+									<td width="15%" class="tx-center"><button class="btn btn-secondary reviewChk" data-toggle="modal" data-target="#review${ticketNum.index}" disabled>한줄평</button></td>
 								</c:if>
 	              	  		</tr>
 					</c:forEach>
@@ -159,7 +166,7 @@ function cancle(tno){
             </tbody>
           </table>
 	</div>
-	<div class="col-1"></div>
+	<div class="col-2"></div>
 </div>
 <br>
 
@@ -210,7 +217,16 @@ function cancle(tno){
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">확인</button>
-						<button type="button" class="btn btn-primary" onclick="cancle('${book.ticketNo }')">예매취소</button>
+						
+						<jsp:useBean id="now" class="java.util.Date" />
+						<fmt:formatDate var ="today" value="${now }" pattern="yyyyMMddhhmm"/>
+						<fmt:formatDate var="screenTime" pattern="yyyyMMddhhmm" value="${book.screenTime }"/>
+						<c:if test="${today<screenTime}" >
+							<button type="button" class="btn btn-primary" onclick="cancle('${book.ticketNo }')">예매취소</button>
+						</c:if>
+						<c:if test="${today>screenTime}">
+							<button type="button" class="btn btn-primary" onclick="noCancle()">예매취소</button>
+						</c:if>
 					</div>
 				</form>
 			</div>
@@ -235,7 +251,7 @@ function cancle(tno){
 				<div class="col-1 pjm1"></div>
 				<div class="col-1 pjm1">
 					<div class="form-group">
-						<select class="custom-select" id="select" name="score">
+						<select class="custom-select" id="select" name="score" required>
 							<option selected disabled>평점</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -247,7 +263,7 @@ function cancle(tno){
 				</div>
 				<div class="col-9 pjm1">
 				<div class="form-group">
-						<textarea class="form-control" name="rContent" id="message-text" placeholder="한줄평을 작성해주세요" style="display: inline; width: 600px;"></textarea>
+						<textarea class="form-control" name="rContent" id="message-text" placeholder="한줄평을 작성해주세요" style="display: inline; width: 600px;" required></textarea>
 				</div>
 				</div>
 				<div class="col-1 pjm1"></div>
@@ -269,8 +285,6 @@ function cancle(tno){
 <footer>
 <jsp:include page="/WEB-INF/views/footer.jsp" />
 </footer>
-
-
 
 </body>
 </html>

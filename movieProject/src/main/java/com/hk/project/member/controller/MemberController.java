@@ -142,7 +142,6 @@ public class MemberController {
 	public String mypageReview(Model model, @ModelAttribute ReviewVO reviewVO) {
 		//insert review
 		
-		//System.out.println("-----------------"+reviewVO.toString());
 		reviewService.insertReview(reviewVO);
 		
 		return "redirect:../mypage";
