@@ -74,13 +74,22 @@
 			<!--ajax로 데이터 받아서 foreach  -->
 			<div class="mg-t-20" id='selectScreenBox'>
 			</div>
-			<div class="mg-t-30 bd-t tx-14 tx-bold tx-gray-700 tx-spacing-5"><br>상영관번호+상영관+영화타입(2D)</div>
+			<div class="mg-t-30 bd-t tx-14 tx-bold tx-gray-700 tx-spacing-5" id="HHMMTitle"><br>상영관,시간 날짜 선택</div>
 			<!--ajax로 데이터 받아서 foreach  -->
 			<!-- 영화와 위 날짜와 조인해 맞는 상영시간이 나와야함  -->
 			<div class="mg-t-20" id="selectHHMM">
-				
+				<!-- 영화 시간 선택하는곳 -->
 			</div>
+			
 		</div>
+		<div class="col-sm-2">오른쪽여백</div>
+		
+		
+	</div>
+	<div class="row bd-t">
+		<div class="col-sm-2">왼쪽여백</div>
+		<div class="col-sm-7"></div>
+		<div class="col-sm-1"><button type="button" class="btn btn-dark mg-t-10 mg-r-30">좌석 선택</button></div>
 		<div class="col-sm-2">오른쪽여백</div>
 	</div>
 	<input type="hidden" id="selectedMid" value=${selectedMid}>	
@@ -94,7 +103,14 @@
 		$("#selectScreenBox").children().removeClass("active");
 		$("#selectScreenBox").children().attr("aria-pressed", "false");
 	}
-	
+	function reselectHHMM(param){
+		//param값 받아오는거 해야함 
+		param = String(param);
+		var hh = param.substr(0,2);
+		var mm = param.substr(2,2);
+		$("#selectHHMM").children().attr("aria-pressed", "true").removeClass("active");
+		$("#selectHHMM").children().attr("aria-pressed", "false");
+	}
 	function reselectScreenBox(param) {
 		$("#selectScreenBox").children().attr("aria-pressed", "true").removeClass("active");
 		$("#selectScreenBox").children().attr("aria-pressed", "false");
@@ -118,12 +134,13 @@
                 data: {"mid": selectMovie,"yy":yy,"mm":mm,"dd":dd},
                 success: function(data) {
                    console.log(data);
+                   $('#HHMMTitle').html(data[0].screenNO+'상영관'+data[0].type);
                    for( var i =0;i<data.length; i++){
                 	   var screenNO = data[i].screenNO
                 	   var type = data[i].type
                 	   var hhmm = data[i].hour + data[i].minute
                 	   
-                	   var HHMMHtml =  '<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" data-toggle="button">'+data[i].hour+'시'+data[i].minute+'분'+'</button>'
+                	   var HHMMHtml =  '<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" data-toggle="button" onclick="reselectHHMM()">'+data[i].hour+'시'+data[i].minute+'분'+'</button>'
                 	   $('#selectHHMM').append(HHMMHtml);
                    };
                   
