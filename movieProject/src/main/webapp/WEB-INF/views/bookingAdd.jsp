@@ -17,7 +17,7 @@ $(document).ready(function(){
     $('input.timepicker').timepicker({ 
     	timeFormat: 'HH:mm:ss',
         interval: 30,
-        startTime: '00:00:00',
+        startTime: '01:00:00',
         dynamic: false,
         dropdown: true,
         scrollbar: true 
@@ -80,7 +80,7 @@ function dateTime(frm){
 		<!-- 날짜 선택 -->
 		<div class="tx-14 tx-bold tx-gray-700 tx-spacing-5">상영날짜 선택</div>
 		<div class="mg-t-20" id="">
-			<input type="text" class="form-control" placeholder="yyyy/mm/dd" id="datepicker4" required>
+			<input type="text" class="form-control" placeholder="yyyy-mm-dd" id="datepicker4" required>
 		</div>
 		<br>
 		

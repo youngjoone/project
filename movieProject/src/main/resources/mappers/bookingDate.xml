@@ -45,7 +45,7 @@
 	</select>
 	
 	<select id="getScreenDateNoLast" resultType="int">
-		SELECT MAX(TO_NUMBER(SUBSTR(screenDateno,2))) 
+		SELECT NVL(MAX(TO_NUMBER(SUBSTR(screenDateno,2))),0) 
 		FROM P_SCREENDATE
 	</select>
 	

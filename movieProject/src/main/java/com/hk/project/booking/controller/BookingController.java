@@ -96,7 +96,9 @@ public class BookingController {
 	@RequestMapping(value="/admin/booking/add", method=RequestMethod.POST)
 	public String bookingAddDone(Model model, @ModelAttribute ScreenDateVO screenDateVO) {
 		
-		screenDateService.insertScreenDate(screenDateVO);
+		int ret = screenDateService.insertScreenDate(screenDateVO);
+		model.addAttribute("screenDateVO", screenDateVO);
+		model.addAttribute("ret", ret);
 		return "bookingAddDone";
 	}
 }

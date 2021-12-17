@@ -4,6 +4,7 @@ public class ScreenVO {
 
 	public String screenNO;
 	public String seat;
+	
 	public String getScreenNO() {
 		return screenNO;
 	}
@@ -16,10 +17,9 @@ public class ScreenVO {
 	public void setSeat(String seat) {
 		this.seat = seat;
 	}
+	
 	@Override
 	public String toString() {
 		return "ScreenVO [screenNO=" + screenNO + ", seat=" + seat + "]";
 	}
-	
-	
 }
