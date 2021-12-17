@@ -34,7 +34,7 @@
    TO_CHAR(ps.SCREENTIME, 'YYYY') AS year,
    TO_CHAR(ps.SCREENTIME, 'MM') AS month,
    TO_CHAR(ps.SCREENTIME, 'DD') AS day,
-   TO_CHAR(ps.SCREENTIME, 'HH') AS hour,
+   TO_CHAR(ps.SCREENTIME, 'HH24') AS hour,
    TO_CHAR(ps.SCREENTIME, 'MI') AS minute
 	FROM P_SCREENDATE ps
 	JOIN P_MOVIE pm 

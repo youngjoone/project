@@ -90,12 +90,121 @@
 	<div class="row bd-t">
 		<div class="col-sm-2">왼쪽여백</div>
 		<div class="col-sm-7"></div>
-		<div class="col-sm-1"><button type="button" class="btn btn-dark mg-t-10 mg-r-30">좌석 선택</button></div>
+		<div class="col-sm-1">
+			<button type="button" class="btn btn-dark mg-t-10 mg-r-30"
+				data-toggle="modal" data-target="#selectSeat ">좌석 선택</button>
+		</div>
 		<div class="col-sm-2">오른쪽여백</div>
 	</div>
-	<input type="hidden" id="selectedMid" value=${selectedMid}>	
+	<input type="hidden" id="selectedMid" value=${selectedMid}>
+	
+	
+	<!-- The Modal -->
+	<div class="modal fade" id="selectSeat">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">좌석 선택하기</h4>
+					<button type="button" class="close"  data-dismiss="modal">×</button>
+				</div>
+				
+				<div class="mg-t-10">
+					<span class="tx-18 tx-spacing-2 lh-15 mg-l-15">성인</span>
+					<div class="btn-group" role="group" aria-label="Basic example">
+					
+  						<button type="button" class="btn btn-light btn-outline-dark" id="adultMinus" onclick='adultMinus()'>-</button>
+ 						<button type="button" class="btn btn-light btn-outline-dark" id="adult" value="0">0</button>
+  						<button type="button" class="btn btn-light btn-outline-dark" id="adultPlus" onclick="adultPlus()">+</button>
+					</div>
+				
+					<span class="tx-18 tx-spacing-2 lh-15 mg-l-50">청소년</span> 
+					<div class="btn-group" role="group" aria-label="Basic example">
+					
+  						<button type="button" class="btn btn-light btn-outline-dark" id="teenMinus" onclick='teenMinus()'>-</button>
+ 						<button type="button" class="btn btn-light btn-outline-dark" id="teen">0</button>
+  						<button type="button" class="btn btn-light btn-outline-dark" id="teenPlus" onclick='teenPlus()'>+</button>
+					</div>
+				</div>
+				<!-- Modal body -->
+				
+				<div class="modal-body bd-t">
+				좌석 선택<br>
+				<button type="button" class="btn btn-xs btn-outline-dark">A1</button>
+				<button type="button" class="btn btn-xs btn-outline-dark">A2</button>
+				<button type="button" class="btn btn-xs btn-outline-dark">A3</button>
+				<button type="button" class="btn btn-xs btn-outline-dark">A4</button>
+				<button type="button" class="btn btn-xs btn-outline-dark">A5</button>
+				<button type="button" class="btn btn-xs btn-outline-dark">A6</button>
+				<button type="button" class="btn btn-xs btn-outline-dark">A7</button>
+				<button type="button" class="btn btn-xs btn-outline-dark">A8</button>
+				<button type="button" class="btn btn-xs btn-outline-dark">A9</button>
+				<button type="button" class="btn btn-xs btn-outline-dark">A10</button>
+				
+
+
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
 </body>
 <script type="text/javascript">
+	//성인버튼
+
+	function adultMinus(){
+			var count = $("#adult").val()
+			if(count>0){
+				count --;
+				$("#adult").html(count);
+				$("#adult").val(count);
+			}
+		}
+
+	function adultPlus(){
+			var count = $("#adult").val()
+			if(count==6){
+				swal('최대 예매 인원수는 6명입니다');
+			}else{
+				count ++;
+				$("#adult").html(count);
+				$("#adult").val(count);
+			}
+			
+		}
+	//청소년버튼
+	
+	function teenMinus(){
+			var count = $("#teen").val()
+			if(count>0){
+				count --;
+				$("#teen").html(count);
+				$("#teen").val(count);
+			}
+			
+		}
+	
+	function teenPlus(){
+			var count = $("#teen").val()
+			if(count==6){
+				swal('최대 예매 인원수는 6명입니다');
+			}else{
+				count ++;
+				$("#teen").html(count);
+				$("#teen").val(count);
+			}
+			
+		}
+
+	
+	
+	
 	function removeMMDD() {
 		$("#selectScreenBox").children().remove();
 	}
@@ -104,104 +213,125 @@
 		$("#selectScreenBox").children().removeClass("active");
 		$("#selectScreenBox").children().attr("aria-pressed", "false");
 	}
-	function reselectHHMM(param){
+	function reselectHHMM(param) {
 		//param값 받아오는거 해야함 
 		param = String(param);
-		var hh = param.substr(0,2);
-		var mm = param.substr(2,2);
+		var hh = param.substr(0, 2);
+		var mi = param.substr(2, 2);
 		
-		$("#selectHHMM").children().attr("aria-pressed", "true").removeClass("active");
+		$("#selectHHMM").children().attr("aria-pressed", "true").removeClass(
+				"active");
 		$("#selectHHMM").children().attr("aria-pressed", "false");
 	}
 	function reselectScreenBox(param) {
-		$("#selectScreenBox").children().attr("aria-pressed", "true").removeClass("active");
+		$("#selectScreenBox").children().attr("aria-pressed", "true")
+				.removeClass("active");
 		$("#selectScreenBox").children().attr("aria-pressed", "false");
-		
+
 		// 문자열로 치환
 		param = String(param);
 		var yy = param.substr(0, 4)
 		var mm = param.substr(4, 2)
 		var dd = param.substr(6, 2)
-		
+
 		console.log(yy, mm, dd);
 		// ajax로 상영관 번호, 상영관, 영화타입
 		var selectMovie = $("#movieSelectBox option:selected").val();
-		
+
 		removeHHMM();
-		
-		$.ajax({
-                type: 'POST',
-                url: '/selectMMDD',
-                dataType: "json",
-                data: {"mid": selectMovie,"yy":yy,"mm":mm,"dd":dd},
-                success: function(data) {
-                   console.log(data);
-                   $('#HHMMTitle').html(data[0].screenNO+'상영관'+data[0].type);
-                   for( var i =0;i<data.length; i++){
-                	   var screenNO = data[i].screenNO
-                	   var type = data[i].type
-                	   var hhmm = data[i].hour + data[i].minute
-                	   
-                	   var HHMMHtml =  '<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" data-toggle="button" onclick="reselectHHMM('+hhmm+')">'+data[i].hour+'시'+data[i].minute+'분'+'</button>'
-                	   $('#selectHHMM').append(HHMMHtml);
-                   };
-                  
-                },
-                error: function(request,status,error) {
-                   alert('에러!! : ' + request.responseText + ":"+error);
-                }
-         }); //end ajax
+
+		$
+				.ajax({
+					type : 'POST',
+					url : '/selectMMDD',
+					dataType : "json",
+					data : {
+						"mid" : selectMovie,
+						"yy" : yy,
+						"mm" : mm,
+						"dd" : dd
+					},
+					success : function(data) {
+						console.log(data);
+						$('#HHMMTitle').html(
+								data[0].screenNO + '상영관' + data[0].type);
+						for (var i = 0; i < data.length; i++) {
+							var screenNO = data[i].screenNO
+							var type = data[i].type
+							var hhmm = data[i].hour + data[i].minute
+
+							var HHMMHtml = '<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" data-toggle="button" onclick="reselectHHMM('
+									+ hhmm
+									+ ')">'
+									+ data[i].hour
+									+ '시'
+									+ data[i].minute + '분' + '</button>'
+							$('#selectHHMM').append(HHMMHtml);
+						}
+						;
+
+					},
+					error : function(request, status, error) {
+						alert('에러!! : ' + request.responseText + ":" + error);
+					}
+				}); //end ajax
 	}
-	
-	$(document).ready(function(){
-	   var selectedMid = $("#selectedMid").val();
-	   
-	   if (selectedMid) {
-		   $('#movieSelectBox').val(selectedMid).attr("selected", "selected");
-	   }
-	   
-	   
+
+	$(document).ready(function() {
+		var selectedMid = $("#selectedMid").val();
+
+		if (selectedMid) {
+			$('#movieSelectBox').val(selectedMid).attr("selected", "selected");
+		}
+
 	});
-	
+
 	function selectMovie() {
 		resetSelectScreenBox();
 	}
-	
+
 	//선택한 영화에 대한 mid를 보내서 DB에서 조인한 후 값을 뿌려주는 ajax 작성
 	function getMMDD() {
 		// init MMDD
 		removeMMDD();
-		
+
 		var selectMovie = $("#movieSelectBox option:selected").val();
-		if(selectMovie != null){
-			$.ajax({
-                type: 'POST',
-                url: '/selectMid',
-                dataType: "json",
-                data: {"mid": selectMovie},
-                success: function(data) {
-                   console.log(data);
-                   
-                   for (var i = 0; i < data.length; i++) {
-                	   var yymmdd = data[i].year + data[i].month + data[i].day;
-                	   var buttonHtml = '<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" data-toggle="button" onclick="reselectScreenBox('+ yymmdd+')">';
-                	   buttonHtml += data[i].month + '/' + data[i].day+'</button>';					            	   
-                	   $('#selectScreenBox').append(buttonHtml);
-                   };
-                },
-                error: function(request,status,error) {
-                   alert('에러!! : ' + request.responseText + ":"+error);
-                }
-         }); //end ajax 
-		}else{
+		if (selectMovie != null) {
+			$
+					.ajax({
+						type : 'POST',
+						url : '/selectMid',
+						dataType : "json",
+						data : {
+							"mid" : selectMovie
+						},
+						success : function(data) {
+							console.log(data);
+
+							for (var i = 0; i < data.length; i++) {
+								var yymmdd = data[i].year + data[i].month
+										+ data[i].day;
+								var buttonHtml = '<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" data-toggle="button" onclick="reselectScreenBox('
+										+ yymmdd + ')">';
+								buttonHtml += data[i].month + '/' + data[i].day
+										+ '</button>';
+								$('#selectScreenBox').append(buttonHtml);
+							}
+							;
+						},
+						error : function(request, status, error) {
+							alert('에러!! : ' + request.responseText + ":"
+									+ error);
+						}
+					}); //end ajax 
+		} else {
 			swal('영화를 골라주세요 ');
 		}
-			
+
 	}
 	function removeHHMM() {
 		$("#selectHHMM").children().remove();
 	}
-	
 </script>
 <footer>
 <jsp:include page="/WEB-INF/views/footer.jsp" />
