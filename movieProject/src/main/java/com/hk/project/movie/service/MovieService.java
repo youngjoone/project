@@ -75,4 +75,7 @@ public class MovieService {
 		MovieVO dupMid = movieDAO.dupMid(mid);
 		return dupMid;
 	}
+	public int selectMid() {
+		return movieDAO.selectMid();
+	}
 }

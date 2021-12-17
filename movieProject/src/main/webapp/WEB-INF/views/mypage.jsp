@@ -33,7 +33,7 @@ padding:0;
 /* 리뷰작성 */
 function review(frm){
 	frm.action="mypage/review";
-	frm.method="post"
+	frm.method="post";
 	frm.submit();
 }
 

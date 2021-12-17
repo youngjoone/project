@@ -77,4 +77,10 @@
 		ORDER BY MID
 	</select>
 	
+	<!-- 영화정보 추가시 일련번호 선택 -->
+	<select id="selectMid" resultType="int">
+		SELECT NVL(MAX(TO_NUMBER(SUBSTR(MID ,2))),0) 
+		FROM P_MOVIE
+	</select>
+	
 </mapper>

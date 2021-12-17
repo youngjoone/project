@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,36 +12,24 @@
 
 <title>Insert title here</title>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- Popper JS -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 <!-- Latest compiled JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- vendor css -->
-<link
-	href="${pageContext.request.contextPath}/resources/template/lib/@fortawesome/fontawesome-free/css/all.min.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/resources/lib/template/ionicons/css/ionicons.min.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/resources/lib/template/jqvmap/jqvmap.min.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/template/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/template/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/template/lib/jqvmap/jqvmap.min.css" rel="stylesheet">
 
 <!-- DashForge CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.dashboard.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.dashboard.css">
 <style>
 p {
 	text-align: center;
@@ -119,9 +106,8 @@ p {
    				<input type="text" class="form-control" name="openDate" placeholder="yyyy.mm.dd" value="${movieVO.openDate }" >
  			</div>
  			<button class="btn btn-primary" type="submit">등록</button>
- 			<button class="btn btn-secondary" type="cancel">취소</button>
- 		
-		</form>
+ 			</form>
+ 			<button class="btn btn-secondary" onclick="location.href='detail?MID=${movieVO.mid}'">취소</button>
 	</div>
 	<div class="col-sm-3"></div>
 

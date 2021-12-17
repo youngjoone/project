@@ -56,7 +56,8 @@ public class MovieController {
 	}
 	@RequestMapping(value="/admin/movie/add", method={RequestMethod.GET})
 	public String adminMovieAdd(Model model) {
-		
+		int mid = movieService.selectMid();
+		model.addAttribute("mid", mid);
 		
 		return "adminMovieAdd";
 	}
@@ -94,8 +95,10 @@ public class MovieController {
 		System.out.println(movieVO.toString());
 		int ret=movieService.updateMovie(movieVO);
 		model.addAttribute("ret", ret);
+		model.addAttribute("movieVO", movieVO);
 		return "adminMovieUpdateDone";
 	}
+	
 	@RequestMapping(value="/admin/delete", method={RequestMethod.POST})
 	public String adminMovieDelete(Model model,@ModelAttribute MovieVO movieVO) {
 		System.out.println("무비 딜리트"+movieVO);
@@ -104,6 +107,7 @@ public class MovieController {
 		model.addAttribute("ret", ret);
 		return "adminDelete";
 	}
+	
 	@RequestMapping(value="/dupMid",method= { RequestMethod.GET , RequestMethod.POST },produces = "application/json; charset=utf8")	//http protocol
 	@ResponseBody
 	public Map<String, Object> dupMid(@RequestParam("mid")String mid) { 

@@ -90,7 +90,7 @@ public class BookingController {
 		
 		int screenDateNo = bookingService.selectScreenDateNo();
 		model.addAttribute("screenDateNo", screenDateNo);
-		return "bookingAdd";
+		return "adminbookingAdd";
 	}
 	
 	@RequestMapping(value="/admin/booking/add", method=RequestMethod.POST)
@@ -99,6 +99,6 @@ public class BookingController {
 		int ret = screenDateService.insertScreenDate(screenDateVO);
 		model.addAttribute("screenDateVO", screenDateVO);
 		model.addAttribute("ret", ret);
-		return "bookingAddDone";
+		return "adminbookingAddDone";
 	}
 }

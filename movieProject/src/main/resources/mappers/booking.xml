@@ -20,12 +20,12 @@
 	
 	<!-- ticketNo별 예매내역 -->
 	<select id="bookingInfo" resultMap="bookingResult">
-		SELECT pm.ID ,pt.TICKETNO ,pm2.MID ,pm2.TITLE ,ps.SCREENTIME ,ps2.SCREENNO, ps2.SEAT ,pa.PRICE ,pa.AGE 
+		SELECT pm.ID ,pt.TICKETNO ,pm2.MID ,pm2.TITLE ,ps.SCREENTIME ,ps2.SCREENNO, ps2.SEAT ,pa.PRICE ,pt.AGE 
 		FROM P_MEMBER pm ,P_MOVIE pm2 , P_TICKET pt ,P_SCREENDATE ps ,P_SCREEN ps2 ,P_AGE pa
 		WHERE pm.ID =pt.ID 
 		AND pm2.MID = pt.MID
 		AND pt.SCREENDATENO =ps.SCREENDATENO 
-		AND pt.SCREENNO=ps.SCREENNO
+		AND pt.SCREENNO = ps2.SCREENNO
 		AND pt.SEATNO = ps2.SEAT 
 		AND pa.AGE =pt.AGE
 		AND pm.ID = #{id}

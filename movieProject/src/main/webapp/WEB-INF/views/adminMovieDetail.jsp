@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,36 +12,20 @@
 
 <title>Insert title here</title>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Popper JS -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <!-- Latest compiled JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- vendor css -->
-<link
-	href="${pageContext.request.contextPath}/resources/template/lib/@fortawesome/fontawesome-free/css/all.min.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/resources/lib/template/ionicons/css/ionicons.min.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/resources/lib/template/jqvmap/jqvmap.min.css"
-	rel="stylesheet">
-
+<link href="${pageContext.request.contextPath}/resources/template/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/template/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/template/lib/jqvmap/jqvmap.min.css" rel="stylesheet">
 <!-- DashForge CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.dashboard.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.dashboard.css">
 <style>
 p{
 	text-align:center;
@@ -50,13 +33,10 @@ p{
 </style>
 <script>
 		function clickDel(formName) {
-			formName.action = "/admin/delete";
+			formName.action = "delete";
 			formName.method = "post";
 			formName.submit();
-			
 		}
-		
-	
 </script>
 </head>
 <header>
@@ -81,9 +61,6 @@ p{
     			<button type="button" class="btn btn-dark" onclick="window.open('${movieVO.link}')">예고편 보기</button>
     			<button type="button" class="btn btn-danger" onclick="location.href='update?mid=${movieVO.mid}'" >수정하기</button>
     			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">삭제하기</button>
-    			
-
-
   			</div>
 		</div>
 	</div>
@@ -119,15 +96,14 @@ p{
 			<th scope="row">${reviewVO.id }</th>
 			<td>${reviewVO.score }</td>
 			<td>${reviewVO.rContent }</td>
-			
 		</tr>
 	</c:forEach>
-	
-		
+	</tbody>
 	</table>
 	</div>
 	<div class="col-sm-2"></div>
 </div>
+
 <!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -142,15 +118,16 @@ p{
 				</div>
 				<div class="modal-body">게시물을 정말 삭제하시겠습니까?</div>
 				<div class="modal-footer">
+					<form name="delete">
+					<input type="hidden" name="mid" value="${movieVO.mid}">
 					<button type="button" class="btn btn-primary" onclick="clickDel(delete)">삭제하기</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-<form name="delete">
-<input type="hidden" name="mid" value="${movieVO.mid}">
-</form>
+
 
 </body>
 <footer>
