@@ -37,7 +37,9 @@ public class BookingService {
 		
 		return bookingDateDAO.getHHMM(MMDDmap);
 	}
-
+	
+	
+	
 	//관리자 상영정보입력
 	public List<MovieVO> selectMovieList() {
 		return movieDAO.movieList();
@@ -45,6 +47,11 @@ public class BookingService {
 	
 	public int selectScreenDateNo() {
 		return bookingDateDAO.selectScreenDateNo();
+	}
+
+	public List<BookingDateVO> getSeat(BookingDateVO bookingDateVO) {
+		// TODO Auto-generated method stub
+		return bookingDateDAO.getSeat(bookingDateVO);
 	}
 	
 }

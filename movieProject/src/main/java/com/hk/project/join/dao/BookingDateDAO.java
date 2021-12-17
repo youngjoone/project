@@ -33,4 +33,11 @@ public class BookingDateDAO {
 		int screenDateNo = sqlSession.selectOne("mapper.bookingDate.getScreenDateNoLast");
 		return screenDateNo;
 	}
+
+
+	public List<BookingDateVO> getSeat(BookingDateVO bookingDateVO) {
+		// TODO Auto-generated method stub
+		List<BookingDateVO> getSeat = sqlSession.selectList("mapper.bookingDate.getSeat",bookingDateVO);
+		return getSeat;
+	}
 }

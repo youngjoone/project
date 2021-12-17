@@ -42,6 +42,8 @@ public class BookingController {
 		return "booking";
 	}
 	
+	
+	
 	@RequestMapping(value="/selectMid",method= { RequestMethod.GET , RequestMethod.POST },produces = "application/json; charset=utf8")	//http protocol
 	@ResponseBody
 	public List<BookingDateVO> chkMid(@RequestParam("mid") String mid) { 
@@ -62,10 +64,7 @@ public class BookingController {
 	@RequestMapping(value="/selectMMDD",method= { RequestMethod.GET , RequestMethod.POST },produces = "application/json; charset=utf8")	//http protocol
 	@ResponseBody
 	public List<BookingDateVO> chkMMDD(@RequestParam("mid") String mid,@RequestParam("yy") String yy,@RequestParam("mm") String mm,@RequestParam("dd") String dd) { 
-		// jsp 화면을 줄필요가 없으므로. 
-		// 사용자 유무만 확인해주면 된다.
-		// 클라이언트->서버에 요청할때는 String으로 
-		// 서버->클라이언트에 답변할때는 JSON으로
+		
 		System.out.println("mid"+mid);
 		System.out.println("yy"+yy);
 		System.out.println("mm"+mm);
@@ -100,5 +99,13 @@ public class BookingController {
 		model.addAttribute("screenDateVO", screenDateVO);
 		model.addAttribute("ret", ret);
 		return "adminbookingAddDone";
+	}
+	
+	@RequestMapping(value="/selectSeat",method= { RequestMethod.GET , RequestMethod.POST },produces = "application/json; charset=utf8")	//http protocol
+	@ResponseBody
+	public List<BookingDateVO> selectSeat(BookingDateVO bookingDateVO) { 
+		List<BookingDateVO> getSeat = bookingService.getSeat(bookingDateVO);
+		
+		return getSeat;
 	}
 }

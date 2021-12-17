@@ -91,8 +91,7 @@
 		<div class="col-sm-2">왼쪽여백</div>
 		<div class="col-sm-7"></div>
 		<div class="col-sm-1">
-			<button type="button" class="btn btn-dark mg-t-10 mg-r-30"
-				data-toggle="modal" data-target="#selectSeat ">좌석 선택</button>
+			<button type="button" class="btn btn-dark mg-t-10 mg-r-30" data-toggle="modal" onclick="selectSeat()">좌석 선택</button>
 		</div>
 		<div class="col-sm-2">오른쪽여백</div>
 	</div>
@@ -110,8 +109,8 @@
 					<button type="button" class="close"  data-dismiss="modal">×</button>
 				</div>
 				
-				<div class="mg-t-10">
-					<span class="tx-18 tx-spacing-2 lh-15 mg-l-15">성인</span>
+				<div class="mg-t-10 mg-b-10">
+					<span class="tx-18 tx-spacing-2 mg-l-15 mg-r-10 align-middle">성인</span>
 					<div class="btn-group" role="group" aria-label="Basic example">
 					
   						<button type="button" class="btn btn-light btn-outline-dark" id="adultMinus" onclick='adultMinus()'>-</button>
@@ -119,7 +118,7 @@
   						<button type="button" class="btn btn-light btn-outline-dark" id="adultPlus" onclick="adultPlus()">+</button>
 					</div>
 				
-					<span class="tx-18 tx-spacing-2 lh-15 mg-l-50">청소년</span> 
+					<span class="tx-18 tx-spacing-2 mg-l-50 mg-r-10 align-middle">청소년</span> 
 					<div class="btn-group" role="group" aria-label="Basic example">
 					
   						<button type="button" class="btn btn-light btn-outline-dark" id="teenMinus" onclick='teenMinus()'>-</button>
@@ -129,21 +128,10 @@
 				</div>
 				<!-- Modal body -->
 				
-				<div class="modal-body bd-t">
+				<div class="modal-body bd-t" id="seatModal">
 				좌석 선택<br>
-				<button type="button" class="btn btn-xs btn-outline-dark">A1</button>
-				<button type="button" class="btn btn-xs btn-outline-dark">A2</button>
-				<button type="button" class="btn btn-xs btn-outline-dark">A3</button>
-				<button type="button" class="btn btn-xs btn-outline-dark">A4</button>
-				<button type="button" class="btn btn-xs btn-outline-dark">A5</button>
-				<button type="button" class="btn btn-xs btn-outline-dark">A6</button>
-				<button type="button" class="btn btn-xs btn-outline-dark">A7</button>
-				<button type="button" class="btn btn-xs btn-outline-dark">A8</button>
-				<button type="button" class="btn btn-xs btn-outline-dark">A9</button>
-				<button type="button" class="btn btn-xs btn-outline-dark">A10</button>
 				
-
-
+				
 				</div>
 
 				<!-- Modal footer -->
@@ -154,10 +142,35 @@
 			</div>
 		</div>
 	</div>
+	<!-- 성인 ,청소년 버튼 안 value 값 만큼 좌석 선택할수 있게 하기 
+		성인 고르면 청소년 안되게 ?
+	
+		청불영화는 청소년 버튼 막기(나중에 추가 구현)
+		
+		-- 성인, 청소년 버튼 클릭시 좌석 선택 초기화
+		-- 전체 수 만큼 버튼 클릭시 선택 비활성화
+		-- 성인 수 만큼 버튼 클릭 시 검적색 버튼 ON
+		-- 성인 수 다고르면 청소년 예매 버튼 ON (다른색 버튼으로 변경)
+		-- 모달 다시 띄우면 좌석 초기화
+		-- 데이터 AXX 로 수정해놓기		
+		-- 좌석 선택 마무리하면 일괄로 정보 넘기기 + 컨트롤러
+		-- 모달에 영화 정보 추가
+		
+		-->
+	
 </body>
 <script type="text/javascript">
+	//변수 선언
+	var kMid = null;
+	var kScreenNo = null;
+	var kType = null;
+	var kYy = null;
+	var kMm = null;
+	var kDd = null;
+	var kHh = null;
+	var kMi = null;
+	
 	//성인버튼
-
 	function adultMinus(){
 			var count = $("#adult").val()
 			if(count>0){
@@ -202,9 +215,6 @@
 			
 		}
 
-	
-	
-	
 	function removeMMDD() {
 		$("#selectScreenBox").children().remove();
 	}
@@ -213,19 +223,27 @@
 		$("#selectScreenBox").children().removeClass("active");
 		$("#selectScreenBox").children().attr("aria-pressed", "false");
 	}
+	
 	function reselectHHMM(param) {
 		//param값 받아오는거 해야함 
 		param = String(param);
-		var hh = param.substr(0, 2);
-		var mi = param.substr(2, 2);
+		console.log(param);
+		var screenNo = param.substr(0, 3);
+		var type = param.substr(3, 2);
+		var hh = param.substr(5, 2);
+		var mi = param.substr(7, 2);
 		
-		$("#selectHHMM").children().attr("aria-pressed", "true").removeClass(
-				"active");
+		kScreenNo = screenNo;
+		kType = type;
+		kHh = hh;
+		kMi = mi;
+		
+		$("#selectHHMM").children().attr("aria-pressed", "true").removeClass("active");
 		$("#selectHHMM").children().attr("aria-pressed", "false");
 	}
+	
 	function reselectScreenBox(param) {
-		$("#selectScreenBox").children().attr("aria-pressed", "true")
-				.removeClass("active");
+		$("#selectScreenBox").children().attr("aria-pressed", "true").removeClass("active");
 		$("#selectScreenBox").children().attr("aria-pressed", "false");
 
 		// 문자열로 치환
@@ -233,15 +251,19 @@
 		var yy = param.substr(0, 4)
 		var mm = param.substr(4, 2)
 		var dd = param.substr(6, 2)
-
+				
 		console.log(yy, mm, dd);
 		// ajax로 상영관 번호, 상영관, 영화타입
 		var selectMovie = $("#movieSelectBox option:selected").val();
+				
+		kMid = selectMovie;
+		kYy = yy;
+		kMm = mm;
+		kDd = dd;
 
 		removeHHMM();
 
-		$
-				.ajax({
+		$.ajax({
 					type : 'POST',
 					url : '/selectMMDD',
 					dataType : "json",
@@ -259,10 +281,12 @@
 							var screenNO = data[i].screenNO
 							var type = data[i].type
 							var hhmm = data[i].hour + data[i].minute
-
-							var HHMMHtml = '<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" data-toggle="button" onclick="reselectHHMM('
-									+ hhmm
-									+ ')">'
+							
+							var screenInfo = data[i].screenNO + data[i].type + data[i].hour + data[i].minute 
+							
+							var HHMMHtml = '<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" data-toggle="button" onclick="reselectHHMM(\''
+									+ screenInfo
+									+ '\')">'
 									+ data[i].hour
 									+ '시'
 									+ data[i].minute + '분' + '</button>'
@@ -294,11 +318,11 @@
 	function getMMDD() {
 		// init MMDD
 		removeMMDD();
-
+		removeHHMM();
+		
 		var selectMovie = $("#movieSelectBox option:selected").val();
 		if (selectMovie != null) {
-			$
-					.ajax({
+			$.ajax({
 						type : 'POST',
 						url : '/selectMid',
 						dataType : "json",
@@ -329,9 +353,71 @@
 		}
 
 	}
+	
 	function removeHHMM() {
 		$("#selectHHMM").children().remove();
 	}
+	
+	function selectSeat() {
+		console.log('start');
+		console.log(kMid, kScreenNo, kYy, kMm, kDd, kHh, kMi);
+		
+		$.ajax({
+			type : 'POST',
+			url : '/selectSeat',
+			dataType : "json",
+			data : {
+				"mid" : kMid,
+				"screenNO" : kScreenNo,
+				"type": kType,
+				"year" : kYy,
+				"month" : kMm,
+				"day" : kDd,
+				"hour" : kHh,
+				"minute" : kMi
+			},
+			success : function(data) {
+				console.log(data);
+				var seatModal = '';				
+				
+				seatModal += '<div class="row">';
+				for(var i=0; i < data.length; i++){
+					
+					if (data[i].reserved == 'N') {
+						seatModal += '<button type="button" class="btn btn-xs btn-outline-dark" data-toggle="button">' + data[i].seat + '</button>';						
+					} else {
+						seatModal += '<button type="button" class="btn btn-xs btn-danger" data-toggle="button" disabled>' + data[i].seat + '</button>';
+					}
+					
+					if (i%10 == 9) {
+						seatModal += '</div>';
+						seatModal += '<div class="row">';
+					}
+				};
+				seatModal += '</div>';
+				
+				$('#seatModal').append(seatModal);
+			},
+			error : function(request, status, error) {
+				alert('에러!! : ' + request.responseText + ":"
+						+ error);
+			}
+		}); //end ajax 
+		
+		
+		$('#selectSeat').modal('show');
+
+	}
+	
+	function getAndShowMovieInfo() {
+		
+		// ajax
+		
+		// 삽입 전 모달 데이터 삭제
+		
+		// movie 정보 modal에 삽입
+	}
+	
 </script>
 <footer>
 <jsp:include page="/WEB-INF/views/footer.jsp" />

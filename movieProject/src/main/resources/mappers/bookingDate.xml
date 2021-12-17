@@ -15,6 +15,8 @@
 		<result column="day" property="day" />
 		<result column="hour" property="hour" />
 		<result column="minute" property="minute" />
+		<result column="seat" property="seat" />
+		<result column="reserved" property="reserved" />
 	</resultMap>
 	
 	<select id="getMMDD" resultMap="bookingDateResult">
@@ -47,6 +49,22 @@
 	<select id="getScreenDateNoLast" resultType="int">
 		SELECT NVL(MAX(TO_NUMBER(SUBSTR(screenDateno,2))),0) 
 		FROM P_SCREENDATE
+	</select>
+	
+	<select id="getSeat" resultMap="bookingDateResult" >	
+	SELECT ps.SEAT, NVL2(pt.TICKETNO, 'Y', 'N') reserved 
+	FROM P_SCREEN ps
+	LEFT OUTER JOIN ( 
+		SELECT pt.SEATNO, pt.TICKETNO
+		FROM P_TICKET pt 
+		JOIN P_SCREENDATE psd
+		ON pt.SCREENDATENO = psd.SCREENDATENO 
+		WHERE psd.MID = #{mid}
+		AND psd.SCREENNO = #{screenNO}
+		AND psd.SCREENTIME = TO_DATE(#{year}||#{month}||#{day}||#{hour}||#{minute}, 'YYYYMMDDHH24MI') ) pt
+	ON ps.SEAT = pt.SEATNO
+	WHERE ps.SCREENNO = #{screenNO}
+	ORDER BY ps.SEAT
 	</select>
 	
 </mapper>
