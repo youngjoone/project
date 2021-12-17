@@ -15,7 +15,8 @@
 <!-- jQuery library -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<!-- 스윗 알렛 -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- Popper JS -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -108,6 +109,7 @@
 		param = String(param);
 		var hh = param.substr(0,2);
 		var mm = param.substr(2,2);
+		
 		$("#selectHHMM").children().attr("aria-pressed", "true").removeClass("active");
 		$("#selectHHMM").children().attr("aria-pressed", "false");
 	}
@@ -140,7 +142,7 @@
                 	   var type = data[i].type
                 	   var hhmm = data[i].hour + data[i].minute
                 	   
-                	   var HHMMHtml =  '<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" data-toggle="button" onclick="reselectHHMM()">'+data[i].hour+'시'+data[i].minute+'분'+'</button>'
+                	   var HHMMHtml =  '<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" data-toggle="button" onclick="reselectHHMM('+hhmm+')">'+data[i].hour+'시'+data[i].minute+'분'+'</button>'
                 	   $('#selectHHMM').append(HHMMHtml);
                    };
                   
@@ -171,8 +173,8 @@
 		removeMMDD();
 		
 		var selectMovie = $("#movieSelectBox option:selected").val();
-		
-		$.ajax({
+		if(selectMovie != null){
+			$.ajax({
                 type: 'POST',
                 url: '/selectMid',
                 dataType: "json",
@@ -190,7 +192,11 @@
                 error: function(request,status,error) {
                    alert('에러!! : ' + request.responseText + ":"+error);
                 }
-         }); //end ajax 	
+         }); //end ajax 
+		}else{
+			swal('영화를 골라주세요 ');
+		}
+			
 	}
 	function removeHHMM() {
 		$("#selectHHMM").children().remove();
