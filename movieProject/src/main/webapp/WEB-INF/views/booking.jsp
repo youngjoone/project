@@ -40,6 +40,12 @@
 	href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.dashboard.css">
+<style>
+button:focus{
+	outline:0;
+
+}
+</style>
 </head>
 <header>
 <jsp:include page="/WEB-INF/views/header.jsp" />
@@ -147,12 +153,12 @@
 	
 		청불영화는 청소년 버튼 막기(나중에 추가 구현)
 		
-		-- 성인, 청소년 버튼 클릭시 좌석 선택 초기화
+		-- 성인, 청소년 버튼 클릭시 좌석 선택 초기화 -- ok
 		-- 전체 수 만큼 버튼 클릭시 선택 비활성화
 		-- 성인 수 만큼 버튼 클릭 시 검적색 버튼 ON
 		-- 성인 수 다고르면 청소년 예매 버튼 ON (다른색 버튼으로 변경)
-		-- 모달 다시 띄우면 좌석 초기화
-		-- 데이터 AXX 로 수정해놓기		
+		-- 모달 다시 띄우면 좌석 초기화 --ok
+		-- 데이터 AXX 로 수정해놓기		--ok
 		-- 좌석 선택 마무리하면 일괄로 정보 넘기기 + 컨트롤러
 		-- 모달에 영화 정보 추가
 		
@@ -170,17 +176,37 @@
 	var kHh = null;
 	var kMi = null;
 	
+	//변수 초기화
+	function removeVar(){
+		
+		kScreenNo = null;
+		kType = null;
+		kYy = null;
+		kMm = null;
+		kDd = null;
+		kHh = null;
+		kMi = null;
+	}
+
+	
 	//성인버튼
 	function adultMinus(){
+		
+		selectSeat();
+		
 			var count = $("#adult").val()
 			if(count>0){
 				count --;
 				$("#adult").html(count);
 				$("#adult").val(count);
 			}
+			
 		}
 
 	function adultPlus(){
+		
+	
+	
 			var count = $("#adult").val()
 			if(count==6){
 				swal('최대 예매 인원수는 6명입니다');
@@ -189,11 +215,15 @@
 				$("#adult").html(count);
 				$("#adult").val(count);
 			}
+			selectSeat();
 			
 		}
 	//청소년버튼
 	
 	function teenMinus(){
+		
+		selectSeat();
+		
 			var count = $("#teen").val()
 			if(count>0){
 				count --;
@@ -204,6 +234,9 @@
 		}
 	
 	function teenPlus(){
+		
+		selectSeat();
+		
 			var count = $("#teen").val()
 			if(count==6){
 				swal('최대 예매 인원수는 6명입니다');
@@ -211,10 +244,16 @@
 				count ++;
 				$("#teen").html(count);
 				$("#teen").val(count);
+				
 			}
 			
 		}
-
+	function removeSeatModal(){
+		$("#seatModal").children().remove();
+		
+	}
+	
+	
 	function removeMMDD() {
 		$("#selectScreenBox").children().remove();
 	}
@@ -319,6 +358,7 @@
 		// init MMDD
 		removeMMDD();
 		removeHHMM();
+		removeVar();
 		
 		var selectMovie = $("#movieSelectBox option:selected").val();
 		if (selectMovie != null) {
@@ -361,6 +401,7 @@
 	function selectSeat() {
 		console.log('start');
 		console.log(kMid, kScreenNo, kYy, kMm, kDd, kHh, kMi);
+		removeSeatModal();
 		
 		$.ajax({
 			type : 'POST',
@@ -379,12 +420,14 @@
 			success : function(data) {
 				console.log(data);
 				var seatModal = '';				
+				var seatNO= null;
 				
 				seatModal += '<div class="row">';
 				for(var i=0; i < data.length; i++){
+					seatNO = data[i].seat;
 					
 					if (data[i].reserved == 'N') {
-						seatModal += '<button type="button" class="btn btn-xs btn-outline-dark" data-toggle="button">' + data[i].seat + '</button>';						
+						seatModal += '<button type="button" class="btn btn-xs btn-outline-dark" data-toggle="button" onclick="seatCnt()">' + data[i].seat + '</button>';						
 					} else {
 						seatModal += '<button type="button" class="btn btn-xs btn-danger" data-toggle="button" disabled>' + data[i].seat + '</button>';
 					}
@@ -407,6 +450,45 @@
 		
 		$('#selectSeat').modal('show');
 
+	}
+	
+	//좌석 카운트 
+	function seatCnt(){
+		
+		
+		
+		
+	 	var adultCnt = $("#adult").val();
+		var teenCnt = $("#teen").val();
+		adultCnt = Number(adultCnt);
+		teenCnt = Number(teenCnt);
+		allCnt = adultCnt+teenCnt;
+		console.log((adultCnt+teenCnt));
+		
+		var selectedSeat = $("#seatModal > div > button.active");
+		var lastSelectedSeat = $("#seatModal > div > button.focus");	//구현해야됨 마지막클릭한좌석 셀렉터
+		console.log(selectedSeat);
+		var seatCnt = selectedSeat.length;
+		if(seatCnt!=0){
+			seatCnt++;
+			if(seatCnt > allCnt){
+				swal('좌선선택수 초과');
+				selectedSeat.removeClass("active");
+				selectedSeat.attr("aria-pressed", "false");
+			}
+		}  
+		
+		
+		
+	 	/* if((seatCnt+1) > allCnt){
+			swal('좌선선택수 초과');
+			
+			selectedSeat.removeClass("active");
+			selectedSeat.attr("aria-pressed", "false");
+		} */
+	 	/* if((selectedSeat.length+1)>adultCnt){
+	 		selectedSeat.attr("class","btn btn-xs btn-outline-success active");
+	 	} */
 	}
 	
 	function getAndShowMovieInfo() {
