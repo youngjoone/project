@@ -27,6 +27,7 @@
     top: 35px;
     left: 0;
 }
+
 .movie_grade .chart_total .title {
     position: relative;
     padding-top: 28px;

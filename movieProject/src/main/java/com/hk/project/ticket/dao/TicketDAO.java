@@ -24,4 +24,12 @@ public class TicketDAO {
 		return 0;
 	}
 
+	public List<TicketVO> selectAllTickets() {
+		// TODO Auto-generated method stub
+		
+		List<TicketVO> ticketsList = sqlSession.selectList("mapper.ticket.selectAllTickets");
+		
+		return ticketsList;
+	}
+
 }
