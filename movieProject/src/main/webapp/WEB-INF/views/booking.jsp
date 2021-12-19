@@ -427,7 +427,7 @@ button:focus{
 					seatNO = data[i].seat;
 					
 					if (data[i].reserved == 'N') {
-						seatModal += '<button type="button" class="btn btn-xs btn-outline-dark" data-toggle="button" onclick="seatCnt()">' + data[i].seat + '</button>';						
+						seatModal += '<button type="button" class="btn btn-xs btn-outline-dark" data-toggle="button" id="'+data[i].seat+'" onclick="seatCnt(\''+seatNO+'\')">' + data[i].seat + '</button>';						
 					} else {
 						seatModal += '<button type="button" class="btn btn-xs btn-danger" data-toggle="button" disabled>' + data[i].seat + '</button>';
 					}
@@ -453,10 +453,10 @@ button:focus{
 	}
 	
 	//좌석 카운트 
-	function seatCnt(){
+	function seatCnt(param){
 		
-		
-		
+		console.log(param);
+		var seatNO = "#"+param;
 		
 	 	var adultCnt = $("#adult").val();
 		var teenCnt = $("#teen").val();
@@ -466,18 +466,81 @@ button:focus{
 		console.log((adultCnt+teenCnt));
 		
 		var selectedSeat = $("#seatModal > div > button.active");
-		var lastSelectedSeat = $("#seatModal > div > button.focus");	//구현해야됨 마지막클릭한좌석 셀렉터
+		var lastSelectedSeat = $("#param");	//구현해야됨 마지막클릭한좌석 셀렉터
 		console.log(selectedSeat);
 		var seatCnt = selectedSeat.length;
-		if(seatCnt!=0){
-			seatCnt++;
-			if(seatCnt > allCnt){
+		
+		
+		if((seatCnt+1) > allCnt){
+			swal('좌선선택수 초과');
+			selectedSeat.removeClass("active");
+			selectedSeat.attr("aria-pressed", "false");
+			
+			removeSeatModal();
+			$.ajax({
+				type : 'POST',
+				url : '/selectSeat',
+				dataType : "json",
+				data : {
+					"mid" : kMid,
+					"screenNO" : kScreenNo,
+					"type": kType,
+					"year" : kYy,
+					"month" : kMm,
+					"day" : kDd,
+					"hour" : kHh,
+					"minute" : kMi
+				},
+				success : function(data) {
+					console.log(data);
+					var seatModal = '';				
+					var seatNO= null;
+					
+					seatModal += '<div class="row">';
+					for(var i=0; i < data.length; i++){
+						seatNO = data[i].seat;
+						
+						if (data[i].reserved == 'N') {
+							seatModal += '<button type="button" class="btn btn-xs btn-outline-dark" data-toggle="button" id="'+data[i].seat+'" onclick="seatCnt(\''+seatNO+'\')">' + data[i].seat + '</button>';						
+						} else {
+							seatModal += '<button type="button" class="btn btn-xs btn-danger" data-toggle="button" disabled>' + data[i].seat + '</button>';
+						}
+						
+						if (i%10 == 9) {
+							seatModal += '</div>';
+							seatModal += '<div class="row">';
+						}
+					};
+					seatModal += '</div>';
+					
+					$('#seatModal').append(seatModal);
+				},
+				error : function(request, status, error) {
+					alert('에러!! : ' + request.responseText + ":"
+							+ error);
+				}
+			}); //end ajax 
+			 
+		}
+			
+			if((seatCnt+1)>adultCnt && seatCnt<allCnt ){
+				swal('청소년좌석선택');
+				$(seatNO).css('background-color','green');
+				//$(seatNO).attr('class','btn btn-xs btn-success');
+				
+				
+				
+			}
+			
+			
+			/* if((seatCnt+1) > allCnt){
 				swal('좌선선택수 초과');
 				selectedSeat.removeClass("active");
 				selectedSeat.attr("aria-pressed", "false");
-			}
-		}  
+				 
+			} */
 		
+	
 		
 		
 	 	/* if((seatCnt+1) > allCnt){
