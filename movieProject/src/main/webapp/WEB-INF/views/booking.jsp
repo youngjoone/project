@@ -45,6 +45,9 @@ button:focus{
 	outline:0;
 
 }
+button:hover{
+background: #e7e7e7; color: black;
+}
 </style>
 </head>
 <header>
@@ -454,7 +457,7 @@ button:focus{
 	
 	//좌석 카운트 
 	function seatCnt(param){
-		
+		return false;
 		console.log(param);
 		var seatNO = "#"+param;
 		
@@ -466,7 +469,7 @@ button:focus{
 		console.log((adultCnt+teenCnt));
 		
 		var selectedSeat = $("#seatModal > div > button.active");
-		var lastSelectedSeat = $("#param");	//구현해야됨 마지막클릭한좌석 셀렉터
+		
 		console.log(selectedSeat);
 		var seatCnt = selectedSeat.length;
 		
@@ -477,6 +480,7 @@ button:focus{
 			selectedSeat.attr("aria-pressed", "false");
 			
 			removeSeatModal();
+			
 			$.ajax({
 				type : 'POST',
 				url : '/selectSeat',
@@ -523,35 +527,25 @@ button:focus{
 			 
 		}
 			
-			if((seatCnt+1)>adultCnt && seatCnt<allCnt ){
-				swal('청소년좌석선택');
-				$(seatNO).css('background-color','green');
-				//$(seatNO).attr('class','btn btn-xs btn-success');
-				
-				
-				
-			}
-			
-			
-			/* if((seatCnt+1) > allCnt){
-				swal('좌선선택수 초과');
-				selectedSeat.removeClass("active");
-				selectedSeat.attr("aria-pressed", "false");
-				 
-			} */
+		if((seatCnt+1)==adultCnt){
+			swal('청소년 좌석 선택');
+		}
 		
-	
-		
-		
-	 	/* if((seatCnt+1) > allCnt){
-			swal('좌선선택수 초과');
+		if((seatCnt+1)>adultCnt && seatCnt<allCnt ){
+				
+			$(seatNO).css('background-color','green');
+			//$(seatNO).attr('class','btn btn-xs btn-success');
+		}
+		if((seatCnt+1)==allCnt){
+			//다 선택되면 나머지 disabled?
+			$("#seatModal").children().children().attr('disabled','true');
+			//preventDefault();
 			
-			selectedSeat.removeClass("active");
-			selectedSeat.attr("aria-pressed", "false");
-		} */
-	 	/* if((selectedSeat.length+1)>adultCnt){
-	 		selectedSeat.attr("class","btn btn-xs btn-outline-success active");
-	 	} */
+		}
+		if(seatCnt==0){
+			//다 취소하면 다시 ajax 호출 ? 
+		}
+		
 	}
 	
 	function getAndShowMovieInfo() {
