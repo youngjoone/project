@@ -16,18 +16,14 @@
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- 스윗 알렛 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	
 <!-- datepicker -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
@@ -46,7 +42,31 @@ p {
 }
 
 </style>
-<script> 
+<script>
+
+function thumnail(input){
+	if(input.files && input.files[0]){
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$('#preview').attr('src',e.target.result);
+		}
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
+let regex = new RegExp("(.*?)\.(jpg|png)$");
+
+function fileCheck(fileName, fileSize){ 
+
+	if(!regex.test(fileName)){
+		alert("이미지만 업로드할 수 있습니다.");
+		return false;
+	}
+	
+	return true;		
+}
+
+
 /* $(document).ready(function() {
     $('#mid').change(function() {
        
@@ -88,21 +108,14 @@ p {
 <div class="row mg-t-30">
 	<div class="col-sm-3"></div>
 	<div class="col-sm-6">
-		<form name="movieAddForm" method="post" action="add">
+		<form name="movieAddForm" method="post" action="add" enctype="multipart/form-data">
 		
 			<div class="form-group">
     			<!-- <label for="formGroupExampleInput" class="d-block">영화 일련번호</label>
    				<input type="text" class="form-control" name="mid" placeholder="영화 일련번호"  id="mid" required> -->
    				<input type="hidden" name="mid" value="M${mid+1 }">
  			</div>
- 			<div class="form-group">
-    			<label for="formGroupExampleInput" class="d-block">영화 포스터</label>
-   				<input type="text" class="form-control" name="poster" placeholder="포스터이름.확장자명" required>
- 			</div>
- 			<div class="form-group">
-    			<label for="formGroupExampleInput" class="d-block">예고편 링크</label>
-   				<input type="text" class="form-control" name="link" placeholder="링크URL주소" required>
- 			</div>
+ 			
  			<div class="form-group">
     			<label for="formGroupExampleInput" class="d-block">영화 제목</label>
    				<input type="text" class="form-control" name="title" placeholder="영화 제목" required>
@@ -110,6 +123,21 @@ p {
  			<div class="form-group">
     			<label for="formGroupExampleInput" class="d-block">영화 내용</label>
    				<textarea class="form-control" rows="2" placeholder="영화 줄거리" name="content" required></textarea>
+ 			</div>
+ 			
+ 			<div class="form-group">
+				<label for="formGroupExampleInput" class="d-block">포스터 업로드</label>
+				<div class="row">
+					<div class="col-sm-7">
+   						<input type="file" name="poster" onchange="thumnail(this)" required>
+   					</div>
+   					<div class="col-sm-5"><img id="preview" src="" width="200" /></div>
+   				</div>
+ 			</div>
+ 			
+ 			<div class="form-group">
+    			<label for="formGroupExampleInput" class="d-block">예고편 링크</label>
+   				<input type="text" class="form-control" name="link" placeholder="링크URL주소" required>
  			</div>
  			
  			<div class="form-group">

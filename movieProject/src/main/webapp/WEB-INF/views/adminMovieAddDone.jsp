@@ -6,12 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body onload="myFunction()">
+
 <script>
-		setTimeout(function(){
-			location.href='../list';
-			
-		},0000)
+function myFunction() {
+	alert("영화가 등록되었습니다.");
+	location.href = "../list";
+}
 	
 </script>
 </body>

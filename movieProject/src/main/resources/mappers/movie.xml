@@ -8,7 +8,8 @@
 	<resultMap type="MovieVO" id="movieResult">
 	<!-- resultMap을 사용할때 id 필요 (list 같은 상황에) -->
 		<result column="mid" property="mid" />
-		<result column="poster" property="poster" />
+		<!-- <result column="poster" property="poster" /> -->
+		<result column="poster" property="posterName" />
 		<result column="link" property="link" />
 		<result column="title" property="title" />
 		<result column="content" property="content" />
@@ -44,15 +45,15 @@
 		FROM P_MOVIE WHERE MID=#{MID}
 	</select>
 	
-	<insert id="insertMovie" parameterType="movieVO">
-		INSERT INTO P_MOVIE
+	<insert id="insertMovie"> <!-- parameterType="movieVO" -->
+		<![CDATA[INSERT INTO P_MOVIE
 		(MID, POSTER, LINK, TITLE, CONTENT, GENRE, RUNTIME, DIRECTOR, "CAST", AGE, "TYPE", OPENDATE)
-		VALUES(#{mid}, #{poster}, #{link}, #{title},#{content},#{genre},#{runTime},#{director},#{cast},#{age},#{type},#{openDate})
+		VALUES(#{mid}, #{posterName}, #{link}, #{title},#{content},#{genre},#{runTime},#{director},#{cast},#{age},#{type},#{openDate})]]>
 	</insert>
 	
 	<update id="updateMovie" parameterType="movieVO">
 	UPDATE P_MOVIE
-	SET POSTER=#{poster}, LINK=#{link}, TITLE=#{title}, CONTENT=#{content}, GENRE=#{genre}, RUNTIME=#{runTime}, DIRECTOR=#{director}, "CAST"=#{cast}, AGE=#{age}, "TYPE"=#{type}, OPENDATE=#{openDate}
+	SET POSTER=#{posterName}, LINK=#{link}, TITLE=#{title}, CONTENT=#{content}, GENRE=#{genre}, RUNTIME=#{runTime}, DIRECTOR=#{director}, "CAST"=#{cast}, AGE=#{age}, "TYPE"=#{type}, OPENDATE=#{openDate}
 	WHERE MID=#{mid}
 	</update>
 	

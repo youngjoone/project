@@ -1,5 +1,7 @@
 package com.hk.project.screendate.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,10 @@ public class ScreenDateService {
 
 	public int insertScreenDate(ScreenDateVO screenDateVO) {
 		return screenDateDAO.insertScreenDate(screenDateVO);
+	}
+
+	public List<ScreenDateVO> selectScreenDateList() {
+		return screenDateDAO.selectScreenDateList();
 	}
 
 }

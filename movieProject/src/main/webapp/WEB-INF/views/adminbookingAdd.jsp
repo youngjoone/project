@@ -77,15 +77,8 @@ function dateTime(frm){
 		</select>
 	</div>
 	<div class="col-sm-5 mg-t-30">
-		<!-- 날짜 선택 -->
-		<div class="tx-14 tx-bold tx-gray-700 tx-spacing-5">상영날짜 선택</div>
-		<div class="mg-t-20" id="">
-			<input type="text" class="form-control" placeholder="yyyy-mm-dd" id="datepicker4" required>
-		</div>
-		<br>
-		
 		<!-- 상영관 선택 -->
-		<div class="mg-t-30 bd-t tx-14 tx-bold tx-gray-700 tx-spacing-5"><br>상영관 선택</div>
+		<div class="tx-14 tx-bold tx-gray-700 tx-spacing-5"><br>상영관 선택</div>
 		<!--ajax로 데이터 받아서 foreach  -->
 		<div class="mg-t-20" id="">
 			<select class="custom-select" name="screenNO" required>
@@ -94,6 +87,13 @@ function dateTime(frm){
 				<option value="S02">S02</option>
 				<option value="S03">S03</option>
 			</select>
+		</div>
+		<br>
+		
+		<!-- 날짜 선택 -->
+		<div class="mg-t-30 bd-t tx-14 tx-bold tx-gray-700 tx-spacing-5">상영날짜 선택</div>
+		<div class="mg-t-20" id="">
+			<input type="text" class="form-control" placeholder="yyyy-mm-dd" id="datepicker4" required>
 		</div>
 		<br>
 		
