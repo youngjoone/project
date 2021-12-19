@@ -1,5 +1,6 @@
 package com.hk.project.ticket.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -24,12 +25,21 @@ public class TicketDAO {
 		return 0;
 	}
 
-	public List<TicketVO> selectAllTickets() {
-		// TODO Auto-generated method stub
+	
+	public List<TicketVO> selectAllTickets() { // TODO Auto-generated method stub
+	 
+	List<TicketVO> ticketsList = sqlSession.selectList("mapper.ticket.selectAllTickets");
+	 
+	return ticketsList; 
+	
+	}
+	 
+/*
+	public List<TicketVO> calenList() {
 		
-		List<TicketVO> ticketsList = sqlSession.selectList("mapper.ticket.selectAllTickets");
+		List<TicketVO> ticketsList = sqlSession.selectList("mapper.ticket.calenList");
 		
 		return ticketsList;
 	}
-
+*/
 }

@@ -81,7 +81,6 @@ ul {
 				<a href="detail?MID=${movieVO.mid }"><img
 					src="${pageContext.request.contextPath}/resources/template/images/${movieVO.poster }"
 					class="card-img-top rounded" alt="${movieVO.title}" height="280px"></a>
-
 				
 				<div class="btn-group" role="group" aria-label="Basic example">
 					<button type="button" class="btn btn-dark  " disabled>평점 ${movieVO.score }</button>

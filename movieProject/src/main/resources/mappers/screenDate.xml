@@ -11,6 +11,7 @@
 		<result column="screenTime" property="screenTime" />
 		<result column="mid" property="mid" />
 		<result column="screenNO" property="screenNO" />
+		
 	</resultMap>
 	
 	<!-- 상영정보 입력 -->

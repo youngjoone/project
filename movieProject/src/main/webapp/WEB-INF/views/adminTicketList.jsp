@@ -6,9 +6,9 @@
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
-    <link rel="stylesheet"  href="${path}/resources/css/main.min.css">
+    <link rel="stylesheet"  href="${pageContext.request.contextPath}/resources/css/main.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="${path}/resources/js/main.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/main.min.js"></script>
  	<style>
 
   body {
@@ -51,10 +51,10 @@
         
         var calendar = new FullCalendar.Calendar(calendarEl, {
           displayEventTime: true,
-          selectable: true,
           selectMirror: true,
           timeZone:'UTC',
           navLinks: true,
+          locale:"ko",
 
           
           dateClick: function(info) {
@@ -63,13 +63,23 @@
 
           select: function(arg) {
 				console.log(arg);
+				var title = prompt("Event Title:");
+				if(title) {
+					calendar.addEvent({
+						title: title,
+						start: arg.start,
+						end: arg.end,
+						allDay:arg.allDay
+						})
 
+					}
+					calendar.unselect()
               },  
 
           headerToolbar: {
             left: 'prevYear,prev,next,nextYear today',
             center: 'title',
-            right: 'dayGridMonth,timeGridDay,listYear'
+            right: 'dayGridMonth,listDay'
           },
           events: {
             url: 'ics/feed.ics',
@@ -82,7 +92,26 @@
             document.getElementById('loading').style.display =
               bool ? 'block' : 'none';
           },
-          events: 'https://fullcalendar.io/demo-events.json'
+          events: [
+              		{
+                  		list:[{
+                  		Tdate:"2021-12-15",
+                  		Ttime:"12:00",
+                  		id:"a",
+                  		ticketNo:"T02",
+                  		screenNo:"C02",
+                  		seatNo:"A3",
+                  		age:"성인",
+                  		mid:"M01",
+                  		mTITLE:"어벤져스"
+                  		
+                  		}]
+
+                  	}
+			
+              ]
+              	
+              
         });
 
         calendar.render();

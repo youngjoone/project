@@ -1,5 +1,6 @@
 package com.hk.project.ticket.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +12,22 @@ import com.hk.project.ticket.vo.TicketVO;
 @Service
 public class TicketService {
 
-	@Autowired
+	@Autowired(required = false)
 	TicketDAO ticketDAO;
 
 	public int cancleTicket(String ticketNo) {
 		return ticketDAO.cancleTicket(ticketNo);
 	}
-
-	public List<TicketVO> listTickets() {
-		// TODO Auto-generated method stub
-		return ticketDAO.selectAllTickets();
+/*	
+	public List<TicketVO> calenList() { // TODO Auto-generated method stub return
+		return ticketDAO.calenList(); 
 	}
-
+*/	 
+	
+	public List<TicketVO> listTickets() { 
+		 // TODO Auto-generated method stub
+		 return ticketDAO.selectAllTickets(); 
+	 }
+	 
+	
 }
