@@ -8,8 +8,8 @@
 	<resultMap type="MovieVO" id="movieResult">
 	<!-- resultMap을 사용할때 id 필요 (list 같은 상황에) -->
 		<result column="mid" property="mid" />
-		<!-- <result column="poster" property="poster" /> -->
 		<result column="poster" property="posterName" />
+		<!-- <result column="poster" property="poster" /> -->
 		<result column="link" property="link" />
 		<result column="title" property="title" />
 		<result column="content" property="content" />

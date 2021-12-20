@@ -57,7 +57,7 @@ p{
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
 		<div class="media">
-  			<img src="${pageContext.request.contextPath}/resources/template/images/${movieVO.poster}" class="rounded mg-r-50" alt="" width="260px" height="374px">
+  			<img src="${pageContext.request.contextPath }/fileDownload?posterName=${movieVO.posterName }&mid=${movieVO.mid }" class="rounded mg-r-50" alt="" width="260px" height="374px">
  	 		<div class="media-body">
     			<h2 class="mg-b-15 mg-t-10 tx-inverse">${movieVO.title }</h2>
     			<h5>장르 : ${movieVO.genre }</h5>

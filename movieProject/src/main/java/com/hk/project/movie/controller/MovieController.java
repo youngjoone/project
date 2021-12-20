@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -77,18 +78,27 @@ public class MovieController {
 //		return "adminMovieAddDone";
 //	}
 	
-	private static String POSTER_IMAGE_REPO = "c:\\movie\\poster_image\\";
+	private static String POSTER_IMAGE_REPO = "c:\\poster_image";
 	
 	@RequestMapping(value="/admin/movie/add", method={RequestMethod.POST})
-	public String adminMovieAddDone2(Model model, @ModelAttribute MovieVO movieVO, MultipartFile poster ) throws Exception {
+	public String adminMovieAddDone2(Model model, @ModelAttribute MovieVO movieVO, @RequestParam("poster") MultipartFile poster ) throws Exception {
 		
 		String posterName = null;
 		poster = movieVO.getPoster();
+		String mid = movieVO.getMid();
 		if (!poster.isEmpty()) {
 			posterName = poster.getOriginalFilename();
-			poster.transferTo(new File(POSTER_IMAGE_REPO + posterName));
+			poster.transferTo(new File(POSTER_IMAGE_REPO +"\\temp\\"+ posterName));
+			File srcFile = new File(POSTER_IMAGE_REPO +"\\temp\\"+ posterName);
+			File destDir = new File(POSTER_IMAGE_REPO + "\\" + mid);
+			destDir.mkdirs();      //c:\\board\\article_image\\articleNO
+			//temp 폴더의 파일을 글번호를 이름으로 하는 폴더로 이동시킴
+			
+			FileUtils.moveFileToDirectory(srcFile, destDir, true);
+			
+			movieVO.setPosterName(posterName);
 		}
-		movieVO.setPosterName(posterName);
+		
 		int ret = movieService.addMovie(movieVO);
 		model.addAttribute("ret", ret);
 		return "adminMovieAddDone";
@@ -108,16 +118,58 @@ public class MovieController {
 	}
 	@RequestMapping(value="/admin/update", method={RequestMethod.GET})
 	public String adminMovieUpdate(Model model,@ModelAttribute MovieVO movieVO) {
-		System.out.println("무비업데이트 movieVO="+movieVO);
-		//Map<String, Object> map = movieService.detail(movieVO.getMid());
-		//model.addAttribute("movieVO", map.get("movieVO"));	
-		//System.out.println("무비업데이트"+map.toString());
+
+		Map<String, Object> map = movieService.detail(movieVO.getMid());//movieVO,reviewVO
+		
+//		//multipart
+//		MultipartFile poster = movieVO.getPoster();
+//		
+//		if(poster.getSize()>0) { //파일이 전송된 경우 (0보다 큼) 
+//		//기존 파일 삭제 (수정이 되면 기존에 전송했던 파일을 삭제하고 새로운 파일을 전송해야 함) 
+//			UploadSaveManager.deleteFile(POSTER_IMAGE_REPO, oldDTO.getPoster()); 
+//			//Utility 에서 (지울 곳의 경로, 먼저 저장한 파일명) 
+//			//신규파일 저장 
+//			poster=UploadSaveManager.saveFileSpring30(poster, basePath); 
+//			//Utility 에서 (신규 파일, 경로) 
+//			movieVO.setPoster(poster); 
+//		}else { //파일이 전송되지 않는 경우 
+//			movieVO.setPoster(oldDTO.getPoster()); 
+//		}
+
+		MultipartFile poster = movieVO.getPoster();
+		movieVO.setPoster(poster); 
+		
+		model.addAttribute("movieVO", map.get("movieVO"));	
+		model.addAttribute("poster", poster);
 		
 		return "adminMovieUpdate";
 	}
+	
 	@RequestMapping(value="/admin/update", method={RequestMethod.POST})
-	public String adminMovieUpdateDone(Model model,@ModelAttribute MovieVO movieVO) {
-		System.out.println(movieVO.toString());
+	public String adminMovieUpdateDone(Model model,@ModelAttribute MovieVO movieVO,@RequestParam("originalFileName") String originalFileName, @RequestParam("poster") MultipartFile poster) throws Exception {
+		
+		String mid = movieVO.getMid();
+		String posterName = "";
+		if (!poster.isEmpty()) { //새로운 파일이 있으면 
+			//새로운 파일 저장
+			posterName = poster.getOriginalFilename();
+			poster.transferTo(new File(POSTER_IMAGE_REPO +"\\temp\\"+ posterName));
+			File srcFile = new File(POSTER_IMAGE_REPO +"\\temp\\"+ posterName);
+			File destDir = new File(POSTER_IMAGE_REPO + "\\" + mid);
+			destDir.mkdirs();      //c:\\board\\article_image\\articleNO
+			//temp 폴더의 파일을 글번호를 이름으로 하는 폴더로 이동시킴
+			FileUtils.moveFileToDirectory(srcFile, destDir, true);
+			
+			//기존 파일 삭제
+			File oldFile = new File(POSTER_IMAGE_REPO+"\\"+mid+"\\"+originalFileName);
+			oldFile.delete();
+			
+			movieVO.setPosterName(posterName);
+		} else { //새로운 파일이 없으면
+			//
+			movieVO.setPosterName(originalFileName);
+		}
+		
 		int ret=movieService.updateMovie(movieVO);
 		model.addAttribute("ret", ret);
 		model.addAttribute("movieVO", movieVO);

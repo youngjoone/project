@@ -115,4 +115,11 @@ public class MovieVO {
 	}
 	
 	public MovieVO() {}
+	
+//	@Override
+//	public String toString() {
+//		return "MovieVO [mid=" + mid + ", poster=" + poster + ", link=" + link + ", title=" + title + ", content="
+//				+ content + ", genre=" + genre + ", runTime=" + runTime + ", director=" + director + ", cast=" + cast
+//				+ ", age=" + age + ", type=" + type + ", openDate=" + openDate + ", score=" + score + "]";
+//	}
 }

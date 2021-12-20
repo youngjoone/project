@@ -54,47 +54,7 @@ function thumnail(input){
 	}
 }
 
-let regex = new RegExp("(.*?)\.(jpg|png)$");
-
-function fileCheck(fileName, fileSize){ 
-
-	if(!regex.test(fileName)){
-		alert("이미지만 업로드할 수 있습니다.");
-		return false;
-	}
-	
-	return true;		
-}
-
-
-/* $(document).ready(function() {
-    $('#mid').change(function() {
-       
-        $.ajax({
-                type: 'POST',
-                url: '/dupMid',	//경로
-                dataType: "json",	//return하는 data 타입
-                data: {"mid": $('#mid').val()},	//서버로 보내는 ?id=id
-                success: function(data) {
-                   // data.server에서 보낸 mapId
-                   
-                   if(data.id == 'false') { swal("중복 아님!"); $('#mid').css("background-color", "white");}
-                   else { 
-                	  
-                	   swal("이미 존재하는 일련번호 입니다!");
-                      // 입력한 값을 지우고 
-                      // focus 를 다시 이동하고
-                      $('#mid').val("");
-                      $('#mid').focus();
-                      $('#mid').css("background-color", "rgb(53, 38, 105)");
-                   }
-                }, 
-                error: function(request,status,error) {	//실행이 실패하면
-                   alert('에러!! : ' + request.responseText + ":"+error);
-                }
-         }); //end ajax 
-    }); //end on 
-}); */ </script>
+</script>
 </head>
 <header>
 <jsp:include page="/WEB-INF/views/adminHeader.jsp" />

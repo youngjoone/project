@@ -35,11 +35,25 @@ p {
 	text-align: center;
 }
 </style>
+<script>
+function thumnail(input){
+	if(input.files && input.files[0]){
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$('#preview').attr('src',e.target.result);
+		}
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+</script>
 </head>
+
+<body>
+
 <header>
 <jsp:include page="/WEB-INF/views/adminHeader.jsp" />
 </header>
-<body>
+
 <div class="row mg-t-30 bd-b">
 	<div class="col-sm tx-14 tx-bold tx-gray-700 tx-spacing-5">
 			<p>${movieVO.title } 영화 수정</p>
@@ -48,7 +62,7 @@ p {
 <div class="row mg-t-30">
 	<div class="col-sm-3"></div>
 	<div class="col-sm-6">
-		<form name="movieAddForm" method="post" action="update">
+		<form name="movieAddForm" method="post" action="update" enctype="multipart/form-data">
 			<input type="hidden" name="mid" value="${movieVO.mid }">
 			
 			<div class="form-group">
@@ -57,7 +71,13 @@ p {
  			</div>
  			<div class="form-group">
     			<label for="formGroupExampleInput" class="d-block">영화 포스터</label>
-   				<input type="text" class="form-control" name="poster" placeholder="포스터이름.확장자명" value="${movieVO.poster }" required>
+    			<div class="row">
+					<div class="col-sm-7">
+						<input type="hidden" name="originalFileName" value="${movieVO.posterName }" />
+   						<input type="file" name="poster" onchange="thumnail(this)">
+   					</div>
+   					<div class="col-sm-5"><img src="${pageContext.request.contextPath }/fileDownload?posterName=${movieVO.posterName }&mid=${movieVO.mid }" id="preview" width="200" /></div>
+   				</div>
  			</div>
  			<div class="form-group">
     			<label for="formGroupExampleInput" class="d-block">예고편 링크</label>
@@ -113,8 +133,9 @@ p {
 
 </div>
 
-</body>
+
 <footer>
 	<jsp:include page="/WEB-INF/views/footer.jsp" />
 </footer>
+</body>
 </html>

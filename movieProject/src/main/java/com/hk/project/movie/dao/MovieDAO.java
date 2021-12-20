@@ -26,6 +26,7 @@ public class MovieDAO {
 	
 	public MovieVO detail(String mid) {
 		MovieVO movieVO = sqlSession.selectOne("mapper.movie.selectOne", mid);
+		
 		return movieVO;
 	}
 	

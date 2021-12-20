@@ -77,8 +77,8 @@ ul {
 		<div class="col-sm">
 			<div class="card">
 				<a href="detail?MID=${movieVO.mid }"><img
-					src="${pageContext.request.contextPath}/resources/template/images/${movieVO.poster }"
-					class="card-img-top rounded" alt="${movieVO.title}" height="280px"></a>
+					src="${pageContext.request.contextPath }/fileDownload?posterName=${movieVO.posterName }&mid=${movieVO.mid }"
+					class="card-img-top rounded" alt="${movieVO.title }" width="134px" height="350px"></a>
 
 				<div class="btn-group" role="group" aria-label="Basic example">
 					<button type="button" class="btn btn-dark  " disabled>평점 ${movieVO.score }</button>
