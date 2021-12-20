@@ -78,4 +78,9 @@ public class MovieService {
 	public int selectMid() {
 		return movieDAO.selectMid();
 	}
+	
+	public List<MovieVO> movieList(String mid){
+		List<MovieVO> movieList = movieDAO.movieList2(mid);
+		return movieList;
+	}
 }

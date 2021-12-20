@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.project.booking.service.BookingService;
 import com.hk.project.join.vo.BookingDateVO;
+import com.hk.project.movie.service.MovieService;
 import com.hk.project.movie.vo.MovieVO;
 import com.hk.project.screendate.service.ScreenDateService;
 import com.hk.project.screendate.vo.ScreenDateVO;
@@ -26,6 +27,8 @@ public class BookingController {
 	BookingService bookingService;
 	@Autowired
 	ScreenDateService screenDateService; 
+	@Autowired
+	MovieService movieService;
 	
 	@RequestMapping(value="/service/booking", method={RequestMethod.GET , RequestMethod.POST})
 	public String bookingMain(Model model, String mid) {
@@ -107,5 +110,23 @@ public class BookingController {
 		List<BookingDateVO> getSeat = bookingService.getSeat(bookingDateVO);
 		
 		return getSeat;
+	}
+	
+	@RequestMapping(value="/getAndShowMovieInfo",method= { RequestMethod.GET , RequestMethod.POST },produces = "application/json; charset=utf8")	//http protocol
+	@ResponseBody
+	public List<MovieVO> getAndShowMovieInfo(@RequestParam("mid") String mid) { 
+		List<MovieVO> movieList = movieService.movieList(mid);
+		
+		return movieList;
+	}
+	
+	@RequestMapping(value="/insertTicket",method= { RequestMethod.GET , RequestMethod.POST },produces = "application/json; charset=utf8")	//http protocol
+	@ResponseBody
+	public int insertTicket(BookingDateVO bookingDateVO) { 
+		
+		
+		System.out.println(bookingDateVO);
+		int ret = bookingService.insertTicket(bookingDateVO);
+		return 0;
 	}
 }

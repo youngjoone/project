@@ -12,6 +12,8 @@ public class BookingDateVO {
 	private String minute;
 	private String seat;
 	private String reserved;
+	private String age;
+	
 	public String getMid() {
 		return mid;
 	}
@@ -72,11 +74,17 @@ public class BookingDateVO {
 	public void setReserved(String reserved) {
 		this.reserved = reserved;
 	}
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
 	@Override
 	public String toString() {
 		return "BookingDateVO [mid=" + mid + ", screenNO=" + screenNO + ", type=" + type + ", year=" + year + ", month="
 				+ month + ", day=" + day + ", hour=" + hour + ", minute=" + minute + ", seat=" + seat + ", reserved="
-				+ reserved + "]";
+				+ reserved + ", age=" + age + "]";
 	}
 	
 	
