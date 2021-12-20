@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -123,10 +125,9 @@ public class BookingController {
 	@RequestMapping(value="/insertTicket",method= { RequestMethod.GET , RequestMethod.POST },produces = "application/json; charset=utf8")	//http protocol
 	@ResponseBody
 	public int insertTicket(BookingDateVO bookingDateVO) { 
-		
-		
 		System.out.println(bookingDateVO);
+		
 		int ret = bookingService.insertTicket(bookingDateVO);
-		return 0;
+		return ret;
 	}
 }

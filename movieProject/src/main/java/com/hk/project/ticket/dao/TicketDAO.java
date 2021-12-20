@@ -52,12 +52,10 @@ public class TicketDAO {
 		return ticketsList;
 	}
 
-	public int insertTicket(BookingDateVO bookingDateVO) {
-		// TODO Auto-generated method stub
-		int ret = sqlSession.insert("mapper.ticket.insertTicket", bookingDateVO);
-		return ret;
-	}
-
 	
-
+	 public int insertTicket(BookingDateVO bookingDateVO) {
+		 
+		 int ret = sqlSession.insert("mapper.ticket.insertTicket",bookingDateVO); 
+		 return ret; 
+	}
 }

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ import com.hk.project.ticket.dao.TicketDAO;
 @Service
 public class BookingService {
 
-	HttpSession session;
+	
 	
 	@Autowired
 	MovieDAO movieDAO;
@@ -46,9 +46,7 @@ public class BookingService {
 		
 		return bookingDateDAO.getHHMM(MMDDmap);
 	}
-	
-	
-	
+		
 	//관리자 상영정보입력
 	public List<MovieVO> selectMovieList() {
 		return movieDAO.movieList();
@@ -64,28 +62,23 @@ public class BookingService {
 	}
 
 	public int insertTicket(BookingDateVO bookingDateVO) {
-		// TODO Auto-generated method stub
-		
-		System.out.println(bookingDateVO.getSeat());
-		System.out.println(bookingDateVO.getAge());
 		String[] seat = bookingDateVO.getSeat().split(",");
 		String[] age = bookingDateVO.getAge().split(",");
-		System.out.println(Arrays.toString(seat)+"////"+Arrays.toString(age));
-		session.getAttribute("login");
-		
-		System.out.println(session.getAttribute("login"));
-		int ret;
-		for(int i =0;i<seat.length;i++) {
+				
+		int count = 0;
+		for(int i =0; i < seat.length; i++) {
 			bookingDateVO.setSeat(seat[i]);
 			bookingDateVO.setAge(age[i]);
-			ret =ticketDAO.insertTicket(bookingDateVO); 
-			
 			System.out.println(bookingDateVO.toString());
-			System.out.println(bookingDateVO);
+			
+			count += ticketDAO.insertTicket(bookingDateVO);
 		}
-		return 0;
+		
+		if (count != seat.length) {
+			System.out.println("뭔가 큰 사고가 났습니다?");
+		}
+		
+				
+		return count;
 	}
-
-	
-	
 }
