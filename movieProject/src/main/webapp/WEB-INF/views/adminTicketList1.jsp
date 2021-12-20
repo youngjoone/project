@@ -6,9 +6,10 @@
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
-    <link rel="stylesheet"  href="${pageContext.request.contextPath}/resources/css/main.min.css">
+    <link rel="stylesheet"  href="${pageContext.request.contextPath}/resources/css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/main.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
  	<style>
 
   body {
@@ -81,36 +82,39 @@
             center: 'title',
             right: 'dayGridMonth,listDay'
           },
-          events: {
-            url: 'ics/feed.ics',
-            format: 'ics',
-            failure: function() {
-              document.getElementById('script-warning').style.display = 'block';
-            }
-          },
-          loading: function(bool) {
-            document.getElementById('loading').style.display =
-              bool ? 'block' : 'none';
-          },
+          
+          contentHeight: 'auto',
           events: [
-              		{
-                  		list:[{
-                  		Tdate:"2021-12-15",
-                  		Ttime:"12:00",
-                  		id:"a",
-                  		ticketNo:"T02",
-                  		screenNo:"C02",
-                  		seatNo:"A3",
-                  		age:"성인",
-                  		mid:"M01",
-                  		mTITLE:"어벤져스"
-                  		
-                  		}]
-
-                  	}
-			
-              ]
-              	
+            	  $.ajax({
+                		url: 'list/chk',
+                		type: 'GET',
+                		success: function(res){
+                			var list = res;
+                			console.log(list);
+                			
+                			
+                 			var calendarEl = document.getElementById('calendar');
+                			
+                			var events = list.map(function(item) {
+                				return {
+                					title : item.ticketNo,
+                					start : item.tDate + "T" + item.tTime
+            					}
+                			});
+                			
+            				var calendar = new FullCalendar.Calendar(calendarEl, {
+            					events : events,
+            					eventTimeFormat: { // like '14:30:00'
+            					    hour: '2-digit',
+            					    minute: '2-digit',
+            					    hour12: false
+            					  }
+            				});
+            				calendar.render();
+                		},
+                	})
+      			
+                    ]
               
         });
 
@@ -135,8 +139,10 @@
 
   	<div id='loading'>loading...</div>
 
+
+	<div style="height:30px; text-align:center; font-size:35px; margin-bottom:30px;">예매현황</div>
 	<div>
-		<div style="height:30px; text-align:center; font-size:35px; margin-bottom:30px;">예매현황</div>
+		
 
   		<div id='calendar'></div>
   	</div>

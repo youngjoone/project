@@ -32,29 +32,5 @@
 		DELETE FROM P_TICKET
 		WHERE TICKETNO=#{ticketNo}
 	</delete>
-	
-	<!--예매내역 리스트-->
-	<select id="selectAllTickets" resultMap="ticketResult">
-		SELECT 
-		TO_char(ps.screenTime, 'YYYY-MM-DD') AS Tdate,
-		TO_char(ps.screenTime, 'HH:MI') AS Ttime,
-		pt.id , pt.ticketNo , pt.screenNo , pt.seatNo , pt.age , pt.mid , pm."mTITLE" 
-		FROM P_TICKET pt ,P_SCREENDATE ps , P_MOVIE pm 
-		WHERE pt.screenDateNo = ps.screenDateNO
-		AND pt.mid = pm.mid 
-		ORDER BY Ttime
-	</select>
- 
- <!-- 	 
- 	 <select id="calenList" resultMap="ticketResult">
-		SELECT 
-		TO_char(ps.screenTime, 'YYYY-MM-DD') AS Tdate,
-		TO_char(ps.screenTime, 'HH:MI') AS Ttime,
-		pt.id , pt.ticketNo , pt.screenNo , pt.seatNo , pt.age , pt.mid , pm."mTITLE" 
-		FROM P_TICKET pt ,P_SCREENDATE ps , P_MOVIE pm 
-		WHERE pt.screenDateNo = ps.screenDateNO
-		AND pt.mid = pm.mid 
-		ORDER BY Ttime
-	</select> -->
 	 
 </mapper>

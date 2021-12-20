@@ -1,23 +1,28 @@
-package com.hk.project.ticket.vo;
+package com.hk.project.join.vo;
 
-import java.util.Date;
+public class ListTicketVO {
 
-public class TicketVO {
-	
+	private String tDate;
+	private String tTime;
 	private String id;
 	private String ticketNo;
-	private String screenDateNo;
 	private String screenNo;
 	private String seatNo;
 	private String age;
 	private String mid;
-	//리뷰유무확인차
-	private int score;
-	//예매현황
-	private Date screenTime;
 	private String mTITLE;
-	
-	
+	public String gettDate() {
+		return tDate;
+	}
+	public void settDate(String tDate) {
+		this.tDate = tDate;
+	}
+	public String gettTime() {
+		return tTime;
+	}
+	public void settTime(String tTime) {
+		this.tTime = tTime;
+	}
 	public String getId() {
 		return id;
 	}
@@ -29,12 +34,6 @@ public class TicketVO {
 	}
 	public void setTicketNo(String ticketNo) {
 		this.ticketNo = ticketNo;
-	}
-	public String getScreenDateNo() {
-		return screenDateNo;
-	}
-	public void setScreenDateNo(String screenDateNo) {
-		this.screenDateNo = screenDateNo;
 	}
 	public String getScreenNo() {
 		return screenNo;
@@ -60,36 +59,18 @@ public class TicketVO {
 	public void setMid(String mid) {
 		this.mid = mid;
 	}
-	public int getScore() {
-		return score;
-	}
-	public void setScore(int score) {
-		this.score = score;
-	}
-	public Date getScreenTime() {
-		return screenTime;
-	}
-	public void setScreenTime(Date screenTime) {
-		this.screenTime = screenTime;
-	}
 	public String getmTITLE() {
 		return mTITLE;
 	}
 	public void setmTITLE(String mTITLE) {
 		this.mTITLE = mTITLE;
 	}
-	
-	
 	@Override
 	public String toString() {
-		return "TicketVO [id=" + id + ", ticketNo=" + ticketNo + ", screenDateNo=" + screenDateNo + ", screenNo="
-				+ screenNo + ", seatNo=" + seatNo + ", age=" + age + ", mid=" + mid + ", score=" + score
-				+ ", screenTime=" + screenTime + ", mTITLE=" + mTITLE + "]";
+		return "ListTicketVO [tDate=" + tDate + ", tTime=" + tTime + ", id=" + id + ", ticketNo=" + ticketNo
+				+ ", screenNo=" + screenNo + ", seatNo=" + seatNo + ", age=" + age + ", mid=" + mid + ", mTITLE="
+				+ mTITLE + "]";
 	}
-	
-	
-	
-	
-	
 
-}
+	
+}	

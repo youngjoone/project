@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="mapper.listTicket">
+	<resultMap type="ListTicketVO" id="listTicketResult">
+		<result column="tDate" property="tDate" />
+		<result column="tTime" property="tTime" />
+		<result column="id" property="id" />
+		<result column="ticketNo" property="ticketNo" />
+		<result column="screenNo" property="screenNo" />
+		<result column="seatNo" property="seatNo" />
+		<result column="mid" property="mid" />
+		<result column="age" property="age" />
+		<result column="mTITLE" property="mTITLE" />
+		
+	</resultMap>
+	
+	<!-- 	예매내역 리스트
+	<select id="selectAllTickets" resultMap="ticketResult">
+		SELECT 
+		ps.screenTime, pt.id , pt.ticketNo , pt.screenNo , pt.seatNo , pt.age , pt.mid , pm."mTITLE" 
+		FROM P_TICKET pt ,P_SCREENDATE ps , P_MOVIE pm 
+		WHERE pt.screenDateNo = ps.screenDateNO
+		AND pt.mid = pm.mid 
+		ORDER BY Ttime
+	</select>
+	 -->
+<!-- 	
+	예매내역 리스트
+	<select id="listTicket" resultMap="listTicketResult">
+		SELECT 
+		TO_char(ps.screenTime, 'YYYY-MM-DD HH24:MI') AS tDate,
+		pt.id , pt.ticketNo , pt.screenNo , pt.seatNo , pt.age , pt.mid , pm."mTITLE" 
+		FROM P_TICKET pt ,P_SCREENDATE ps , P_MOVIE pm 
+		WHERE pt.screenDateNo = ps.screenDateNO
+		AND pt.mid = pm.mid 
+		ORDER BY Ttime
+	</select> -->
+
+  	 
+ 	 <select id="calenList" resultMap="listTicketResult">
+		SELECT 
+		TO_char(ps.screenTime, 'YYYY-MM-DD') AS tDate,
+		TO_char(ps.screenTime, 'HH:MI') AS tTime,
+		pt.id , pt.ticketNo , pt.screenNo , pt.seatNo , pt.age , pt.mid , pm."mTITLE" 
+		FROM P_TICKET pt ,P_SCREENDATE ps , P_MOVIE pm 
+		WHERE pt.screenDateNo = ps.screenDateNO
+		AND pt.mid = pm.mid 
+		ORDER BY Ttime
+	</select>	
+</mapper>        
