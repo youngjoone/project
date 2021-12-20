@@ -33,4 +33,5 @@
 		WHERE TICKETNO=#{ticketNo}
 	</delete>
 	 
+	 
 </mapper>

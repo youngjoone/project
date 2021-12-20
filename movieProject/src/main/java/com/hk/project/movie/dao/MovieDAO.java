@@ -65,4 +65,9 @@ public class MovieDAO {
 		int mid = sqlSession.selectOne("mapper.movie.selectMid");
 		return mid;
 	}
+	
+	public List<MovieVO> movieList2(String mid){
+		List<MovieVO> movieList = sqlSession.selectList("mapper.movie.selectOne",mid);
+		return movieList;
+	}
 }

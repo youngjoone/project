@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hk.project.join.vo.BookingDateVO;
 import com.hk.project.join.vo.ListTicketVO;
 import com.hk.project.ticket.vo.TicketVO;
 
@@ -50,5 +51,13 @@ public class TicketDAO {
 		
 		return ticketsList;
 	}
+
+	public int insertTicket(BookingDateVO bookingDateVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.insert("mapper.ticket.insertTicket", bookingDateVO);
+		return ret;
+	}
+
+	
 
 }

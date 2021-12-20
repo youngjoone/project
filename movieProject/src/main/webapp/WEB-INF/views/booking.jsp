@@ -105,7 +105,7 @@ background: #e7e7e7; color: black;
       <div class="col-sm-2">오른쪽여백</div>
    </div>
    <input type="hidden" id="selectedMid" value=${selectedMid}>
-   
+   <input type="hidden" id="getId" value=${login.name }>
    
    <!-- The Modal -->
    <div class="modal fade" id="selectSeat">
@@ -145,12 +145,41 @@ background: #e7e7e7; color: black;
 
             <!-- Modal footer -->
             <div class="modal-footer">
-               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#getAndShowMovieInfo" onclick="getAndShowMovieInfo()">예매 확인</button>
+               <button type="button" class="btn btn-danger" data-dismiss="modal">종료</button>
             </div>
 
          </div>
       </div>
    </div>
+  
+
+
+<!-- The Modal -->
+<div class="modal" id="getAndShowMovieInfo">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">예매 확인창 </h4>
+        <button type="button" class="close" data-dismiss="modal" onclick="removeMovieInfo()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body" id="chkTicket">
+        
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-dark" onclick="insertTicket()">예매완료</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="removeMovieInfo()">취소</button>
+      </div>
+
+    </div>
+  </div>
+</div>
    <!-- 성인 ,청소년 버튼 안 value 값 만큼 좌석 선택할수 있게 하기 
       성인 고르면 청소년 안되게 ?
    
@@ -178,7 +207,9 @@ background: #e7e7e7; color: black;
    var kDd = null;
    var kHh = null;
    var kMi = null;
-   
+   var allCnt = null;
+   var chkSeat = [];
+   var chkAge = [];
    //변수 초기화
    function removeVar(){
       
@@ -471,10 +502,14 @@ background: #e7e7e7; color: black;
          return
       }
 
+      
+      chkSeat.push(param);
+      
+      
       // 좌석 선택 조건 가져오기
       var adultCnt = Number($("#adult").val());
       var teenCnt = Number($("#teen").val());
-      var allCnt = adultCnt+teenCnt;
+      allCnt = adultCnt+teenCnt;
 
       // 현재 좌석 선택 현황 가져오기
       var seatCnt = $("#seatModal > div > button.active").length;
@@ -482,6 +517,20 @@ background: #e7e7e7; color: black;
       var selectedAdultCnt = seatCnt - selectedTeenCnt;
       console.log(seatCnt, selectedAdultCnt, selectedTeenCnt);
 
+      //좌석 age 구하기
+      if(allCnt==adultCnt){
+			chkAge.push('성인');
+          }else if (allCnt == teenCnt){
+			chkAge.push('청소년');
+          }
+      
+      if((allCnt-seatCnt+1)>adultCnt){
+    	  chkAge.push('성인');
+      }else{
+          chkAge.push('청소년');
+      }
+      
+      
       // 좌석 선택 해제 및 함수 종료
       if(seatCnt > allCnt){
          swal('좌선선택수 초과');
@@ -500,15 +549,105 @@ background: #e7e7e7; color: black;
          $(seatNO).css('background-color','green');
       }
    }
-   
+
+   //예매확인 지우는 모달
+   function removeMovieInfo(){
+		$('#chkTicket').children().remove();
+		
+	   }
+
+   //예매확인 모달
    function getAndShowMovieInfo() {
-      
+
+	   removeMovieInfo();
+	      var chkTicket = "";
       // ajax
-      
+       $.ajax({
+               type : 'POST',
+               url : '/getAndShowMovieInfo',
+               dataType : "json",
+               data : {
+                  "mid" : kMid
+                  
+               },
+               success : function(data) {
+                  console.log(data);
+                 
+                  chkTicket += ' <h3>제목 :'+data[0].title+'</h3><h4>날짜/시간 : '+kYy+'년'+kMm+'월'+kDd+'일/ '+kHh+'시'+kMi+'분</h4><h4>인원 : '+allCnt+'</h4><h4>좌석 : '+chkSeat+'</h4>'
+                  $('#chkTicket').append(chkTicket);
+                  
+
+               },
+               error : function(request, status, error) {
+                  alert('에러!! : ' + request.responseText + ":" + error);
+               }
+            }); //end ajax
       // 삽입 전 모달 데이터 삭제
       
       // movie 정보 modal에 삽입
+
+      
    }
+	//ticket에 insert 하기 
+   function insertTicket(){
+		
+		//id 세션에서 가져오기
+		var id = $("#getId").val();
+		console.log(id);
+		//ticketNO 자동생성
+		
+		//screenDateNO screenTime,mid,screenNO 주고 맞는값 받아오기
+		var year = kYy;
+        var month = kMm;
+        var day = kDd;
+        var hour = kHh;
+        var minute = kMi;
+       
+        var mid = kMid;
+        
+		//screenNO 값 받기	 고정
+		var screenNO = kScreenNo;
+		console.log(screenNO);
+		//seatNo 갑받기 좌석수만큼 반복
+		console.log(chkSeat);
+		
+		//age 성인수만큼 성인 청소년수만큼 청소년
+		
+		console.log(chkAge);
+		//mid mid받기 고정 
+		// chkSeat를
+		
+		 $.ajax({
+               type : 'POST',
+               url : '/insertTicket',
+               traditional :true,
+               dataType : "json",
+               data : {
+                  "id" : id,
+                  "year" : year,
+                  "month" : month,
+                  "day" : day,
+                  "hour" : hour,
+                  "minute" : minute,
+                  "mid" : mid,
+                  "screenNO" : screenNO,
+                  "Seat" : chkSeat,
+                  "Age" : chkAge
+                  
+               },
+               success : function(data) {
+                  console.log(data);
+                 
+              
+
+               },
+               error : function(request, status, error) {
+                  alert('에러!! : ' + request.responseText + ":" + error);
+               }
+            }); //end ajax
+		
+		
+	   }
    
 </script>
 <footer>
