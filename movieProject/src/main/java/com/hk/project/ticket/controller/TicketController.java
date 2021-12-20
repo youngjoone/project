@@ -58,14 +58,13 @@ public class TicketController {
 	
 	@RequestMapping(value="/admin/booking/list/chk", method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> ajax() {
+	public List<ListTicketVO> ajax() {
 //		model.addAttribute("list", ticketService.calenList());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<ListTicketVO> calenderList = ticketService.calenList();
-		map.put("list", calenderList);
 		System.out.println("-------list="+calenderList);
-		return map;
+		return calenderList;
 	}
 	 
 /*	
