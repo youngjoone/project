@@ -56,10 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
           selectMirror: true,
           timeZone:'UTC',
           navLinks: true,
-          locale:"ko",
-
-
-          
+ 
           navLinkDayClick: function( date, jsEvent, view) {
         	    console.log('day', date.toISOString());
         	    console.log('coords', jsEvent.pageX, jsEvent.pageY);
@@ -68,21 +65,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     url: 'list/chk',
                     type: 'GET',
                     success: function(res){
-                       console.log(res  + ':' + typeof(res));
-                       
-                       
-                        var calendarEl = document.getElementById('calendar');
+                       console.log(res  + ':' + typeof(res));                       
 
                        alert("isArray = " + Array.isArray(res));
                        var events = res.map(function(item) {
                           return {
-                             title : item.ticketNo,
-                             start : item.tDate + "T" + item.tTime
+                             title : item.ticketNo + " 아이디:" + item.id + " 영화일련번호:" + item.mid + " 영화제목:" + item.mTITLE + " 상영관:" + item.screenNo + " 좌석번호:" + item.seatNo + " 연령" + item.age,
+                             start : item.tDate + "T" + item.tTime,
+           
                          }
                        });
                        
                       var calendar = new FullCalendar.Calendar(calendarEl, {
-                    	 initialView: 'listDay',
+                    	  displayEventTime: true,
+                          selectMirror: true,
+                          timeZone:'UTC',
+                          navLinks: true,
+
+                    	  initialView: 'listDay',
+                    	  headerToolbar: {
+                        	  left: 'prevYear,prev,next,nextYear today',
+                              center: 'title',
+                              right: 'dayGridMonth,listDay'
+                           },
                          events : events,
                          eventTimeFormat: { // like '14:30:00'
                              hour: '2-digit',
