@@ -74,7 +74,7 @@
 	</select>
 	
 	<select id="movieListSelect" resultMap="movieResult">
-		SELECT MID ,TITLE FROM P_MOVIE
+		SELECT MID ,TITLE, OPENDATE FROM P_MOVIE
 		ORDER BY MID
 	</select>
 	

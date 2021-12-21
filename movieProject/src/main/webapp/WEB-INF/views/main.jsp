@@ -86,7 +86,7 @@ a:hover {
 					src="${pageContext.request.contextPath }/fileDownload?posterName=${movieVO.posterName }&mid=${movieVO.mid }"
 					class="card-img-top rounded" alt="${movieVO.title }" width="134px" height="350px"></a>
 				<button type="button" class="btn btn-secondary btn-block" disabled>
-					<a href="">예매하기</a>
+					<a href="../service/booking?mid=${movieVO.mid }">예매하기</a>
 				</button>
 			</div>
 		</div>

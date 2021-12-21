@@ -1,7 +1,9 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,6 +38,38 @@ function dateTime(frm){
 	frm.appendChild(screenTimeInput);
 }
 
+function select(){
+	var open = $("#movieSelectBox option:selected").attr('value2');
+	$('#date').text('※ 개봉날짜 : '+open);
+}
+
+$(document).ready(function() {
+    $('#chk').click(function() {
+    	$.ajax({
+            type: 'POST',
+            url: 'chkDate',
+            dataType: "json", 
+            data: {"screenNO": $('#screenNO option:selected').attr('value'), 
+        			"date" : $('#datepicker4').val(), 
+        			"time" : $('#time').val()}, /* 서버로 보내는 ?id=id */
+            success: function(map) {
+               if(map.dup == 'false') {  //중복x
+            	   alert('해당 시간은 등록이 가능합니다.');
+               }
+               else {  //중복o
+            	   alert('해당 시간에 이미 상영영화가 있습니다.');
+               }
+            }, 
+            error: function(request,status,error) { //실행일 실패하면
+               alert('에러!! : ' + request.responseText + ":"+error);
+            }                     //alert에 404뜨는데 웹에서 404뜰때 그 소스 
+            //400번대 에러:client오류 500번대 에러 : server오류
+     	}); //end ajax 
+    }); //end on 
+}); 
+
+
+
 </script>
 
 </head>
@@ -53,35 +87,32 @@ function dateTime(frm){
 	<div class="col-sm"></div>
 </div>
 
-<form name="frm" action="add" method="post">
+<form name="frm" id="frm" action="add" method="post">
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-3 mg-t-30 bd-r">
-		<!--현재 상영중인 영화만 나와야함 DB에서 조인 해야할듯? 
-			여러가지 영화중에서 하나만 고를수 있어야함 그리고 취소하고 다른영화 고르는법? -->
-		<!-- 메인에서 오면 선택 안되어있게, 리스트에서 예매하기 누르면 미리 선택되어 있게 -->
 		<div class="tx-14 tx-bold tx-gray-700 tx-spacing-5">영화선택</div>
-		<select class="custom-select" size="20" id="movieSelectBox" name="mid" required>
 		
 			<c:choose>
 				<c:when test="${empty movieVOList }">
 					<p>등록할 영화가 없습니다.</p>
 				</c:when>
 				<c:when test="${!empty movieVOList }">
-					<c:forEach var="movie" items="${movieVOList }">
-						<option value="${movie.mid }">${movie.title }</option>
-					</c:forEach>
+					<select class="custom-select" size="20" id="movieSelectBox" name="mid" onchange="select()" required>
+						<c:forEach var="movie" items="${movieVOList }" varStatus="movieNum">
+							<option value="${movie.mid }" value2="${movie.openDate }" id="movieNum${movieNum.index }">${movie.title }</option>
+						</c:forEach>
+					</select>
 				</c:when>
 			</c:choose>
 			
-		</select>
 	</div>
 	<div class="col-sm-5 mg-t-30">
 		<!-- 상영관 선택 -->
 		<div class="tx-14 tx-bold tx-gray-700 tx-spacing-5"><br>상영관 선택</div>
 		<!--ajax로 데이터 받아서 foreach  -->
 		<div class="mg-t-20" id="">
-			<select class="custom-select" name="screenNO" required>
+			<select class="custom-select" name="screenNO" id="screenNO" required>
 				<option selected disabled>상영관 선택</option>
 				<option value="S01">S01</option>
 				<option value="S02">S02</option>
@@ -91,8 +122,9 @@ function dateTime(frm){
 		<br>
 		
 		<!-- 날짜 선택 -->
-		<div class="mg-t-30 bd-t tx-14 tx-bold tx-gray-700 tx-spacing-5">상영날짜 선택</div>
+		<div class="mg-t-30 bd-t tx-14 tx-bold tx-gray-700 tx-spacing-5"><br>상영날짜 선택</div>
 		<div class="mg-t-20" id="">
+			<p id="date" style="text-align: left;"></p>
 			<input type="text" class="form-control" placeholder="yyyy-mm-dd" id="datepicker4" required>
 		</div>
 		<br>
@@ -104,8 +136,9 @@ function dateTime(frm){
 			<input type="hidden" name="screenDateNO" value="D${screenDateNo+1 }">
 		</div>
 		<br>
-		
-		<button type="submit" onclick="dateTime(frm)" class="btn btn-dark" style="float: right;">등록</button>
+
+		<button onclick="dateTime(frm)" class="btn btn-dark" style="float: right;">등록</button>
+		<button type="button" id="chk" class="btn btn-info " style="float: right; margin-right:5px">상영관 중복체크</button>
 		<!-- <div class="mg-t-30 bd-t tx-14 tx-bold tx-gray-700 tx-spacing-5"> -->
 	</div>
 	<div class="col-sm-2">
@@ -113,6 +146,7 @@ function dateTime(frm){
 	</div>
 </div>
 </form>
+
 
 
 

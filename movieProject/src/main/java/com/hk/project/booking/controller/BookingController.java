@@ -1,12 +1,16 @@
 package com.hk.project.booking.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -94,7 +98,34 @@ public class BookingController {
 		
 		int screenDateNo = bookingService.selectScreenDateNo();
 		model.addAttribute("screenDateNo", screenDateNo);
+		
 		return "adminbookingAdd";
+	}
+	
+	//상영시간 중복 확인
+	@RequestMapping(value="/admin/booking/chkDate", method= {RequestMethod.POST, RequestMethod.GET},
+							produces = "application/json; charset=utf8")
+	@ResponseBody
+	public Map<String, Object> chkDate(@RequestParam("screenNO") String screenNO,
+										@RequestParam("date") String date,
+										@RequestParam("time") String time) throws Exception {
+		
+		//param값을 vo에 넣기
+		String dateSum = date+" "+time;
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date screenTime = fm.parse(dateSum);
+		
+		System.out.println("--screenNO="+screenNO);
+		System.out.println("--screenTime="+screenTime);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		ScreenDateVO chkDate = screenDateService.dupChk(screenNO,screenTime);
+		if (chkDate == null) { // 중복X
+			map.put("dup", "false");
+		} else { // 중복O
+			map.put("dup", "true");
+		}
+		return map;
 	}
 	
 	@RequestMapping(value="/admin/booking/add", method=RequestMethod.POST)

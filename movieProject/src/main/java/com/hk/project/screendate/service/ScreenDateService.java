@@ -1,5 +1,6 @@
 package com.hk.project.screendate.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,11 @@ public class ScreenDateService {
 
 	public List<ScreenDateVO> selectScreenDateList() {
 		return screenDateDAO.selectScreenDateList();
+	}
+
+	public ScreenDateVO dupChk(String screenNO, Date screenTime) {
+		// TODO Auto-generated method stub
+		return screenDateDAO.dupChk(screenNO, screenTime);
 	}
 
 }

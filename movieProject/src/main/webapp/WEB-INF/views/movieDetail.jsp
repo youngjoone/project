@@ -60,13 +60,13 @@ p{
   			<img src="${pageContext.request.contextPath }/fileDownload?posterName=${movieVO.posterName }&mid=${movieVO.mid }" class="rounded mg-r-50" alt="" width="260px" height="374px">
  	 		<div class="media-body">
     			<h2 class="mg-b-15 mg-t-10 tx-inverse">${movieVO.title }</h2>
-    			<h5>장르 : ${movieVO.genre }</h5>
-    			<h5>상영시간 : ${movieVO.runTime }</h5>
-    			<h5>감독 : ${movieVO.director }</h5>
-    			<h5>영상타입 : ${movieVO.type }</h5>
-    			<h5>연령 : ${movieVO.age }</h5>
-    			<h5>출연진 : ${movieVO.cast }</h5>
-    			<h5 class="mg-b-50">개봉날짜 : ${movieVO.openDate }</h5>
+    			<h6>장르 &nbsp;:&nbsp; ${movieVO.genre }</h6>
+    			<h6>상영시간 &nbsp;:&nbsp; ${movieVO.runTime }</h6>
+    			<h6>감독 &nbsp;:&nbsp; ${movieVO.director }</h6>
+    			<h6>영상타입 &nbsp;:&nbsp; ${movieVO.type }</h6>
+    			<h6>등급 &nbsp;:&nbsp; ${movieVO.age }</h6>
+    			<h6>출연진 &nbsp;:&nbsp; ${movieVO.cast }</h6>
+    			<h6 class="mg-b-50">개봉날짜 &nbsp;:&nbsp; ${movieVO.openDate }</h6>
     		
     			<button type="button" class="btn btn-dark" onclick="window.open('${movieVO.link}')">예고편 보기</button>
     			<button type="button" class="btn btn-dark" onclick="location.href='../service/booking?mid=${movieVO.mid}'">예매하기</button>
@@ -78,8 +78,8 @@ p{
 <div class="row mg-t-30">
 <div class="col-sm-2"></div>
 <div class="col-sm-8">
-	<h3>영화 내용</h3>
-	<h5>${movieVO.content }</h5>
+	<hr class="mg-y-40" style="margin-top: 10px; margin-bottom: 30px;">
+	<h6>${movieVO.content }</h6>
 </div>
 <div class="col-sm-2"></div>
 

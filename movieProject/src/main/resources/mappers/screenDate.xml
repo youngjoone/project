@@ -21,5 +21,12 @@
 		VALUES(#{screenDateNO}, #{screenTime}, #{mid}, #{screenNO})
 	</insert>
 	
+	<select id="dupChk" parameterType="map" resultType="ScreenDateVO">
+		SELECT SCREENTIME ,SCREENNO 
+		FROM P_SCREENDATE
+		WHERE SCREENNO =#{screenNO}
+		AND SCREENTIME = #{screenTime}
+	</select>
+	
 	
 </mapper>

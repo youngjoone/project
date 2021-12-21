@@ -11,6 +11,9 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <title>Insert title here</title>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -45,6 +48,21 @@ function thumnail(input){
 		reader.readAsDataURL(input.files[0]);
 	}
 }
+
+function back(){
+	location.href='detail?MID=${movieVO.mid}';
+}
+
+function readonly(){
+	$('.custom-select').change(function(){
+		$('#option1').
+	});
+}
+
+function disabled(){
+	$('select > option:disabled').attr("disabled",false);
+}
+
 </script>
 </head>
 
@@ -89,7 +107,7 @@ function thumnail(input){
  			</div>
  			<div class="form-group">
     			<label for="formGroupExampleInput" class="d-block">영화 내용</label>
-   				<textarea class="form-control" rows="2" placeholder="영화 줄거리" name="content" required>${movieVO.content }</textarea>
+   				<textarea class="form-control" rows="10" placeholder="영화 줄거리" name="content" required>${movieVO.content }</textarea>
  			</div>
  			
  			<div class="form-group">
@@ -110,11 +128,13 @@ function thumnail(input){
    				<input type="text" class="form-control" name="cast" placeholder="이름1 , 이름2 , 이름3 ..." value="${movieVO.cast }" required>
  			</div>
  			<div class="form-group">
-    			<label for="formGroupExampleInput" class="d-block" >성인,청소년</label>
-   				<select class="custom-select" name="age" value="${movieVO.age }" required>
-					<option selected>연령</option>
-					<option value="성인">성인</option>
-					<option value="청소년">청소년</option>
+    			<label for="formGroupExampleInput" class="d-block" >등급</label>
+   				<select class="custom-select" name="age" onchange="readonly()" required>
+					<option value="${movieVO.age }" id="option1" selected>${movieVO.age }</option>
+					<option value="전체관람가">전체관람가</option>
+					<option value="12세이상관람가">12세이상관람가</option>
+					<option value="15세이상관람가">15세이상관람가</option>
+					<option value="청소년관람불가">청소년관람불가</option>
 				</select>
  			</div>
  			<div class="form-group">
@@ -125,9 +145,9 @@ function thumnail(input){
     			<label for="formGroupExampleInput" class="d-block">개봉 날짜</label>
    				<input type="text" class="form-control" name="openDate" placeholder="yyyy.mm.dd" value="${movieVO.openDate }" >
  			</div>
- 			<button class="btn btn-primary" type="submit">등록</button>
+ 			<button class="btn btn-primary" onclick="disabled()" style="float: right; margin-left: 5px;">등록</button>
  			</form>
- 			<button class="btn btn-secondary" onclick="location.href='detail?MID=${movieVO.mid}'">취소</button>
+ 			<button class="btn btn-secondary" style="float: right;" onclick="back()">취소</button>
 	</div>
 	<div class="col-sm-3"></div>
 
