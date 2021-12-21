@@ -58,70 +58,51 @@ document.addEventListener('DOMContentLoaded', function() {
           navLinks: true,
           locale:"ko",
 
-          navLinkDayClick: function(date, jsEvent) {
+
+          
+          navLinkDayClick: function( date, jsEvent, view) {
         	    console.log('day', date.toISOString());
         	    console.log('coords', jsEvent.pageX, jsEvent.pageY);
-        	  }
-          
-          dateClick: function(info) {
-              //alert('clicked ' + info.dateStr);
-              $.ajax({
-                url: 'list/chk',
-                type: 'GET',
-                success: function(res){
-                   console.log(res  + ':' + typeof(res));
-                   
-                   
-                    var calendarEl = document.getElementById('calendar');
 
-                   alert("isArray = " + Array.isArray(res));
-                   var events = res.map(function(item) {
-                      return {
-                         title : item.ticketNo,
-                         start : item.tDate + "T" + item.tTime
-                     }
-                   });
-                   
-                  var calendar = new FullCalendar.Calendar(calendarEl, {
-                     events : events,
-                     eventTimeFormat: { // like '14:30:00'
-                         hour: '2-digit',
-                         minute: '2-digit',
-                         hour12: false
-                       }
-                  });
-                  calendar.render();
-                }// end success
+        	    $.ajax({
+                    url: 'list/chk',
+                    type: 'GET',
+                    success: function(res){
+                       console.log(res  + ':' + typeof(res));
+                       
+                       
+                        var calendarEl = document.getElementById('calendar');
 
-                
-             })//end ajax
-            },
+                       alert("isArray = " + Array.isArray(res));
+                       var events = res.map(function(item) {
+                          return {
+                             title : item.ticketNo,
+                             start : item.tDate + "T" + item.tTime
+                         }
+                       });
+                       
+                      var calendar = new FullCalendar.Calendar(calendarEl, {
+                    	 initialView: 'listDay',
+                         events : events,
+                         eventTimeFormat: { // like '14:30:00'
+                             hour: '2-digit',
+                             minute: '2-digit',
+                             hour12: false
+                           }
+                      });
+                      calendar.render();
+                    }// end success
 
-          select: function(arg) {
-            console.log(arg);
-            var title = prompt("Event Title:");
-            if(title) {
-               calendar.addEvent({
-                  title: title,
-                  start: arg.start,
-                  end: arg.end,
-                  allDay:arg.allDay
-                  })
-
-               }
-               calendar.unselect()
-              },  
+                    
+                 })//end ajax
+        	    
+        	  },
 
           headerToolbar: {
             left: 'prevYear,prev,next,nextYear today',
             center: 'title',
             right: 'dayGridMonth,listDay'
           },
-          
-          events: [
-             
-         
-         ]
               
         });
 
