@@ -82,7 +82,7 @@ function thumnail(input){
  			</div>
  			<div class="form-group">
     			<label for="formGroupExampleInput" class="d-block">영화 내용</label>
-   				<textarea class="form-control" rows="2" placeholder="영화 줄거리" name="content" required></textarea>
+   				<textarea class="form-control" rows="10" placeholder="영화 줄거리" name="content" required></textarea>
  			</div>
  			
  			<div class="form-group">
@@ -115,14 +115,16 @@ function thumnail(input){
  			</div>
  			<div class="form-group">
     			<label for="formGroupExampleInput" class="d-block">출연진</label>
-   				<input type="text" class="form-control" name="cast" placeholder="이름1 , 이름2 , 이름3 ..." required>
+   				<input type="text" class="form-control" name="cast" placeholder="이름1 , 이름2 , 이름3 ...">
  			</div>
  			<div class="form-group">
-    			<label for="formGroupExampleInput" class="d-block" >성인,청소년</label>
+    			<label for="formGroupExampleInput" class="d-block" >등급</label>
    				<select class="custom-select" name="age" required>
-					<option selected disabled>연령</option>
-					<option value="성인">성인</option>
-					<option value="청소년">청소년</option>
+					<option selected disabled>관람가 선택</option>
+					<option value="전체관람가">전체관람가</option>
+					<option value="12세이상관람가">12세이상관람가</option>
+					<option value="15세이상관람가">15세이상관람가</option>
+					<option value="청소년관람불가">청소년관람불가</option>
 				</select>
  			</div>
  			<div class="form-group">

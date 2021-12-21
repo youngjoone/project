@@ -58,7 +58,6 @@ public class MovieController {
 	public String adminMovieList(Model model) {
 		List<List<MovieVO>> movieVO2DList =  movieService.selectAllMovies();
 		model.addAttribute("movieVO2DList", movieVO2DList);
-		System.out.println("무비리스트"+movieVO2DList.toString());
 		
 		return "adminMovieList";
 	}
@@ -121,21 +120,6 @@ public class MovieController {
 
 		Map<String, Object> map = movieService.detail(movieVO.getMid());//movieVO,reviewVO
 		
-//		//multipart
-//		MultipartFile poster = movieVO.getPoster();
-//		
-//		if(poster.getSize()>0) { //파일이 전송된 경우 (0보다 큼) 
-//		//기존 파일 삭제 (수정이 되면 기존에 전송했던 파일을 삭제하고 새로운 파일을 전송해야 함) 
-//			UploadSaveManager.deleteFile(POSTER_IMAGE_REPO, oldDTO.getPoster()); 
-//			//Utility 에서 (지울 곳의 경로, 먼저 저장한 파일명) 
-//			//신규파일 저장 
-//			poster=UploadSaveManager.saveFileSpring30(poster, basePath); 
-//			//Utility 에서 (신규 파일, 경로) 
-//			movieVO.setPoster(poster); 
-//		}else { //파일이 전송되지 않는 경우 
-//			movieVO.setPoster(oldDTO.getPoster()); 
-//		}
-
 		MultipartFile poster = movieVO.getPoster();
 		movieVO.setPoster(poster); 
 		
