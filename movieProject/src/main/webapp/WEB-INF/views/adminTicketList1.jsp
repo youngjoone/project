@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
                           return {
                              title : item.ticketNo + " 아이디:" + item.id + " 영화일련번호:" + item.mid + " 영화제목:" + item.mTITLE + " 상영관:" + item.screenNo + " 좌석번호:" + item.seatNo + " 연령" + item.age,
                              start : item.tDate + "T" + item.tTime,
-           
                          }
                        });
                        
