@@ -104,13 +104,13 @@
          <div class="modal-content">
 
             <!-- Modal Header -->
-            <div class="modal-header">
-               <h4 class="modal-title">좌석 선택하기</h4>
+            <div class="modal-header" >
+               <h4 class="modal-title mg-l-300">좌석 선택하기</h4>
                <button type="button" class="close"  data-dismiss="modal">×</button>
             </div>
             
             <div class="mg-t-10 mg-b-10">
-               <span class="tx-18 tx-spacing-2 mg-l-15 mg-r-10 align-middle">성인</span>
+               <span class="tx-18 tx-spacing-2 mg-l-150 mg-r-10 align-middle">성인</span>
                <div class="btn-group" role="group" aria-label="Basic example">
                
                     <button type="button" class="btn btn-light btn-outline-dark" id="adultMinus" onclick='adultMinus()'>-</button>
@@ -128,11 +128,7 @@
             </div>
             <!-- Modal body -->
             
-            <div class="modal-body bd-t" id="seatModal">
-            좌석 선택<br>
-            
-            
-            </div>
+            <div class="modal-body bd-t" id="seatModal" style="text-align:center">좌석 선택<br> </div>
 
             <!-- Modal footer -->
             <div class="modal-footer">
@@ -164,7 +160,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-      	<button type="button" class="btn btn-dark" onclick="insertTicket()">예매완료</button>
+         <button type="button" class="btn btn-dark" onclick="insertTicket()">예매완료</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="removeMovieInfo()">취소</button>
       </div>
 
@@ -214,10 +210,18 @@
    }
 
    
+   //성인 청소년 버튼 초기화
+   function resetAge(){
+      $("#adult").html(0);
+       $("#adult").val(0);
+       $("#teen").html(0);
+       $("#teen").val(0);
+   }
+   
    //성인버튼
    function adultMinus(){
       
-      selectSeat();
+      //selectSeat();
       
          var count = $("#adult").val()
          if(count>0){
@@ -229,7 +233,7 @@
       }
 
    function adultPlus(){
-	   
+      
          var count = $("#adult").val()
          if(count==6){
             swal('최대 예매 인원수는 6명입니다');
@@ -238,14 +242,14 @@
             $("#adult").html(count);
             $("#adult").val(count);
          }
-         selectSeat();
+        // selectSeat();
          
       }
    //청소년버튼
    
    function teenMinus(){
       
-      selectSeat();
+      //selectSeat();
       
          var count = $("#teen").val()
          if(count>0){
@@ -258,7 +262,7 @@
    
    function teenPlus(){
       
-      selectSeat();
+     // selectSeat();
       
          var count = $("#teen").val()
          if(count==6){
@@ -425,7 +429,7 @@
       console.log('start');
       console.log(kMid, kScreenNo, kYy, kMm, kDd, kHh, kMi);
       removeSeatModal();
-      
+      resetAge();
       $.ajax({
          type : 'POST',
          url : '/selectSeat',
@@ -445,19 +449,19 @@
             var seatModal = '';
             var seatNO= null;
             
-            seatModal += '<div class="row">';
+            seatModal += '<div class="row mg-l-100">';
             for(var i=0; i < data.length; i++){
                seatNO = data[i].seat;
                
                if (data[i].reserved == 'N') {
-                  seatModal += '<button type="button" class="btn btn-xs btn-outline-dark noHover" id="'+data[i].seat+'" onclick="seatCnt(\''+seatNO+'\')">' + data[i].seat + '</button>';
+                  seatModal += '<button type="button" class="btn btn-xs btn-outline-dark noHover mg-1" style="width:50px" id="'+data[i].seat+'" onclick="seatCnt(\''+seatNO+'\')">' + data[i].seat + '</button>';
                } else {
-                  seatModal += '<button type="button" class="btn btn-xs btn-danger" data-toggle="button" disabled>' + data[i].seat + '</button>';
+                  seatModal += '<button type="button" class="btn btn-xs btn-danger mg-1" data-toggle="button" style="width:50px" disabled>' + data[i].seat + '</button>';
                }
                
                if (i%10 == 9) {
                   seatModal += '</div>';
-                  seatModal += '<div class="row">';
+                  seatModal += '<div class="row mg-l-100">';
                }
             };
             seatModal += '</div>';
@@ -523,15 +527,15 @@
 
    //예매확인 지우는 모달
    function removeMovieInfo(){
-		$('#chkTicket').children().remove();
-		
-	   }
+      $('#chkTicket').children().remove();
+      
+      }
 
    //예매확인 모달
    function getAndShowMovieInfo() {
 
-	   removeMovieInfo();
-	      var chkTicket = "";
+      removeMovieInfo();
+         var chkTicket = "";
       // ajax
        $.ajax({
                type : 'POST',
@@ -544,26 +548,26 @@
                success : function(data) {
                   console.log(data);
                   
-          		  chkSeat = [] 
-          		  chkAge = []
+                  chkSeat = [] 
+                  chkAge = []
                  
                   var seatCnt = $('#seatModal > div > button.active');
-          		  var selectedTeen = $('#seatModal > div > button.active[style*="background-color: green"]');
-          		  
-          		  selectedTeen.each(function () {          			
-          			chkSeat.push($(this).attr('id'));
-	        		chkAge.push('청소년');
-          		  });
-          		  
-          		  
-          		  seatCnt.each(function () {
-          		  	if (!chkSeat.includes($(this).attr('id'))) {
-          		  	  	chkSeat.push($(this).attr('id'));
-    	        		chkAge.push('성인');
-          		  	}          		  	
-          		  });  
-          		
-                  chkTicket += ' <h3>제목 :'+data[0].title+'</h3><h4>날짜/시간 : '+kYy+'년'+kMm+'월'+kDd+'일/ '+kHh+'시'+kMi+'분</h4><h4>인원 : '+allCnt+'</h4><h4>좌석 : '+chkSeat+'</h4>'
+                  var selectedTeen = $('#seatModal > div > button.active[style*="background-color: green"]');
+                  
+                  selectedTeen.each(function () {                   
+                   chkSeat.push($(this).attr('id'));
+                 chkAge.push('청소년');
+                  });
+                  
+                  
+                  seatCnt.each(function () {
+                     if (!chkSeat.includes($(this).attr('id'))) {
+                          chkSeat.push($(this).attr('id'));
+                     chkAge.push('성인');
+                     }                     
+                  });  
+                
+                  chkTicket += ' <div class="tx-30">제목 :'+data[0].title+'</div><div class="tx-22 mg-t-10">날짜/시간 : '+kYy+'년'+kMm+'월'+kDd+'일/ '+kHh+'시'+kMi+'분</div><div class="tx-22 mg-t-10">인원 : '+allCnt+'</div><div class="tx-22 mg-t-10">좌석 : '+chkSeat+'</div>'
                   $('#chkTicket').append(chkTicket);
                   
 
@@ -578,35 +582,35 @@
 
       
    }
-	//ticket에 insert 하기 
+   //ticket에 insert 하기 
    function insertTicket(){
-				
-		//id 세션에서 가져오기
-		var id = $("#getId").val();
-		console.log(id);
-		//ticketNO 자동생성
-		
-		//screenDateNO screenTime,mid,screenNO 주고 맞는값 받아오기
-		var year = kYy;
+            
+      //id 세션에서 가져오기
+      var id = $("#getId").val();
+      console.log(id);
+      //ticketNO 자동생성
+      
+      //screenDateNO screenTime,mid,screenNO 주고 맞는값 받아오기
+      var year = kYy;
         var month = kMm;
         var day = kDd;
         var hour = kHh;
         var minute = kMi;
         var mid = kMid;
         
-		//screenNO 값 받기	 고정
-		var screenNO = kScreenNo;
-		console.log(screenNO);
-		//seatNo 갑받기 좌석수만큼 반복
-		console.log(chkSeat);
-		
-		//age 성인수만큼 성인 청소년수만큼 청소년
-		
-		console.log(chkAge);
-		//mid mid받기 고정 
-		// chkSeat를
-				
-		 $.ajax({
+      //screenNO 값 받기    고정
+      var screenNO = kScreenNo;
+      console.log(screenNO);
+      //seatNo 갑받기 좌석수만큼 반복
+      console.log(chkSeat);
+      
+      //age 성인수만큼 성인 청소년수만큼 청소년
+      
+      console.log(chkAge);
+      //mid mid받기 고정 
+      // chkSeat를
+            
+       $.ajax({
                type : 'POST',
                url : '/insertTicket',
                traditional :true,
@@ -628,16 +632,16 @@
                   console.log(data);          
                   swal('예매가 완료되었습니다.')
                   .then((value) => {
-                	  window.location.href = "/service/mypage";
+                     window.location.href = "/service/mypage";
                   });
                },
                error : function(request, status, error) {
                   alert('에러!! : ' + request.responseText + ":" + error);
                }
             }); //end ajax
-		
-		
-	   }
+      
+      
+      }
    
 </script>
 <footer>
