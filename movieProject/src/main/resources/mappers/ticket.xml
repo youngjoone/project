@@ -34,13 +34,13 @@
 	</delete>
 	 
 	 <insert id="insertTicket">
-	 INSERT INTO MOVIE.P_TICKET (
+	 INSERT INTO P_TICKET (
 	 	ID,	TICKETNO, SCREENDATENO,	SCREENNO, SEATNO, AGE, MID)
 	 VALUES (
 	 	#{id},
 	 	( CONCAT('T', (SELECT LPAD(COUNT(*)+1, 3, '0') FROM P_TICKET ))),
 	 	( SELECT SCREENDATENO
-	 	  FROM MOVIE.P_SCREENDATE
+	 	  FROM P_SCREENDATE
 	 	  WHERE SCREENTIME =TO_DATE(#{year}||#{month}||#{day}||#{hour}||#{minute}, 'YYYYMMDDHH24MI')
 	 	  AND MID = #{mid}
 	 	  AND SCREENNO = #{screenNO}
