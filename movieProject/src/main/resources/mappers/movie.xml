@@ -84,4 +84,28 @@
 		FROM P_MOVIE
 	</select>
 	
+	<!-- 페이지정보를 10개씩 가져오기 -->
+	<select id="listPage" resultType="MovieVO">
+		<![CDATA[	SELECT r, MID ,POSTER ,LINK ,TITLE ,CONTENT ,GENRE ,RUNTIME ,DIRECTOR ,"CAST" ,AGE ,"TYPE" ,OPENDATE
+					FROM (SELECT MID ,POSTER ,LINK ,TITLE ,CONTENT ,GENRE ,RUNTIME ,DIRECTOR ,"CAST" ,AGE ,"TYPE" ,OPENDATE , rownum AS r
+					FROM (	SELECT *
+					FROM P_MOVIE
+					ORDER BY MID))
+					WHERE r >= #{page} AND r<=10]]>
+	</select>
+	
+	<!-- 페이지정보를 지정한 크기만큼 가져오기 -->
+	<select id="listPageCri" resultType="MovieVO">
+		<![CDATA[	SELECT r, MID ,POSTER ,LINK ,TITLE ,CONTENT ,GENRE ,RUNTIME ,DIRECTOR ,"CAST" ,AGE ,"TYPE" ,OPENDATE
+					FROM (SELECT MID ,POSTER ,LINK ,TITLE ,CONTENT ,GENRE ,RUNTIME ,DIRECTOR ,"CAST" ,AGE ,"TYPE" ,OPENDATE , rownum AS r
+					FROM (	SELECT *
+					FROM P_MOVIE
+					ORDER BY MID))
+					WHERE r >= #{pageStart} AND r<=#{pageSize}]]>
+	</select>
+	
+	<select id="pageCount" resultType="int">
+			select count(*) from P_MOVIE
+	</select>
+	
 </mapper>

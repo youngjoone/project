@@ -14,6 +14,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+
 <script>
 $(document).ready(function() {
     $('#button-addon2').click(function() {
@@ -60,6 +61,7 @@ $(document).ready(function() {
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/join.css">
     
+    
 </head>
 <body>
 
@@ -81,7 +83,7 @@ $(document).ready(function() {
 				</div>
               <h4 class="tx-color-01 mg-b-5"><b>회원가입</b></h4>
 			<div class="input-group">
-  				<input type="text" name="id" id="userId" class="form-control" placeholder="*아이디" maxlength="14" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+  				<input type="text" name="id" id="userId" class="form-control" placeholder="*아이디 (최대 14자 입력가능)" minlength="5" maxlength="14" aria-label="Recipient's username" aria-describedby="button-addon2" required>
   				<div class="input-group-append">
     				<button class="btn btn-outline-secondary" type="button" id="button-addon2">중복확인</button>
   				</div>
@@ -91,10 +93,10 @@ $(document).ready(function() {
                 <div class="d-flex justify-content-between mg-b-5">
                   <label class="mg-b-0-f"></label>
                 </div>
-                <input type="password" name="pw" class="form-control" placeholder="*비밀번호" required>
+                <input type="password" name="pw" class="form-control" minlength="5" maxlength="20" placeholder="*비밀번호 (최대 20자 입력가능)" required>
               </div>
               <div class="form-group">
-                <input type="text" name="name" class="form-control" placeholder="*이름" maxlength="15">
+                <input type="text" name="name" minlength="1" class="form-control" placeholder="*이름" maxlength="15" required>
               </div>
               <div class="form-group">
                 <label></label>

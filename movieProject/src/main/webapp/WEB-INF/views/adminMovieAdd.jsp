@@ -118,10 +118,9 @@ function thumnail(input){
    				<input type="text" class="form-control" name="cast" placeholder="이름1 , 이름2 , 이름3 ...">
  			</div>
  			<div class="form-group">
-    			<label for="formGroupExampleInput" class="d-block" >등급</label>
+    			<label for="formGroupExampleInput" class="d-block" >관람가 선택</label>
    				<select class="custom-select" name="age" required>
-					<option selected disabled>관람가 선택</option>
-					<option value="전체관람가">전체관람가</option>
+					<option value="전체관람가" selected>전체관람가</option>
 					<option value="12세이상관람가">12세이상관람가</option>
 					<option value="15세이상관람가">15세이상관람가</option>
 					<option value="청소년관람불가">청소년관람불가</option>

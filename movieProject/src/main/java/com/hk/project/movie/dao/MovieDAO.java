@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hk.project.movie.vo.MovieVO;
+import com.hk.project.page.vo.Criteria;
 
 @Repository
 public class MovieDAO {
@@ -70,5 +71,31 @@ public class MovieDAO {
 	public List<MovieVO> movieList2(String mid){
 		List<MovieVO> movieList = sqlSession.selectList("mapper.movie.selectOne",mid);
 		return movieList;
+	}
+
+	public int getTotal() {
+		int movieTotal = sqlSession.selectOne("mapper.movie.getTotal");
+		return movieTotal;
+	}
+
+	//페이징
+	public List<MovieVO> listPage(int page) throws Exception {
+		//페이지가 0인 경우 1로 바꿔서 처리
+		if(page <= 0) {
+			page = 1;
+		}
+		page = (page - 1)*10;
+		return sqlSession.selectList("mapper.movie.listPage", page);
+	}
+	
+	
+	//페이징 처리하는 동작?
+	public List<MovieVO> listPageCri(Criteria cri) {
+		return sqlSession.selectList("mapper.movie.listPageCri", cri);
+	}
+	
+	//모든 리스트 개수 계산
+	public int pageCount() {
+		return sqlSession.selectOne("mapper.movie.pageCount");
 	}
 }

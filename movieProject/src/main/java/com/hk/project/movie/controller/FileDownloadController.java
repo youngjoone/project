@@ -22,7 +22,6 @@ public class FileDownloadController {
 		String POSTER_IMAGE_REPO = "c:\\poster_image";
 		String posterName = request.getParameter("posterName");
 		String mid = request.getParameter("mid");
-		System.out.println("posterName : "+posterName);
 		
 		OutputStream out = response.getOutputStream();
 		//파일경로

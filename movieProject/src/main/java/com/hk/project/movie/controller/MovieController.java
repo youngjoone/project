@@ -4,27 +4,23 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hk.project.movie.service.MovieService;
 import com.hk.project.movie.vo.MovieVO;
+import com.hk.project.page.vo.Criteria;
+import com.hk.project.page.vo.PageVO;
 import com.hk.project.review.service.ReviewService;
+
 
 @Controller
 public class MovieController {
@@ -41,6 +37,35 @@ public class MovieController {
 		model.addAttribute("movieVO2DList", movieVO2DList);
 		return "movieList";
 	}
+	
+//	//페이징
+//	//페이징 처리한 글목록
+//	@RequestMapping(value="/movie/listCri", method={RequestMethod.GET , RequestMethod.POST})
+//	public void movieCriGet(Model model, Criteria cri) {
+//		
+//		List<MovieVO> movieList =  movieService.listCri(cri);
+//		model.addAttribute("movieList", movieList);
+//		
+//		//return "movieList"; //--void
+//	}
+//	
+//	//글목록 보기 
+//	@RequestMapping(value="/movie/listPage", method={RequestMethod.GET , RequestMethod.POST})
+//	public String movieListPageGet(Model model, Criteria cri) {
+//		
+//		List<MovieVO> movieList =  movieService.listCri(cri);
+//		model.addAttribute("movieList", movieList);
+//		
+//		PageVO pageVO = new PageVO();
+//		pageVO.setCri(cri);
+//		pageVO.setTotalCount(movieService.pageCount()); //디비 전체 row수 입력
+//		model.addAttribute("pageVO", pageVO);
+//		
+//		System.out.println("=-----page"+pageVO.toString());
+//		
+//		return "movieList"; //--void
+//	}
+	
 	@RequestMapping(value="/movie/detail", method={RequestMethod.GET , RequestMethod.POST})
 	public String movieDetail(Model model,@RequestParam("MID") String mid,@ModelAttribute MovieVO movieVO) {
 		System.out.println(mid);
@@ -48,8 +73,6 @@ public class MovieController {
 		Map<String,Object> map = movieService.detail(mid);
 		model.addAttribute("movieVO", map.get("movieVO"));
 		model.addAttribute("reviewVO", map.get("reviewVO"));
-		System.out.println(map.toString());
-		
 		
 		return "movieDetail";
 	}
@@ -110,8 +133,6 @@ public class MovieController {
 		Map<String,Object> map = movieService.detail(mid);
 		model.addAttribute("movieVO", map.get("movieVO"));
 		model.addAttribute("reviewVO", map.get("reviewVO"));
-		System.out.println(map.toString());
-		
 		
 		return "adminMovieDetail";
 	}
@@ -162,7 +183,6 @@ public class MovieController {
 	
 	@RequestMapping(value="/admin/delete", method={RequestMethod.POST})
 	public String adminMovieDelete(Model model,@ModelAttribute MovieVO movieVO) {
-		System.out.println("무비 딜리트"+movieVO);
 		
 		int ret = movieService.deleteMovie(movieVO);
 		model.addAttribute("ret", ret);
@@ -175,7 +195,6 @@ public class MovieController {
 		// 사용자 유무만 확인해주면 된다.
 		// 클라이언트->서버에 요청할때는 String으로 
 		// 서버->클라이언트에 답변할때는 JSON으로
-		System.out.println("mid = " + mid);
 		Map<String, Object> map = new HashMap<String, Object>();
 		//service에서 id가 중복인지 체크하는 모듈 (service dao member.xml )
 		MovieVO dupMid = movieService.dupMid(mid);

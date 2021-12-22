@@ -48,7 +48,6 @@
 p {
 	text-align: center;
 }
-
 ul {
 	list-style-type: none;
 	margin: 5px;

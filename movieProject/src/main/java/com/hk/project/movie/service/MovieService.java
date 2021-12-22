@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.hk.project.movie.dao.MovieDAO;
 import com.hk.project.movie.vo.MovieVO;
+import com.hk.project.page.vo.Criteria;
 import com.hk.project.review.dao.ReviewDAO;
 import com.hk.project.review.vo.ReviewVO;
 
@@ -82,5 +83,15 @@ public class MovieService {
 	public List<MovieVO> movieList(String mid){
 		List<MovieVO> movieList = movieDAO.movieList2(mid);
 		return movieList;
+	}
+//	public int getTotal() {
+//		return movieDAO.getTotal();
+//	}
+	public List<MovieVO> listCri(Criteria cri) {
+		return movieDAO.listPageCri(cri);
+	}
+	
+	public int pageCount() {
+		return movieDAO.pageCount();
 	}
 }
