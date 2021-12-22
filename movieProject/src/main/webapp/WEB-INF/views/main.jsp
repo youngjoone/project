@@ -82,9 +82,9 @@ a:hover {
 		<c:forEach var="movieVO" items="${movieVOList}" end="3">
 		<div class="col-sm">
 			<div class="card">
-				<a href="detail?MID=${movieVO.mid }"><img
-					src="${pageContext.request.contextPath }/fileDownload?posterName=${movieVO.posterName }&mid=${movieVO.mid }"
-					class="card-img-top rounded" alt="${movieVO.title }" width="134px" height="350px"></a>
+				<a href="detail?MID=${movieVO.mid }">
+				<img src="${pageContext.request.contextPath }/fileDownload?posterName=${movieVO.posterName }&mid=${movieVO.mid }"
+					class="card-img-top rounded" alt="${movieVO.title }" ></a>
 				<button type="button" class="btn btn-secondary btn-block" disabled>
 					<a href="../service/booking?mid=${movieVO.mid }">예매하기</a>
 				</button>

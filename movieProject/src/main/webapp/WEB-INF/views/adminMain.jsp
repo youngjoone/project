@@ -74,7 +74,7 @@ a:hover {
 			<div class="card">
 				<a href="detail?MID=${movieVO.mid }"><img
 					src="${pageContext.request.contextPath }/fileDownload?posterName=${movieVO.posterName }&mid=${movieVO.mid }"
-					class="card-img-top rounded" alt="${movieVO.title }" width="134px" height="350px"></a>
+					class="card-img-top rounded" alt="${movieVO.title }"></a>
 
 				<button type="button" class="btn btn-secondary btn-block" disabled>
 					<a href="">예매하기</a>

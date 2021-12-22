@@ -13,7 +13,8 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-
+<!-- 스윗 알렛 -->
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 $(document).ready(function(){
     $('input.timepicker').timepicker({ 
@@ -43,6 +44,14 @@ function select(){
 	$('#date').text('※ 개봉날짜 : '+open);
 }
 
+function resetValue(){
+		
+		$("#screenNO").html('<option selected disabled>상영관 선택</option><option value="S01">S01</option><option value="S02">S02</option><option value="S03">S03</option>');
+		$('#datepicker4').val('');
+		$('#time').val('');
+	
+}
+
 $(document).ready(function() {
     $('#chk').click(function() {
     	$.ajax({
@@ -55,9 +64,12 @@ $(document).ready(function() {
             success: function(map) {
                if(map.dup == 'false') {  //중복x
             	   alert('해당 시간은 등록이 가능합니다.');
+            	   btnDiv();
                }
                else {  //중복o
             	   alert('해당 시간에 이미 상영영화가 있습니다.');
+            	   resetValue();
+            	   
                }
             }, 
             error: function(request,status,error) { //실행일 실패하면
@@ -67,7 +79,12 @@ $(document).ready(function() {
      	}); //end ajax 
     }); //end on 
 }); 
-
+function btnDiv(){
+	$("#chk").remove();
+	var frmBtn=''; 
+	frmBtn +='<button onclick="dateTime(frm)" class="btn btn-dark" style="float: right;">등록</button>';
+	$("#btnDiv").append(frmBtn);
+}
 
 
 </script>
@@ -107,7 +124,7 @@ $(document).ready(function() {
 			</c:choose>
 			
 	</div>
-	<div class="col-sm-5 mg-t-30">
+	<div class="col-sm-5 mg-t-30" >
 		<!-- 상영관 선택 -->
 		<div class="tx-14 tx-bold tx-gray-700 tx-spacing-5"><br>상영관 선택</div>
 		<!--ajax로 데이터 받아서 foreach  -->
@@ -136,9 +153,11 @@ $(document).ready(function() {
 			<input type="hidden" name="screenDateNO" value="D${screenDateNo+1 }">
 		</div>
 		<br>
-
-		<button onclick="dateTime(frm)" class="btn btn-dark" style="float: right;">등록</button>
+		<div id="btnDiv">
+		
 		<button type="button" id="chk" class="btn btn-info " style="float: right; margin-right:5px">상영관 중복체크</button>
+		</div>
+		
 		<!-- <div class="mg-t-30 bd-t tx-14 tx-bold tx-gray-700 tx-spacing-5"> -->
 	</div>
 	<div class="col-sm-2">
