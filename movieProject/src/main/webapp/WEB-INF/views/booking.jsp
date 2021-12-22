@@ -55,7 +55,7 @@
       <div class="col-sm"></div>
    </div>
    <div class="row">
-      <div class="col-sm-2">왼쪽여백</div>
+      <div class="col-sm-2"></div>
 
       <div class="col-sm-3 mg-t-30 bd-r">
          <!--현재 상영중인 영화만 나와야함 DB에서 조인 해야할듯? 
@@ -83,17 +83,17 @@
          </div>
          
       </div>
-      <div class="col-sm-2">오른쪽여백</div>
+      <div class="col-sm-2"></div>
       
       
    </div>
    <div class="row bd-t">
-      <div class="col-sm-2">왼쪽여백</div>
+      <div class="col-sm-2"></div>
       <div class="col-sm-7"></div>
       <div class="col-sm-1">
          <button type="button" class="btn btn-dark mg-t-10 mg-r-30" data-toggle="modal" onclick="selectSeat()">좌석 선택</button>
       </div>
-      <div class="col-sm-2">오른쪽여백</div>
+      <div class="col-sm-2"></div>
    </div>
    <input type="hidden" id="selectedMid" value=${selectedMid}>
    <input type="hidden" id="getId" value=${login.id }>
@@ -554,6 +554,7 @@
                   
                },
                success : function(data) {
+                   
                   console.log(data);
                   
                   chkSeat = [] 

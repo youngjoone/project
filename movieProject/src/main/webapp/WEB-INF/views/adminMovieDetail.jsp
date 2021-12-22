@@ -31,13 +31,7 @@ p{
 	text-align:center;
 }
 </style>
-<script>
-		function clickDel(formName) {
-			formName.action = "delete";
-			formName.method = "post";
-			formName.submit();
-		}
-</script>
+
 </head>
 <header>
 <jsp:include page="/WEB-INF/views/adminHeader.jsp" />
@@ -103,7 +97,13 @@ p{
 	</div>
 	<div class="col-sm-2"></div>
 </div>
-
+<form name="delete">
+	<input type="hidden" name="mid" value="${movieVO.mid}">
+</form>
+<form name="boardInfo">
+	
+	<input type="hidden" name="mid" value="${movieVO.mid}">
+</form>
 <!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -118,11 +118,10 @@ p{
 				</div>
 				<div class="modal-body">게시물을 정말 삭제하시겠습니까?</div>
 				<div class="modal-footer">
-					<form name="delete">
-					<input type="hidden" name="mid" value="${movieVO.mid}">
-					<button type="button" class="btn btn-primary" onclick="clickDel(delete)">삭제하기</button>
+					
+					<button type="button" class="btn btn-primary" onclick="clickDel(boardInfo)">삭제하기</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
-					</form>
+					
 				</div>
 			</div>
 		</div>
@@ -130,6 +129,16 @@ p{
 
 
 </body>
+<script>
+	
+		
+		function clickDel(formName) {
+			
+			formName.action = "delete";
+			formName.method = "post";
+			formName.submit();
+		}
+</script>
 <footer>
 	<jsp:include page="/WEB-INF/views/footer.jsp" />
 </footer>
