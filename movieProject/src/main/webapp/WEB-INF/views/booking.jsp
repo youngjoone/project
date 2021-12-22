@@ -217,12 +217,20 @@
        $("#teen").html(0);
        $("#teen").val(0);
    }
-   
+
+   //좌석 css 초기화
+   function resetSeat(){
+	  
+	   $("#seatModal").children().children().removeClass("active");
+	   $("#seatModal").children().children().attr("aria-pressed", "false");
+	   $("#seatModal").children().children().css("background-color","");
+	   }
+  
    //성인버튼
    function adultMinus(){
       
       //selectSeat();
-      
+      resetSeat();
          var count = $("#adult").val()
          if(count>0){
             count --;
@@ -248,7 +256,7 @@
    //청소년버튼
    
    function teenMinus(){
-      
+	   resetSeat();
       //selectSeat();
       
          var count = $("#teen").val()
