@@ -104,4 +104,13 @@ public class NoticeController {
 		
 		return "adminMulDelete";
 	}
+	@RequestMapping(value="/admin/notice/update2" , method=RequestMethod.GET)
+	public String noticeView2(Model model, @RequestParam("noticeNO") int noticeNO) {
+		
+		NoticeVO noticeVO = noticeService.viewNotice(noticeNO);
+		model.addAttribute("noticeVO", noticeVO);
+		
+		return "adminNoticeView2";
+	}
+	
 }

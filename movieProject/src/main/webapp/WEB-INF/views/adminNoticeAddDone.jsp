@@ -14,7 +14,7 @@
 <script>
 function myFunction() {
 	if(${ret>0}){
-		alert("글이 등록되었습ㄴ;디.");
+		alert("글이 등록되었습니다.");
 		 location.href = "list";
 	} else {
 		alert("등록실패");
