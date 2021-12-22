@@ -10,7 +10,8 @@ public class ListTicketVO {
 	private String seatNo;
 	private String age;
 	private String mid;
-	private String mTITLE;
+	private String TITLE;
+	
 	public String gettDate() {
 		return tDate;
 	}
@@ -59,17 +60,17 @@ public class ListTicketVO {
 	public void setMid(String mid) {
 		this.mid = mid;
 	}
-	public String getmTITLE() {
-		return mTITLE;
+	public String getTITLE() {
+		return TITLE;
 	}
-	public void setmTITLE(String mTITLE) {
-		this.mTITLE = mTITLE;
+	public void setTITLE(String tITLE) {
+		TITLE = tITLE;
 	}
 	@Override
 	public String toString() {
 		return "ListTicketVO [tDate=" + tDate + ", tTime=" + tTime + ", id=" + id + ", ticketNo=" + ticketNo
-				+ ", screenNo=" + screenNo + ", seatNo=" + seatNo + ", age=" + age + ", mid=" + mid + ", mTITLE="
-				+ mTITLE + "]";
+				+ ", screenNo=" + screenNo + ", seatNo=" + seatNo + ", age=" + age + ", mid=" + mid + ", TITLE=" + TITLE
+				+ "]";
 	}
 
 	

@@ -13,6 +13,7 @@
       <result property="nTitle" column="nTitle" />
       <result property="nContent" column="nContent" />
       <result property="date" column="date" />
+      
    </resultMap>
    
    <!-- list -->
@@ -48,5 +49,26 @@
     DELETE FROM P_NOTICE
 	WHERE NOTICENO=#{noticeNO}
    </delete>
+   
+   <!-- 총 게시글 갯수 출력 -->
+   <!-- <select id="countNotice" resultMap="NoticeVO">
+   		SELECT * 
+   		FROM P_NOTICE
+   </select> --> 
+   
+   <!-- 페이징 처리 후 게시글 조회 -->
+<!--    <select id="selectNotice" resultMap="NoticeVO">
+   	SELECT NOTICENO, CATEGORY, NTITLE, NCONTENT, "date" , RN
+	FROM (
+		SELECT NOTICENO, CATEGORY, NTITLE, NCONTENT, "date", ROWNUM AS RN
+		FROM (
+			SELECT NOTICENO, CATEGORY, NTITLE, NCONTENT, "date" 
+			FROM P_NOTICE 
+			ORDER BY NOTICENO DESC 
+		)
+	)
+	WHERE RN>=#{page} AND RN<=10
+	
+   </select> -->
    
 </mapper>   

@@ -14,14 +14,14 @@
 		<result column="seatNo" property="seatNo" />
 		<result column="mid" property="mid" />
 		<result column="age" property="age" />
-		<result column="mTITLE" property="mTITLE" />
+		<result column="TITLE" property="TITLE" />
 		
 	</resultMap>
 	
 	<!-- 	예매내역 리스트
 	<select id="selectAllTickets" resultMap="ticketResult">
 		SELECT 
-		ps.screenTime, pt.id , pt.ticketNo , pt.screenNo , pt.seatNo , pt.age , pt.mid , pm."mTITLE" 
+		ps.screenTime, pt.id , pt.ticketNo , pt.screenNo , pt.seatNo , pt.age , pt.mid , pm."TITLE" 
 		FROM P_TICKET pt ,P_SCREENDATE ps , P_MOVIE pm 
 		WHERE pt.screenDateNo = ps.screenDateNO
 		AND pt.mid = pm.mid 
@@ -33,7 +33,7 @@
 	<select id="listTicket" resultMap="listTicketResult">
 		SELECT 
 		TO_char(ps.screenTime, 'YYYY-MM-DD HH24:MI') AS tDate,
-		pt.id , pt.ticketNo , pt.screenNo , pt.seatNo , pt.age , pt.mid , pm."mTITLE" 
+		pt.id , pt.ticketNo , pt.screenNo , pt.seatNo , pt.age , pt.mid , pm."TITLE" 
 		FROM P_TICKET pt ,P_SCREENDATE ps , P_MOVIE pm 
 		WHERE pt.screenDateNo = ps.screenDateNO
 		AND pt.mid = pm.mid 
@@ -45,10 +45,10 @@
 		SELECT 
 		TO_char(ps.screenTime, 'YYYY-MM-DD') AS tDate,
 		TO_char(ps.screenTime, 'HH:MI') AS tTime,
-		pt.id , pt.ticketNo , pt.screenNo , pt.seatNo , pt.age , pt.mid , pm."mTITLE" 
+		pt.id , pt.ticketNo , pt.screenNo , pt.seatNo , pt.age , pt.mid , pm."TITLE" 
 		FROM P_TICKET pt ,P_SCREENDATE ps , P_MOVIE pm 
 		WHERE pt.screenDateNo = ps.screenDateNO
 		AND pt.mid = pm.mid 
-		ORDER BY Ttime
+		ORDER BY tTime
 	</select>	
 </mapper>        

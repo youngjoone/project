@@ -67,10 +67,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     success: function(res){
                        console.log(res  + ':' + typeof(res));                       
 
-                       alert("isArray = " + Array.isArray(res));
                        var events = res.map(function(item) {
                           return {
-                             title : item.ticketNo + " 아이디:" + item.id + " 영화일련번호:" + item.mid + " 영화제목:" + item.mTITLE + " 상영관:" + item.screenNo + " 좌석번호:" + item.seatNo + " 연령" + item.age,
+                             title : item.ticketNo + " 아이디 :" + item.id + " / " + "  영화일련번호 :" + item.mid + " / " + "  영화제목 :" + item.mTITLE + " / " + "  상영관 :" + item.screenNo + " / " + "  좌석번호 :" + item.seatNo + " / " + "  연령 :" + item.age,
                              start : item.tDate + "T" + item.tTime,
                          }
                        });

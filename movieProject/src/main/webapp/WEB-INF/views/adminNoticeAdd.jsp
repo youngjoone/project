@@ -9,6 +9,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script type="text/javascript">
@@ -34,9 +45,9 @@ table{
 }
 
 input[type=text] {
-  width: 50%;
+  width: 80%;
   padding: 5px 20px;
-  margin: 8px 10px;
+
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -53,7 +64,7 @@ input[type=submit] {
 }
 
 select {
-	width: 15%;
+	width: 20%;
  	padding: 5px 20px;
   	margin: 8px 10px;
 	display: inline-block;
@@ -92,7 +103,7 @@ select {
 	margin-left: 10px; 
 }
 
-#t1 {
+.t1 {
 	border-top: 1px solid #C8C8C8;
 	border-bottom: 1px solid #C8C8C8;
 }
@@ -126,14 +137,14 @@ figcaption{
 		<form name="noticeForm" action="add" method="POST">
 			<table>
 
-				<tr>
+				<tr height="50">
 					<td width="20%"><strong>제목</strong></td>
-					<td><input type="text" size="67"  maxlength="500" name="nTitle" /></td>
+					<td><input type="text" size="100"  maxlength="500" name="nTitle"required /></td>
 				</tr>
 			
-				<tr>
-					<td colspan="2" id="t1" ><strong>구분</strong> 
-					  
+				<tr height="50">
+					<td class="t1" ><strong>구분</strong></td>
+					 <td class="t1"> 
 						<select name="category" id="selectBox" onchange="chageLangSelect()">
 						
 							<option value="좌석">좌석</option>
@@ -146,7 +157,7 @@ figcaption{
 				</tr>
 				<tr>
 					<td><strong>내용</strong></td>
-					<td colspan=2><textarea id="text1" name="nContent" rows="15" cols="65" maxlength="4000" ></textarea> </td>
+					<td><textarea id="text1" name="nContent" rows="15" style="width:100%;"  maxlength="4000" required ></textarea> </td>
 				</tr>
 			</table>	
 			

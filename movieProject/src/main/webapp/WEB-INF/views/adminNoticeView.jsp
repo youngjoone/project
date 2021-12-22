@@ -124,7 +124,7 @@ function readURL(input){
       <ul class="top_title_faq">
          <li class="title" >
          	<span class="check_tit_area"> <em class="check_num">[ ${noticeVO.category } ]</em>
-         	<input type="text" style="width:50%;" value="${noticeVO.nTitle }" name="nTitle" id="i_nTitle" disabled/></span>
+         	<input type="text" style="width:100%;" value="${noticeVO.nTitle }" name="nTitle" id="i_nTitle" disabled/></span>
          </li>
          <li class="stit_area">
             <span>등록일<fmt:formatDate value="${noticeVO.date}" pattern="yyyy/MM/dd" /></span>
