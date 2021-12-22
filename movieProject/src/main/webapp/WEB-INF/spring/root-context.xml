@@ -10,9 +10,9 @@
       <property name="driverClassName"
          value="oracle.jdbc.driver.OracleDriver" />
       <property name="url"
-         value="jdbc:oracle:thin:@localhost:1521:XE" />
-      <property name="username" value="STUDY" />
-      <property name="password" value="STUDY" />
+         value="jdbc:oracle:thin:@3.34.186.111:1521:XE" />
+      <property name="username" value="movie" />
+      <property name="password" value="movie" />
    </bean>
 
    <bean id="sqlSessionFactory"
