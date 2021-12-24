@@ -96,7 +96,7 @@ $(document).ready(function() {
                 <div class="d-flex justify-content-between mg-b-5">
                   <label class="mg-b-0-f"></label>
                 </div>
-                <input type="password" name="pw" class="form-control" minlength="5" maxlength="20" placeholder="*비밀번호 (최대 20자 입력가능)" required>
+                <input type="password" name="pw" class="form-control" minlength="5" maxlength="15" placeholder="*비밀번호 (최대 15자 입력가능)" required>
               </div>
               <div class="form-group">
                 <input type="text" name="name" minlength="1" class="form-control" placeholder="*이름" maxlength="15" required>
@@ -109,7 +109,7 @@ $(document).ready(function() {
   				<div class="input-group-prepend">
     				<span class="input-group-text">*010</span>
   				</div>
-  				<input id="tel" type="text" name="tel" class="form-control" placeholder="휴대폰번호 (숫자 8자리만 입력하세요)" maxlength="8" required>
+  				<input id="tel" type="number" name="tel" class="form-control" placeholder="휴대폰번호 (숫자 8자리만 입력하세요)" maxlength="8" required>
 			</div><br>
               <div class="form-group">
                 <label></label>

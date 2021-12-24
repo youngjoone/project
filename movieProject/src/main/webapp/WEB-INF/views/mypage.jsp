@@ -36,9 +36,19 @@ padding:0;
 <script>
 /* 리뷰작성 */
 function review(frm){
-	frm.action="mypage/review";
-	frm.method="post";
-	frm.submit();
+	var messagetext = $('#messagetext').val();
+	var select = $('#select').val();
+	
+	if(messagetext=="" || select == "평점"){
+		alert('한줄평을 입력해주세요');
+		return;
+	} else {
+		frm.action="mypage/review";
+		frm.method="post";
+		frm.submit();
+
+	}
+	
 }
 
 /* 예매취소 */
@@ -157,10 +167,10 @@ function noCancle(){
 								<td width="60%" class="tx-left">
 									<a href="" data-toggle="modal" data-target="#Modal${ticketNum.index}" id="tno1" style="text-decoration: underline;">예매정보</a>
 								</td>
-								<c:if test="${ticket.score ==0 }"> <!-- 리뷰가 없으면 -->
+								<c:if test="${ticket.score == 0}"> <!-- 리뷰가 없으면 -->
 									<td width="15%" class="tx-center"><button class="btn btn-secondary reviewChk" data-toggle="modal" data-target="#review${ticketNum.index}">한줄평</button></td>
 								</c:if>
-	              				<c:if test="${ticket.score > 0 }"> <!-- 리뷰가 존재하면 -->
+	              				<c:if test="${ticket.score != 0 }"> <!-- 리뷰가 존재하면 -->
 									<td width="15%" class="tx-center"><button class="btn btn-secondary reviewChk" data-toggle="modal" data-target="#review${ticketNum.index}" disabled>한줄평</button></td>
 								</c:if>
 	              	  		</tr>
@@ -256,7 +266,7 @@ function noCancle(){
 				<div class="col-1 pjm1">
 					<div class="form-group">
 						<select class="custom-select" id="select" name="score" required>
-							<option selected disabled>평점</option>
+							<option value="평점" selected disabled>평점</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -267,7 +277,7 @@ function noCancle(){
 				</div>
 				<div class="col-9 pjm1">
 				<div class="form-group">
-						<textarea class="form-control" name="rContent" id="message-text" placeholder="한줄평을 작성해주세요" style="display: inline; width: 600px;" required></textarea>
+						<textarea class="form-control" name="rContent" id="messagetext" placeholder="한줄평을 작성해주세요" style="display: inline; width: 600px;" required></textarea>
 				</div>
 				</div>
 				<div class="col-1 pjm1"></div>

@@ -81,8 +81,8 @@ function backToList(obj){
          </li>
       </ul>
       <div class="view_area">
-         <span style="margin-left:30px" name="nContent">${noticeVO.nContent}</span><br/>
-         <span style="font-family:맑은 고딕"></span>
+         <pre style="margin-left:30px"  name="nContent">${noticeVO.nContent}</pre><br/>
+         
       </div>
       <div class="customer_btn">
          <input style="margin-top:120px;" type=button class="w3-button w3-dark-grey w3-round" value="목록보기" onclick="location.href='../notice'" />

@@ -56,11 +56,7 @@ function back(){
 	location.href='detail?MID=${movieVO.mid}';
 }
 
-function readonly(){
-	$('.custom-select').change(function(){
-		$('#option1').
-	});
-}
+
 
 function disabled(){
 	$('select > option:disabled').attr("disabled",false);
@@ -132,7 +128,7 @@ function disabled(){
  			</div>
  			<div class="form-group">
     			<label for="formGroupExampleInput" class="d-block" >등급</label>
-   				<select class="custom-select" name="age" onchange="readonly()" required>
+   				<select class="custom-select" name="age" required>
 					<option value="${movieVO.age }" id="option1" selected>${movieVO.age }</option>
 					<option value="전체관람가">전체관람가</option>
 					<option value="12세이상관람가">12세이상관람가</option>

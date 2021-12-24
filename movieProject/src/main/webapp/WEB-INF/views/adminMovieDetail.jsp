@@ -67,7 +67,7 @@ p{
 <div class="col-sm-2"></div>
 <div class="col-sm-8">
 	<hr class="mg-y-40" style="margin-top: 10px; margin-bottom: 30px;">
-	<h6>${movieVO.content }</h6>
+	<pre>${movieVO.content }</pre>
 </div>
 <div class="col-sm-2"></div>
 

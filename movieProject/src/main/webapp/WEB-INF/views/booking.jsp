@@ -75,7 +75,7 @@
       </div>
       <div class="col-sm-5 mg-t-30">
       <!-- 선택한 영화와 조인한 후 날짜 나와야함-->
-         <div class="tx-14 tx-bold tx-gray-700 tx-spacing-5">날짜 시간 선택</div>
+         <div class="tx-14 tx-bold tx-gray-700 tx-spacing-5">날짜 선택</div>
          <!--ajax로 데이터 받아서 foreach  -->
          <div class="mg-t-20" id='selectScreenBox'>
          </div>
@@ -354,8 +354,9 @@
                success : function(data) {
                   console.log(data);
                   $('#HHMMTitle').html(
-                        data[0].screenNO + '상영관' + data[0].type);
+                       '상영관 / 시간 선택');
                   for (var i = 0; i < data.length; i++) {
+                     
                      var screenNO = data[i].screenNO
                      var type = data[i].type
                      var hhmm = data[i].hour + data[i].minute
@@ -365,6 +366,8 @@
                      var HHMMHtml = '<button type="button" class="btn btn-sm btn-outline-dark mg-r-10 mg-t-10" data-toggle="button" onclick="reselectHHMM(\''
                            + screenInfo
                            + '\')">'
+                           + data[i].screenNO
+                           + '관 / '
                            + data[i].hour
                            + '시'
                            + data[i].minute + '분' + '</button>'

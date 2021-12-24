@@ -49,7 +49,7 @@ margin-left: 5px;
               </tr>
               <tr>
                 <td class="tx-nowrap">비밀번호</td>
-                <td class="tx-nowrap"><input type="text" name="pw" value="${memberVO.pw }" class="form-control" required></td>
+                <td class="tx-nowrap"><input type="text" name="pw" value="${memberVO.pw }" class="form-control" minlength="5" maxlength="15" required></td>
               </tr>
               <tr>
                 <td class="tx-nowrap">이름</td>
@@ -67,7 +67,7 @@ margin-left: 5px;
   				<div class="input-group-prepend">
     				<span class="input-group-text">010</span>
   				</div>
-  				<input id="tel" type="text" name="tel" class="form-control" value="${memberVO.tel }" placeholder="숫자 8자리만 입력하세요" maxlength="8" required>
+  				<input id="tel" type="number" name="tel" class="form-control" value="${memberVO.tel }" placeholder="숫자 8자리만 입력하세요" maxlength="8" required>
 			</div></td>
               </tr>
               <tr>
