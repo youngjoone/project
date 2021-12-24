@@ -33,49 +33,7 @@ padding:0;
 
 </style>
 
-<script>
-/* 리뷰작성 */
-function review(frm){
-	var messagetext = $('#messagetext').val();
-	var select = $('#select').val();
-	
-	if(messagetext=="" || select == "평점"){
-		alert('한줄평을 입력해주세요');
-		return;
-	} else {
-		frm.action="mypage/review";
-		frm.method="post";
-		frm.submit();
 
-	}
-	
-}
-
-/* 예매취소 */
-function cancle(tno){
-	var yesno = confirm("취소하시겠습니까?");
-	/* yesno, trur */
-	if(yesno == true){
-		var form = document.createElement("form");
-		form.setAttribute("method","post");
-		form.setAttribute("action","mypage");
-		var tnoInput = document.createElement("input");
-		tnoInput.setAttribute("type","hidden");
-		tnoInput.setAttribute("name","ticketNo");
-		tnoInput.setAttribute("value",tno);
-		form.appendChild(tnoInput);
-		document.body.appendChild(form);
-		form.submit();
-	} else if (yesno == false){
-		return;
-	}	
-}
-
-function noCancle(){
-	alert('상영일자가 지나 취소할 수 없습니다.');
-}
-
-</script>
 
 </head>
 <body>
@@ -254,6 +212,7 @@ function noCancle(){
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
     <form name="frm${bookNum.index }">
+      <input type="hidden" name="idx" id="idx" value="0">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><b>한줄평</b></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -265,7 +224,7 @@ function noCancle(){
 				<div class="col-1 pjm1"></div>
 				<div class="col-1 pjm1">
 					<div class="form-group">
-						<select class="custom-select" id="select" name="score" required>
+						<select class="custom-select" id="score${bookNum.index }" name="score" required>
 							<option value="평점" selected disabled>평점</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -277,7 +236,7 @@ function noCancle(){
 				</div>
 				<div class="col-9 pjm1">
 				<div class="form-group">
-						<textarea class="form-control" name="rContent" id="messagetext" placeholder="한줄평을 작성해주세요" style="display: inline; width: 600px;" required></textarea>
+						<input type="text" class="form-control" onclick="setId(${bookNum.index })" name="rContent" id="rContent${bookNum.index }" placeholder="한줄평을 작성해주세요" style="display: inline;" required>
 				</div>
 				</div>
 				<div class="col-1 pjm1"></div>
@@ -287,7 +246,7 @@ function noCancle(){
 			<input type="hidden" name="ticketNo" id="ticketNo" value="${book.ticketNo }" />
 		</div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-primary" onclick="review(frm${bookNum.index })">등록</button>
+      	<button type="button" class="btn btn-primary" onclick="review(frm${bookNum.index },${bookNum.index })">등록</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
       </div>
      </form> 
@@ -299,6 +258,99 @@ function noCancle(){
 <footer>
 <jsp:include page="/WEB-INF/views/footer.jsp" />
 </footer>
+
+<script>
+
+function setId(id){
+	document.getElementById("idx").value = id;
+	alert(document.getElementById("idx").value);
+	
+}
+
+/* 리뷰작성 */
+function review(frm,idx){
+	
+/* 	var rContent = $("#rContent").val();
+	console.log(rContent);
+	var score = $('#score').val();
+	console.log(score);
+	
+	if(rContent == "" || rContent == null || rContent == undefined ){
+		alert('한줄평을 입력해주세요');
+		//console.log(messagetext);
+		return;
+	} else if(score == "평점"){
+		alert('평점을 입력해주세요');
+		return;
+	} else {  */
+
+		/* var rContent = $("#rContent").val();
+		console.log(rContent);
+		var score = $('#score').val();
+		console.log(score); */
+		
+		/* frm.action="mypage/review";
+		frm.method="post";
+		frm.submit();
+ */ 
+ 		//alert("idx=  " + idx);
+        var idxStr = eval("rContent"+idx);
+	alert("idxStr = " + idxStr);
+ 	    //alert(idxStr.textContent);
+ 	    if(idxStr.value == '' ) { alert('값이없습니다.'); return; }
+
+		var form = document.createElement("form");
+		form.setAttribute("method","post");
+		form.setAttribute("action","mypage/review");
+		
+		var tnoInput = document.createElement("input");
+		tnoInput.setAttribute("type","hidden");
+		tnoInput.setAttribute("name","rContent");
+		tnoInput.setAttribute("value",rContent);
+		form.appendChild(tnoInput);
+
+		var score2 = $("#score1 option:selected").attr('value');
+	
+
+		
+		var scInput = document.createElement("input");
+		scInput.setAttribute("type","hidden");
+		scInput.setAttribute("name","score");
+		scInput.setAttribute("value",score2);
+		form.appendChild(scInput);
+		document.body.appendChild(form);
+		
+		form.submit();
+
+	
+	
+}
+
+/* 예매취소 */
+function cancle(tno){
+	var yesno = confirm("취소하시겠습니까?");
+	/* yesno, trur */
+	if(yesno == true){
+		var form = document.createElement("form");
+		form.setAttribute("method","post");
+		form.setAttribute("action","mypage");
+		var tnoInput = document.createElement("input");
+		tnoInput.setAttribute("type","hidden");
+		tnoInput.setAttribute("name","ticketNo");
+		tnoInput.setAttribute("value",tno);
+		form.appendChild(tnoInput);
+		document.body.appendChild(form);
+		form.submit();
+	} else if (yesno == false){
+		return;
+	}	
+}
+
+function noCancle(){
+	alert('상영일자가 지나 취소할 수 없습니다.');
+}
+
+</script>
 
 </body>
 </html>
