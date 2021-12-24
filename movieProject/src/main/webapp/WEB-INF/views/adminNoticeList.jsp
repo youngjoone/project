@@ -28,6 +28,7 @@ table, th, td{
 	border-bottom : 1px solid #C8C8C8;
 	margin-bottom: 30px;
 }
+
 	
 th{
 	padding : 5px;
@@ -39,6 +40,9 @@ td{
 	border-top : 1px solid #EFEFEF;		
 }
 
+thead {
+    border-bottom : 1px solid black;
+}
 .bor{
 	text-align : center;
 	border-bottom: 1px solid #EFEFEF;
@@ -114,10 +118,18 @@ input[type=button] {
 </style>
 <script>
 function muldelete() { 
-   // form을 넘김.
-   var form = document.getElementsByName("muldelForm");
-   form[0].submit();
-   return true;
+	
+	if(document.getElementById("chkbox").checked){
+		// form을 넘김.
+	   var form = document.getElementsByName("muldelForm");
+	   form[0].submit();
+	   return true;
+	} else {
+		alert("삭제할 게시글을 선택해주세요.");
+		return;
+	}
+	
+   
 }
 </script>
 </head>
@@ -127,13 +139,14 @@ function muldelete() {
 </header>
 	<div id="container" align="right" style="margin-top:50px;">
 	<input type="button" onclick="location.href='add'" class="w3-button w3-dark-grey w3-round w3-padding-small" value="등록">
+	
 	<input type="button" onclick="return muldelete()" class="w3-button w3-dark-grey w3-round w3-padding-small" value="삭제"><br><br>
 	
 	</div>
 	<form name="muldelForm" action="muldelete">
 	<div>
 	  <table id="container" style="margin-bottom:120px;">
-		<thead>
+		<thead >
 			<tr>
 				<th id="col1" class="bor">선택</th>
 				<th id="col1" class="bor">번호</th>
@@ -156,7 +169,8 @@ function muldelete() {
 				<c:forEach var="noticeVO" items="${noticesList}" end="9" varStatus="noticeNum">
 
 					<tr align="center">
-						<td width="5%" class="bor"> <input type="checkbox" name="chkbox" value="${noticeVO.noticeNO}">
+						
+						<td width="5%" class="bor"> <input type="checkbox" name="chkbox" id="chkbox" value="${noticeVO.noticeNO}">
 						<td scope="row" class="bor">${noticeNum.count}</td>
 						<td scope="row" class="bor">${noticeVO.category}</td>
 						<td scope="row" class="bor">
