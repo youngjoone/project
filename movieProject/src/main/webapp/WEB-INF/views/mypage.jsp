@@ -309,7 +309,7 @@ function review(frm,idx){
 		tnoInput.setAttribute("value",rContent);
 		form.appendChild(tnoInput);
 
-		var score2 = $("#score1 option:selected").attr('value');
+		//var score2 = $("#score1 option:selected").attr('value');
 	
 
 		
