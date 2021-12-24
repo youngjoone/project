@@ -10,6 +10,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/clapperboard.png">
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 .board_view_area{margin-top:19px;}
@@ -59,7 +63,7 @@ function backToList(obj){
 }
 </script>
 
-<title>공지사항</title>
+<title>공지사항 상세</title>
 </head>
 <body>
 <header>

@@ -5,13 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/clapperboard.png">
+
 <script>
 function backToList(obj){
 	obj.action = "list";
 	obj.submit();
 }
 </script>
-<title>관리자 공지사항 업데이트</title>
+<title>관리자용 공지사항 관리</title>
 </head>
 <body>
 <c:if test="${ret>0 }">

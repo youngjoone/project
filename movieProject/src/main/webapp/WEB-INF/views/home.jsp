@@ -5,6 +5,10 @@
 <%@ page session="false" %>
 <html>
 <head>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/clapperboard.png">
+	
 	<title>Home</title>
 </head>
 <body>

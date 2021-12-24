@@ -113,7 +113,7 @@ function readURL(input){
 }
 
 </script> 
-<title>관리자 공지사항</title>
+<title>관리자용 공지사항</title>
 </head>
 <body>
 <header>

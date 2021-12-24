@@ -9,6 +9,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/clapperboard.png">
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -37,7 +41,7 @@ function chageLangSelect() {
 
 
 </script>
-<title>관리자 공지사항 추가</title>
+<title>관리자용 공지사항 등록</title>
 <style>
 table{ 
 	border-top : 1px solid black;

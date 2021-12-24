@@ -4,7 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 공지사항 선택삭제</title>
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/clapperboard.png">
+
+<title>관리자용 공지사항</title>
 </head>
 <body>
 <script>

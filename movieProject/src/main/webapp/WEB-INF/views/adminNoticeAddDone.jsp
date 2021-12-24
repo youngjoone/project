@@ -5,7 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 공지사항 등록 확인</title>
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/clapperboard.png">
+
+<title>관리자용 공지사항 등록</title>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 </head>

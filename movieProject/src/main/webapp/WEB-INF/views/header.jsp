@@ -107,13 +107,6 @@ function myFunction() { /* 수정하기 클릭시 */
 		<div class="col-sm order-4"></div>
 		<div class="col-sm order-5"></div>
 		<div class="col-sm order-6">
-			<div class="search-form pd-r-35" id="search">
-				<input type="search" class="form-control" placeholder="Search">
-				<button class="btn" type="button">
-					<i data-feather="search"></i>
-				</button>
-
-			</div>
 		</div>
 
 	</div>

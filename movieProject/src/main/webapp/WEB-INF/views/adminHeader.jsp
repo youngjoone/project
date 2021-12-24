@@ -6,8 +6,11 @@
 
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/clapperboard.png">
 
-<title>Insert title here</title>
+<title>관리자용 헤더</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -93,12 +96,6 @@ function myFunction() { /* 수정하기 클릭시 */
 		<div class="col-sm order-4"></div>
 		<div class="col-sm order-5"></div>
 		<div class="col-sm order-6">
-			<div class="search-form pd-r-35" id="search">
-				<input type="search" class="form-control" placeholder="Search">
-				<button class="btn" type="button">
-					<i data-feather="search"></i>
-				</button>
-			</div>
 		</div>
 
 	</div>

@@ -10,6 +10,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/clapperboard.png">
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <title>공지사항</title>

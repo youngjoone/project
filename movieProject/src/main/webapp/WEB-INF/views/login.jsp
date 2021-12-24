@@ -13,6 +13,9 @@
     <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
     <meta name="author" content="ThemePixels">
     
+    <!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/clapperboard.png">
+    
 <title>로그인</title>
 <script type="text/javascript">
 function sub(form){

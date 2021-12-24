@@ -186,7 +186,7 @@ public class MovieController {
 		
 		int ret = movieService.deleteMovie(movieVO);
 		model.addAttribute("ret", ret);
-		return "adminDelete";
+		return "adminMovieDelete";
 	}
 	
 	@RequestMapping(value="/dupMid",method= { RequestMethod.GET , RequestMethod.POST },produces = "application/json; charset=utf8")	//http protocol
