@@ -15,19 +15,11 @@
 <title>공지사항</title>
 <style>
 
-table{ 
-	width : 1000px; 
+thead{
 	border-top : 1px solid black;
-	border-bottom : 1px solid #C8C8C8;
-	
+	border-bottom : 1px solid black;
 }
 
-table, th, td{
-	border-collapse : collapse;
-	padding : 5px;
-	border-bottom : 1px solid #C8C8C8;
-	margin-bottom: 30px;
-}
 	
 th{
 	padding : 5px;
@@ -36,11 +28,11 @@ th{
 
 td{
 	text-align : center;
-	border-top : 1px solid #EFEFEF;		
 }
 
 .bor{
 	text-align : center;
+	padding: 10px;
 	border-bottom: 1px solid #EFEFEF;
 	padding: 10px;
 }
@@ -63,12 +55,6 @@ td{
 
 #col5 {
 	width: 13%
-}
-
-.bor {
-	text-align: center;
-	border-bottom: 1px solid #EFEFEF;
-	padding: 10px;
 }
 
 .cls {

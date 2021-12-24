@@ -62,7 +62,7 @@ public class NoticeController {
 		NoticeVO noticeVO = noticeService.viewNotice(noticeNO);
 		model.addAttribute("noticeVO", noticeVO);
 		
-		return "adminNoticeView";
+		return "adminNoticeView2";
 	}
 	
 	@RequestMapping(value="/movie/notice/view" , method=RequestMethod.GET)

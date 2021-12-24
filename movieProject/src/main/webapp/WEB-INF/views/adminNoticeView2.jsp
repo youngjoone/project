@@ -116,7 +116,7 @@ figcaption{
 	font-size : 25px;
 	font-weight: bold;
 }
-		
+
 </style>
 </head>
 <header>
@@ -130,7 +130,13 @@ figcaption{
 			공지사항 수정
 		</figcaption>
 	</figure>
-	<div class="mg-b-20"><strong class="tx-15">등록일 :&nbsp; <fmt:formatDate value="${noticeVO.date}" pattern="yyyy/MM/dd" /></strong></div>
+	
+		<div class="mg-b-35"><strong class="tx-15">등록일 :&nbsp; <fmt:formatDate value="${noticeVO.date}" pattern="yyyy/MM/dd" /></strong>
+		
+		<input type=button class="btn btn-dark w3-right" value="목록" onclick="location.href='list'" /></div>
+		
+	
+	
 	<form name="frmNotice" method="post" action="update" >
 			<table>
 				<tr height="50">
@@ -164,7 +170,7 @@ figcaption{
 				<div class="customer_btn mg-b-70" id="tr_btn">
 					<input type="button" class="w3-button w3-indigo w3-round" value="수정" onClick="fn_enable(this.form)" /> 
 					<input type="button" class="btn btn-danger" value="삭제" onclick="fn_remove_article(${noticeVO.noticeNO})" />
-					<input type=button class="w3-button w3-dark-grey w3-round" value="목록" onclick="location.href='list'" /> 
+					
 				</div>
 			</div>
 			<!-- noticeNO hidden  -->
