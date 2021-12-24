@@ -107,7 +107,7 @@ a:hover {
 	<div class="row pd-t-50">
 	<div class="col-sm"></div>
 	<div class="col-sm-8">
-	<div><p style="text-align:right" class="pd-r-50"><a href="/movie/notice">더 보기</a></p></div>
+	<div><p style="text-align:right; padding-right: 10px;" class="pd-r-50"><a href="/movie/notice"><img src="${pageContext.request.contextPath}/resources/img/add2.png" width="25"></a></p></div>
 	<table class="table table-hover">
   <thead>
     <tr>
