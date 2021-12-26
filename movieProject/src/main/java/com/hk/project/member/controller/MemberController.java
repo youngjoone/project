@@ -1,6 +1,7 @@
 package com.hk.project.member.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -8,8 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.HttpSessionRequiredException;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,14 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.hk.project.join.vo.BookingVO;
 import com.hk.project.member.service.MemberService;
 import com.hk.project.member.vo.MemberVO;
+import com.hk.project.movie.dao.MovieDAO;
 import com.hk.project.movie.service.MovieService;
 import com.hk.project.movie.vo.MovieVO;
 import com.hk.project.review.service.ReviewService;
 import com.hk.project.review.vo.ReviewVO;
-import com.hk.project.ticket.dao.TicketDAO;
 import com.hk.project.ticket.service.TicketService;
 
 @Controller
@@ -40,7 +38,12 @@ public class MemberController {
 	ReviewService reviewService;
 	
 	@RequestMapping(value="/movie/login", method=RequestMethod.GET)
-	public String login() {
+	public String login(Model model) {
+		//poster image
+//		MovieDAO movieDAO = new MovieDAO();
+//		List<MovieVO> movieList = movieDAO.allMovies();
+//		model.addAttribute("movieList", movieList);
+		
 		//login form 
 		return "login";
 	}

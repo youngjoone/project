@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Meta -->
     <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
@@ -30,6 +30,23 @@ function main(){
 	window.location.href = "main";
 }
 
+//랜덤 포스터
+/*const imgArray = new Array();
+imgArray[0] = "C:/Users/user/Desktop/개발도구/웹개발사진/MakeUp/jung.gif";
+imgArray[1] = "C:/Users/user/Desktop/개발도구/웹개발사진/MakeUp/Login.png";
+imgArray[2] = "C:/Users/user/Desktop/개발도구/웹개발사진/MakeUp/사이트전체사진/header-bg.png"
+imgArray[3] = "C:/Users/user/Desktop/개발도구/웹개발사진/MakeUp/사이트전체사진/마지막립스틱.jpg"; */
+
+/* for(int i=0; i<${fn:length(movieList)}; i++){
+	imgArray[i] = "${pageContext.request.contextPath }/fileDownload?posterName=${movieVO.posterName }&mid=${movieVO.mid }";
+}
+
+function showImage(){
+	var imgNum = Math.round(Math.random()*${fn:length(movieList)});
+	var objImg = document.getElementById("introImg");
+	objImg.src = imgArray[imgNum];
+} */
+
 </script>
 
     <!-- vendor css -->
@@ -46,16 +63,27 @@ function main(){
 #modal.modal-overlay {
     display: none;
 }
+.media-body{
+	padding-top: 100px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 50px;
+	width: 500px;
+}
+.sign-wrapper{
+	margin-left: 0px;
+	margin-right: 20px;
+}
 </style>
 
 </head>
-<body>
+<body ><!-- onload="showImage()" -->
 
 <div class="container">
-        <div class="media align-items-stretch justify-content-center ht-100p pos-relative pd-t-100">
-          <div>
+        <div class="media align-items-stretch justify-content-center ht-100p pos-relative pd-t-50">
+          <div class="media-body align-items-stretch d-none d-lg-flex justify-content-center pos-relative">
             <div class="mx-wd-400">
-              <img src="${pageContext.request.contextPath}/resources/img/poster.jpg" id="poster" class="rounded img-fluid" alt="">
+              <img id="poster" width="400" src="${pageContext.request.contextPath}/resources/template/images/spiderman.jpg" class="img-fluid" alt="">
             </div>
             
           </div><!-- media-body -->
@@ -66,7 +94,7 @@ function main(){
             <div class="wd-100p">
             <form action="/movie/login" method="post">
             <div id="logoImage">
-            	<img src="${pageContext.request.contextPath}/resources/template/images/megabox.png" alt="" id="megabox">
+            	<img src="${pageContext.request.contextPath}/resources/template/images/megabox.png" alt="로고 이미지" id="megabox">
 			</div>
 			<div>
 			  <label id="login"><b>로그인</b></label><br>

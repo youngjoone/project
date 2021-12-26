@@ -30,6 +30,10 @@ $(document).ready(function() {
                    if(data.id == 'false') {  //중복x
                 		$('#checkDup').text("사용 가능한 아이디입니다.");
                 	   	$("#checkDup").css("color","#7BC379"); 
+                	   	if($('#userId').val().length<5){
+    						$('#checkDup').text("5자 이상 입력해주세요.");
+      						$("#checkDup").css("color","red");
+    					}
                 	   	if($('#userId').val()==""){
     						$('#checkDup').text("아이디를 입력하세요.");
       						$("#checkDup").css("color","red");
@@ -64,16 +68,25 @@ $(document).ready(function() {
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/join.css">
     
-    
+<style>
+.media-body{
+	padding-top: 100px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 100px;
+	width: 500px;
+}
+
+</style>
 </head>
 <body>
 
 <div class="container">
         <div class="media align-items-stretch justify-content-center ht-100p">
           
-          <div class="media-body pd-y-30 pd-lg-x-50 pd-xl-x-60 align-items-center d-none d-lg-flex pos-relative">
+          <div class="media-body align-items-stretch d-none d-lg-flex justify-content-end pos-relative">
             <div class="mx-lg-wd-500 mx-xl-wd-550">
-              <img src="https://via.placeholder.com/1280x1225" id="poster" class="img-fluid" alt="">
+              <img src="${pageContext.request.contextPath}/resources/template/images/spiderman.jpg" id="poster" class="img-fluid" alt="" width="440">
             </div>
           </div><!-- media-body -->
           
@@ -109,7 +122,7 @@ $(document).ready(function() {
   				<div class="input-group-prepend">
     				<span class="input-group-text">*010</span>
   				</div>
-  				<input id="tel" type="number" name="tel" class="form-control" placeholder="휴대폰번호 (숫자 8자리만 입력하세요)" maxlength="8" required>
+  				<input id="tel" type="tel" name="tel" class="form-control" placeholder="휴대폰번호 (숫자 8자리만 입력하세요)" minlength="8" maxlength="8" required>
 			</div><br>
               <div class="form-group">
                 <label></label>
