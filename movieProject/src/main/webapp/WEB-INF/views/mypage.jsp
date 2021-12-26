@@ -211,7 +211,7 @@ padding:0;
 <div class="modal fade" id="review${bookNum.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-    <form name="frm${bookNum.index }">
+    <form name="frm${bookNum.index }" action="mypage/review" method="post">
       <input type="hidden" name="idx" id="idx" value="0">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><b>한줄평</b></h5>
@@ -224,8 +224,8 @@ padding:0;
 				<div class="col-1 pjm1"></div>
 				<div class="col-1 pjm1">
 					<div class="form-group">
-						<select class="custom-select" id="score${bookNum.index }" name="score" required>
-							<option value="평점" selected disabled>평점</option>
+						<select class="custom-select" id="score${bookNum.index }" name="score" class="score" required>
+							<option value="" selected disabled>평점</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -236,7 +236,7 @@ padding:0;
 				</div>
 				<div class="col-9 pjm1">
 				<div class="form-group">
-						<input type="text" class="form-control" onclick="setId(${bookNum.index })" name="rContent" id="rContent${bookNum.index }" placeholder="한줄평을 작성해주세요" style="display: inline;" required>
+						<textarea rows="1" class="form-control" name="rContent" id="rContent${bookNum.index }" placeholder="한줄평을 작성해주세요" style="display: inline;" required></textarea>
 				</div>
 				</div>
 				<div class="col-1 pjm1"></div>
@@ -246,7 +246,7 @@ padding:0;
 			<input type="hidden" name="ticketNo" id="ticketNo" value="${book.ticketNo }" />
 		</div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-primary" onclick="review(frm${bookNum.index },${bookNum.index })">등록</button>
+      	<button class="btn btn-primary">등록</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
       </div>
      </form> 
@@ -260,71 +260,6 @@ padding:0;
 </footer>
 
 <script>
-
-function setId(id){
-	document.getElementById("idx").value = id;
-	alert(document.getElementById("idx").value);
-	
-}
-
-/* 리뷰작성 */
-function review(frm,idx){
-	
-/* 	var rContent = $("#rContent").val();
-	console.log(rContent);
-	var score = $('#score').val();
-	console.log(score);
-	
-	if(rContent == "" || rContent == null || rContent == undefined ){
-		alert('한줄평을 입력해주세요');
-		//console.log(messagetext);
-		return;
-	} else if(score == "평점"){
-		alert('평점을 입력해주세요');
-		return;
-	} else {  */
-
-		/* var rContent = $("#rContent").val();
-		console.log(rContent);
-		var score = $('#score').val();
-		console.log(score); */
-		
-		/* frm.action="mypage/review";
-		frm.method="post";
-		frm.submit();
- */ 
- 		//alert("idx=  " + idx);
-        var idxStr = eval("rContent"+idx);
-	alert("idxStr = " + idxStr);
- 	    //alert(idxStr.textContent);
- 	    if(idxStr.value == '' ) { alert('값이없습니다.'); return; }
-
-		var form = document.createElement("form");
-		form.setAttribute("method","post");
-		form.setAttribute("action","mypage/review");
-		
-		var tnoInput = document.createElement("input");
-		tnoInput.setAttribute("type","hidden");
-		tnoInput.setAttribute("name","rContent");
-		tnoInput.setAttribute("value",rContent);
-		form.appendChild(tnoInput);
-
-		//var score2 = $("#score1 option:selected").attr('value');
-	
-
-		
-		var scInput = document.createElement("input");
-		scInput.setAttribute("type","hidden");
-		scInput.setAttribute("name","score");
-		scInput.setAttribute("value",score2);
-		form.appendChild(scInput);
-		document.body.appendChild(form);
-		
-		form.submit();
-
-	
-	
-}
 
 /* 예매취소 */
 function cancle(tno){

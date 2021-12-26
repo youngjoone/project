@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class ScreenDateVO {
 
 	public String screenDateNO;
-	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	public Date screenTime;
 	public String mid;
 	public String screenNO;

@@ -18,7 +18,7 @@
 	<insert id="insertScreenDate" parameterType="ScreenDateVO">
 		INSERT INTO P_SCREENDATE
 		(SCREENDATENO, SCREENTIME, MID, SCREENNO)
-		VALUES(#{screenDateNO}, #{screenTime}, #{mid}, #{screenNO})
+		VALUES(#{screenDateNO}, #{screenTime, jdbcType=TIMESTAMP}, #{mid}, #{screenNO})
 	</insert>
 	
 	<select id="dupChk" parameterType="map" resultType="ScreenDateVO">

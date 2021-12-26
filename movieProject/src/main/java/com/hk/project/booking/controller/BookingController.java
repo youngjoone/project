@@ -1,5 +1,6 @@
 package com.hk.project.booking.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -112,11 +113,8 @@ public class BookingController {
 		
 		//param값을 vo에 넣기
 		String dateSum = date+" "+time;
-		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date screenTime = fm.parse(dateSum);
-		
-		System.out.println("--screenNO="+screenNO);
-		System.out.println("--screenTime="+screenTime);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		ScreenDateVO chkDate = screenDateService.dupChk(screenNO,screenTime);
@@ -129,7 +127,17 @@ public class BookingController {
 	}
 	
 	@RequestMapping(value="/admin/booking/add", method=RequestMethod.POST)
-	public String bookingAddDone(Model model, @ModelAttribute ScreenDateVO screenDateVO) {
+	public String bookingAddDone(Model model, @ModelAttribute ScreenDateVO screenDateVO) throws Exception {
+		
+		Date screenTime = screenDateVO.getScreenTime();
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String screenTime2 = fm.format(screenTime);
+		System.out.println("----"+screenTime2);
+		
+		//string to date
+		Date screenTime3 = fm.parse(screenTime2);
+		
+		screenDateVO.setScreenTime(screenTime3);
 		
 		int ret = screenDateService.insertScreenDate(screenDateVO);
 		model.addAttribute("screenDateVO", screenDateVO);
