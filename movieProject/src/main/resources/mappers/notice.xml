@@ -13,12 +13,13 @@
       <result property="nTitle" column="nTitle" />
       <result property="nContent" column="nContent" />
       <result property="date" column="date" />
+      <result property="viewCount" column="viewCount" />
       
    </resultMap>
    
    <!-- list -->
    <select id="selectAllNotices" resultMap="noticeResult">
-   		SELECT noticeNO, category, nTitle, nContent, "date" 
+   		SELECT noticeNO, category, nTitle, nContent, "date" , viewCount
    		FROM P_NOTICE
    		ORDER BY "date" DESC  
    </select>
@@ -70,5 +71,11 @@
 	WHERE RN>=#{page} AND RN<=10
 	
    </select> -->
+   
+   <update id="viewCount" parameterType="NoticeVO">
+    	UPDATE P_NOTICE
+		SET VIEWCOUNT= VIEWCOUNT + 1 
+		WHERE NOTICENO=#{noticeNO}
+   </update>
    
 </mapper>   

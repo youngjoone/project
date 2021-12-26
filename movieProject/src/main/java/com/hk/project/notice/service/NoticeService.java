@@ -66,4 +66,11 @@ public class NoticeService {
 		return map;
 	}
 
+	public void viewCount(int noticeNO) {
+		// TODO Auto-generated method stub
+		noticeDAO.viewCount(noticeNO);
+		
+	}
+
+
 }

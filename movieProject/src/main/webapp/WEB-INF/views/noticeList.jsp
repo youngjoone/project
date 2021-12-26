@@ -123,6 +123,7 @@ figcaption{
 				<th id="col1" class="bor">번호</th>
 				<th id="col2" class="bor">구분</th>
 				<th id="col3" class="bor">제목</th>
+				<th id="col2" class="bor">조회수</th>
 				<th id="col4" class="bor">작성일</th>
 			</tr>
 		</thead>
@@ -145,6 +146,7 @@ figcaption{
 						<td scope="row" class="bor">
 							<a href="notice/view?noticeNO=${noticeVO.noticeNO}">${noticeVO.nTitle}</a>
 						</td>
+						<td scope="row" class="bor">${noticeVO.viewCount}</td>
 						<td scope="row" class="bor"><fmt:formatDate value="${noticeVO.date}" pattern="yyyy/MM/dd" /></td>
 					</tr>
 					

@@ -30,7 +30,9 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="/movie/notice", method= {RequestMethod.GET , RequestMethod.POST})
-	public String movieNoticeList(Model model) {
+	public String movieNoticeList(Model model,@ModelAttribute NoticeVO noticeVO) {
+		
+		noticeService.viewCount(noticeVO.getNoticeNO());
 		
 		List<NoticeVO> noticesList = noticeService.listNotices();
 		model.addAttribute("noticesList", noticesList);

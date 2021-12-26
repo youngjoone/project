@@ -77,7 +77,7 @@ function backToList(obj){
          </li>
          <li class="stit_area">
             <span style="margin-right:10px;">등록일<fmt:formatDate value="${noticeVO.date}" pattern="yyyy/MM/dd" /></span>
-            <span class="check_tit_area">조회수 <em class="check_num">862</em></span>
+            <span class="check_tit_area">조회수 <em class="check_num"></em>${noticeVO.viewCount}</span>
          </li>
       </ul>
       <div class="view_area">

@@ -9,6 +9,7 @@ public class NoticeVO {
 	private String nTitle;
 	private String nContent;
 	private Date date;
+	private int viewCount;
 	
 	public int getNoticeNO() {
 		return noticeNO;
@@ -40,10 +41,17 @@ public class NoticeVO {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	public int getViewCount() {
+		return viewCount;
+	}
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
+	
 	@Override
 	public String toString() {
 		return "NoticeVO [noticeNO=" + noticeNO + ", category=" + category + ", nTitle=" + nTitle + ", nContent="
-				+ nContent + ", date=" + date + "]";
+				+ nContent + ", date=" + date + ", viewCount=" + viewCount + "]";
 	}
-		
+			
 }

@@ -46,4 +46,11 @@ public class NoticeDAO {
 		return ret;
 	}
 
+	public void viewCount(int noticeNO) {
+		// TODO Auto-generated method stub
+		sqlSession.selectOne("mapper.notice.viewCount", noticeNO);
+		
+	}
+
+
 }
