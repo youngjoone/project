@@ -137,8 +137,14 @@ function disabled(){
 				</select>
  			</div>
  			<div class="form-group">
-    			<label for="formGroupExampleInput" class="d-block">상영 타입</label>
-   				<input type="text" class="form-control" name="type" placeholder="2D , 3D, 4D" value="${movieVO.type }">
+    			<!-- <label for="formGroupExampleInput" class="d-block">상영 타입</label>
+   				<input type="text" class="form-control" name="type" placeholder="2D , 3D, 4D"> -->
+   				<label for="formGroupExampleInput" class="d-block" >영화 타입 선택</label>
+   				<select class="custom-select" name="type">
+					<option value="2D">2D</option>
+					<option value="3D">3D</option>
+					<option value="4D">4D</option>
+				</select>
  			</div>
  			<div class="form-group">
     			<label for="formGroupExampleInput" class="d-block">개봉 날짜</label>
