@@ -69,6 +69,9 @@ $(document).ready(function() {
                if(map.dup == 'false') {  //중복x
             	   alert('해당 시간은 등록이 가능합니다.');
             	   btnDiv();
+            	   /* $('#exampleModal').modal('toggle');
+            	   $('#exampleModal').modal('show'); */
+            	  
                }
                else {  //중복o
             	   alert('해당 시간에 이미 상영영화가 있습니다.');
@@ -170,6 +173,27 @@ function btnDiv(){
 </div>
 </form>
 
+<!-- Modal -->
+<!-- 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">상영정보 등록</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">해당 시간은 등록이 가능합니다.<br>등록하시겠습니까?
+				</div>
+				<div class="modal-footer">
+					<button onclick="dateTime(frm)" class="btn btn-dark" style="float: right;">등록</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
+				</div>
+			</div>
+		</div>
+	</div> -->
 
 
 
