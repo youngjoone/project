@@ -60,6 +60,9 @@ document.addEventListener('DOMContentLoaded', function() {
           selectMirror: true,
           timeZone:'UTC',
           navLinks: true,
+          dayMaxEventRows: true,
+          
+          initialView: 'dayGridMonth',
  
           navLinkDayClick: function( date, jsEvent, view) {
         	    console.log('day', date.toISOString());
@@ -83,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
                           selectMirror: true,
                           timeZone:'UTC',
                           navLinks: true,
+                          dayMaxEventRows: true,
 
                     	  initialView: 'listDay',
                     	  headerToolbar: {
@@ -109,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
             left: 'prevYear,prev,next,nextYear today',
             center: 'title',
             right: 'dayGridMonth,listDay'
-          },
+          }
               
         });
 
@@ -126,18 +130,18 @@ document.addEventListener('DOMContentLoaded', function() {
    </header>
    
    
-    <div id='calendar' style="margin-top:100px; margin-bottom:120px;"></div>
+    <div id='calendar' style="margin-top:100px; margin-bottom:120px;">
+    
+    </div>
     
     <div id='script-warning'>
        <code>ics/feed.ics</code> must be servable
      </div>
 
      <div id='loading'>loading...</div>
-
-
-   <div style="height:30px; text-align:center; font-size:35px; margin-bottom:30px;">예매현황</div>
+     
+     
    <div>
-      
 
         <div id='calendar'></div>
      </div>
