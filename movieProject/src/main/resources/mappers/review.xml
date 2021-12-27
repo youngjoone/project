@@ -44,4 +44,8 @@
 		DELETE FROM P_REVIEW 
 		WHERE  TICKETNO=#{ticketNo}
 	</delete>
+	<delete id="cancleReview2" >
+		DELETE FROM P_REVIEW 
+		WHERE  mid=#{mid}
+	</delete>
 </mapper>   

@@ -60,6 +60,7 @@
 	<delete id ="deleteMovie" parameterType="movieVO">
 	DELETE FROM P_MOVIE
 	WHERE MID=#{mid}
+	
 	</delete>
 
 	<select id="bookingMovieList" resultMap="movieResult">

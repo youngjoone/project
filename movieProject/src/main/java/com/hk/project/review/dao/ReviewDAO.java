@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hk.project.movie.vo.MovieVO;
 import com.hk.project.review.vo.ReviewVO;
 
 @Repository
@@ -22,5 +23,8 @@ public class ReviewDAO {
 	public int insertReview(ReviewVO reviewVO) {
 		int ret = sqlSession.insert("mapper.review.insertReview", reviewVO);
 		return ret;
+	}
+	public void deleteReview(MovieVO movieVO) {
+		sqlSession.delete("mapper.review.cancleReview2", movieVO);
 	}
 }

@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hk.project.movie.vo.MovieVO;
 import com.hk.project.screendate.vo.ScreenDateVO;
 
 @Repository
@@ -39,6 +40,10 @@ public class ScreenDateDAO {
         map.put("screenTime", screenTime);
         ScreenDateVO screenDateVO = sqlSession.selectOne("mapper.screenDate.dupChk", map);
 		return screenDateVO;
+	}
+	
+	public void deleteSD(MovieVO movieVO) {
+		sqlSession.delete("mapper.screenDate.cancleScreenDate", movieVO);
 	}
 
 }

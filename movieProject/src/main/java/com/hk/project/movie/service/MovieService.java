@@ -13,6 +13,8 @@ import com.hk.project.movie.vo.MovieVO;
 import com.hk.project.page.vo.Criteria;
 import com.hk.project.review.dao.ReviewDAO;
 import com.hk.project.review.vo.ReviewVO;
+import com.hk.project.screendate.dao.ScreenDateDAO;
+import com.hk.project.ticket.dao.TicketDAO;
 
 @Service
 public class MovieService {
@@ -21,6 +23,10 @@ public class MovieService {
 	MovieDAO movieDAO;
 	@Autowired
 	ReviewDAO reviewDAO;
+	@Autowired
+	TicketDAO ticketDAO;
+	@Autowired
+	ScreenDateDAO screenDateDAO;
 	
 	public List<List<MovieVO>> selectAllMovies(){
 		// init return value
@@ -68,7 +74,11 @@ public class MovieService {
 	}
 	public int deleteMovie(MovieVO movieVO) {
 		// TODO Auto-generated method stub
+		reviewDAO.deleteReview(movieVO);
+		ticketDAO.cancleTicket2(movieVO);
+		screenDateDAO.deleteSD(movieVO);
 		return movieDAO.deleteMovie(movieVO);
+		
 	}
 	
 	public MovieVO dupMid(String mid) {

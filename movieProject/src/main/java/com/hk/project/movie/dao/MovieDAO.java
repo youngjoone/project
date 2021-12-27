@@ -42,6 +42,7 @@ public class MovieDAO {
 	}
 	public int deleteMovie(MovieVO movieVO) {
 		// TODO Auto-generated method stub
+		
 		int ret = sqlSession.delete("mapper.movie.deleteMovie", movieVO);
 		return ret;
 	}
@@ -98,4 +99,9 @@ public class MovieDAO {
 	public int pageCount() {
 		return sqlSession.selectOne("mapper.movie.pageCount");
 	}
+	//리뷰삭제
+	public void deleteReview(MovieVO movieVO) {
+		sqlSession.delete("mapper.review.cancleReview2", movieVO);
+	}
+	
 }

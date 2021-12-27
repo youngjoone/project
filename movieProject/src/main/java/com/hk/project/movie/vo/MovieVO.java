@@ -20,7 +20,7 @@ public class MovieVO {
 	private String type;
 	private String openDate;
 	private int score;
-	
+	private String ticketNO;
 	public String getMid() {
 		return mid;
 	}
@@ -105,21 +105,19 @@ public class MovieVO {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	
+	public String getTicketNO() {
+		return ticketNO;
+	}
+	public void setTicketNO(String ticketNO) {
+		this.ticketNO = ticketNO;
+	}
 	@Override
 	public String toString() {
 		return "MovieVO [mid=" + mid + ", posterName=" + posterName + ", poster=" + poster + ", link=" + link
 				+ ", title=" + title + ", content=" + content + ", genre=" + genre + ", runTime=" + runTime
 				+ ", director=" + director + ", cast=" + cast + ", age=" + age + ", type=" + type + ", openDate="
-				+ openDate + ", score=" + score + "]";
+				+ openDate + ", score=" + score + ", ticketNO=" + ticketNO + "]";
 	}
 	
-	public MovieVO() {}
 	
-//	@Override
-//	public String toString() {
-//		return "MovieVO [mid=" + mid + ", poster=" + poster + ", link=" + link + ", title=" + title + ", content="
-//				+ content + ", genre=" + genre + ", runTime=" + runTime + ", director=" + director + ", cast=" + cast
-//				+ ", age=" + age + ", type=" + type + ", openDate=" + openDate + ", score=" + score + "]";
-//	}
 }

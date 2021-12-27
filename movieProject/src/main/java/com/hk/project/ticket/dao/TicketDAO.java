@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hk.project.join.vo.BookingDateVO;
 import com.hk.project.join.vo.ListTicketVO;
+import com.hk.project.movie.vo.MovieVO;
 import com.hk.project.ticket.vo.TicketVO;
 
 @Repository
@@ -58,4 +59,8 @@ public class TicketDAO {
 		 int ret = sqlSession.insert("mapper.ticket.insertTicket",bookingDateVO); 
 		 return ret; 
 	}
+	 public void cancleTicket2(MovieVO movieVO) {
+			sqlSession.delete("mapper.ticket.cancleTicket2", movieVO);
+			
+		}
 }

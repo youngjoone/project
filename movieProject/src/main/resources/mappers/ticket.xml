@@ -50,4 +50,9 @@
 	 	#{age},
 	 	#{mid} )
 	 </insert>
+	 
+	 <delete id="cancleTicket2" >
+		DELETE FROM P_TICKET
+		WHERE mid=#{mid}
+	</delete>
 </mapper>

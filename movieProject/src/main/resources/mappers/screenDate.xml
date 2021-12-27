@@ -27,6 +27,10 @@
 		WHERE SCREENNO =#{screenNO}
 		AND SCREENTIME = #{screenTime}
 	</select>
+	<delete id="cancleScreenDate" >
+			DELETE FROM MOVIE.P_SCREENDATE WHERE mid=#{mid}
+	</delete>
+
 	
 	
 </mapper>
