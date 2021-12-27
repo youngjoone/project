@@ -19,6 +19,13 @@
 
 
 <script>
+function dup(){
+	if($('#checkDup').text()!="사용 가능한 아이디입니다."){
+		alert("아이디 중복체크를 확인해주세요.");
+		return;
+	}
+}
+
 $(document).ready(function() {
     $('#button-addon2').click(function() {
         $.ajax({
@@ -129,7 +136,7 @@ $(document).ready(function() {
                 <input type="text" name="email" class="form-control" placeholder="이메일">
               </div>
               <br>
-              <button class="btn btn-secondary btn-block">회원가입</button>
+              <button class="btn btn-secondary btn-block" onclick="dup()">회원가입</button>
               </form>
               <p></p>
               <button class="btn btn-outline-dark btn-block" onclick="main()">홈페이지</button>
