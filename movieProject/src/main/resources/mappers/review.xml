@@ -38,4 +38,10 @@
 		(ID, MID, RCONTENT, SCORE, RDATE, TICKETNO)
 		VALUES(#{id}, #{mid}, #{rContent}, #{score}, sysdate, #{ticketNo})
    </insert>
+   
+   <!-- 리뷰삭제 -->
+	<delete id="cancleReview" >
+		DELETE FROM P_REVIEW 
+		WHERE  TICKETNO=#{ticketNo}
+	</delete>
 </mapper>   

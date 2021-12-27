@@ -127,7 +127,7 @@ a:hover {
 	    <tr>
      		<th scope="row">${noticeVO.noticeNO}</th>
      		<td>${noticeVO.category}</td>
-      		<td><a href="">${noticeVO.nTitle}</a></td>
+      		<td><a href="notice/view?noticeNO=${noticeVO.noticeNO}">${noticeVO.nTitle}</a></td>
       		<td><fmt:formatDate value="${noticeVO.date}" pattern="yyyy/MM/dd"/></td>
   	 	 </tr>
     </c:forEach>
