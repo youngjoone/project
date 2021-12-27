@@ -37,7 +37,7 @@
 
 
 
-<title>관리자 공지사항</title>
+<title>관리자용 공지사항</title>
 <style>
 table{ 
 	border-top : 1px solid black;
