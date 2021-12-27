@@ -53,7 +53,7 @@ p{text-align:center;}
 						width=" 300px" height=" 100px"></p>
 
 <div class="tx-sans tx-black-600"><p>회사소개 | 이용약관 | 개인정보처리방침<br><br>주소:서울시 강서구<br>대표자명:윤빈준 | 사업자번호:010-1234-1234<br>고객센터 : 010-1234-1234
-											<br>대표이메일 : yoonbinjoon@gmail.com<br>COPYRIGHT</p></div>
+											<br>대표이메일 : yoonbinjoon@gmail.com<br>COPYRIGHT  </p></div>
 </div>
 <div class="col-sm order-3"></div>
 
