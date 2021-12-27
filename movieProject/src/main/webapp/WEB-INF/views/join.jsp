@@ -106,7 +106,7 @@ $(document).ready(function() {
 				</div>
               <h4 class="tx-color-01 mg-b-5"><b>회원가입</b></h4>
 			<div class="input-group">
-  				<input type="text" name="id" id="userId" class="form-control" placeholder="*아이디 (최대 14자 입력가능)" minlength="5" maxlength="14" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+  				<input type="text" name="id" id="userId" class="form-control" placeholder="*아이디 (최대 14자 입력가능)" minlength="5" maxlength="14" onchange="reset()" aria-label="Recipient's username" aria-describedby="button-addon2" required>
   				<div class="input-group-append">
     				<button class="btn btn-outline-secondary" type="button" id="button-addon2">중복확인</button>
   				</div>
