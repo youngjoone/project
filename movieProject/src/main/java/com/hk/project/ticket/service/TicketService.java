@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.hk.project.join.vo.ListTicketVO;
 import com.hk.project.notice.vo.NoticeVO;
+import com.hk.project.review.dao.ReviewDAO;
 import com.hk.project.ticket.dao.TicketDAO;
 import com.hk.project.ticket.vo.TicketVO;
 
@@ -17,8 +18,11 @@ public class TicketService {
 
 	@Autowired(required = false)
 	TicketDAO ticketDAO;
+	@Autowired
+	ReviewDAO reviewDAO;
 
 	public int cancleTicket(String ticketNo) {
+		reviewDAO.cancleReview(ticketNo);
 		return ticketDAO.cancleTicket(ticketNo);
 	}
 	

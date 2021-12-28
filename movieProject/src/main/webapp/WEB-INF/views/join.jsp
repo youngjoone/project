@@ -26,6 +26,10 @@ function dup(){
 	}
 }
 
+function reset(){
+	
+}
+
 $(document).ready(function() {
     $('#button-addon2').click(function() {
         $.ajax({
@@ -36,7 +40,8 @@ $(document).ready(function() {
                 success: function(data) {
                    if(data.id == 'false') {  //중복x
                 		$('#checkDup').text("사용 가능한 아이디입니다.");
-                	   	$("#checkDup").css("color","#7BC379"); 
+                	   	$("#checkDup").css("color","#7BC379");
+                	   	$('#userId').attr("disabled",true); 
                 	   	if($('#userId').val().length<5){
     						$('#checkDup').text("5자 이상 입력해주세요.");
       						$("#checkDup").css("color","red");
@@ -106,7 +111,7 @@ $(document).ready(function() {
 				</div>
               <h4 class="tx-color-01 mg-b-5"><b>회원가입</b></h4>
 			<div class="input-group">
-  				<input type="text" name="id" id="userId" class="form-control" placeholder="*아이디 (최대 14자 입력가능)" minlength="5" maxlength="14" onchange="reset()" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+  				<input type="text" name="id" id="userId" class="form-control" placeholder="*아이디 (최대 14자 입력가능)" minlength="5" maxlength="14" aria-label="Recipient's username" aria-describedby="button-addon2" required>
   				<div class="input-group-append">
     				<button class="btn btn-outline-secondary" type="button" id="button-addon2">중복확인</button>
   				</div>

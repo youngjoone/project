@@ -27,4 +27,7 @@ public class ReviewDAO {
 	public void deleteReview(MovieVO movieVO) {
 		sqlSession.delete("mapper.review.cancleReview2", movieVO);
 	}
+	public void cancleReview(String ticketNo) {
+		sqlSession.delete("mapper.review.cancleReview", ticketNo);
+	}
 }
