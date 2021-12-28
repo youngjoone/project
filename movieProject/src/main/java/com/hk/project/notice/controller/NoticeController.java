@@ -32,7 +32,8 @@ public class NoticeController {
 	@RequestMapping(value="/movie/notice", method= {RequestMethod.GET , RequestMethod.POST})
 	public String movieNoticeList(Model model,@ModelAttribute NoticeVO noticeVO) {
 		
-		noticeService.viewCount(noticeVO.getNoticeNO());
+//		//조회수 증가
+//		noticeService.viewCount(noticeVO.getNoticeNO());
 		
 		List<NoticeVO> noticesList = noticeService.listNotices();
 		model.addAttribute("noticesList", noticesList);
@@ -68,9 +69,12 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="/movie/notice/view" , method=RequestMethod.GET)
-	public String movienoticeView(Model model, @RequestParam("noticeNO") int noticeNO) {
+	public String movienoticeView(Model model, @RequestParam("noticeNO") int noticeNO, @ModelAttribute NoticeVO noticeVO) {
 		
-		NoticeVO noticeVO = noticeService.viewNotice(noticeNO);
+		//조회수 증가
+		noticeService.viewCount(noticeVO.getNoticeNO());
+		
+		noticeVO = noticeService.viewNotice(noticeNO);
 		model.addAttribute("noticeVO", noticeVO);
 		
 		return "noticeView";

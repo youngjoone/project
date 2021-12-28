@@ -41,7 +41,7 @@ $(document).ready(function() {
                    if(data.id == 'false') {  //중복x
                 		$('#checkDup').text("사용 가능한 아이디입니다.");
                 	   	$("#checkDup").css("color","#7BC379");
-                	   	$('#userId').attr("disabled",true); 
+                	   	$('#userId').attr("readonly",true); 
                 	   	if($('#userId').val().length<5){
     						$('#checkDup').text("5자 이상 입력해주세요.");
       						$("#checkDup").css("color","red");
