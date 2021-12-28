@@ -122,10 +122,10 @@ a:hover {
     </tr>
   </thead>
   <tbody>
-    <c:forEach var="noticeVO" items="${noticeVOList}" end="5">
+    <c:forEach var="noticeVO" items="${noticeVOList}" end="5" varStatus="noticeNum">
 	    
 	    <tr>
-     		<th scope="row">${noticeVO.noticeNO}</th>
+     		<th scope="row">${noticeNum.count}</th>
      		<td>${noticeVO.category}</td>
       		<td><a href="notice/view?noticeNO=${noticeVO.noticeNO}">${noticeVO.nTitle}</a></td>
       		<td><fmt:formatDate value="${noticeVO.date}" pattern="yyyy/MM/dd"/></td>
