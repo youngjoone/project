@@ -20,15 +20,26 @@ public class MainController {
 
 	@RequestMapping(value="/movie/main", method={RequestMethod.GET , RequestMethod.POST})
 	public String mainPage(Model model) {
+		long startTime = System.currentTimeMillis();
+		
 		List<NoticeVO> noticeVOList = mainService.getNoticeVOList();
 		model.addAttribute("noticeVOList", noticeVOList);
+		
+		long endTime1 = System.currentTimeMillis();
 		List<MovieVO> movieVOList = mainService.getMovieVOList();
 		model.addAttribute("movieVOList", movieVOList);
+		
+		long endTime2 = System.currentTimeMillis();
+		
+		System.out.println("DIFF = " + (endTime2 - startTime));
+		System.out.println("DIFF1 = " + (endTime2 - endTime1));
+		
 		return "main";
 	}
 	
 	@RequestMapping(value="/admin/main", method={RequestMethod.GET , RequestMethod.POST})
 	public String adminMainPage(Model model) {
+		
 		List<NoticeVO> noticeVOList = mainService.getNoticeVOList();
 		model.addAttribute("noticeVOList", noticeVOList);
 		List<MovieVO> movieVOList = mainService.getMovieVOList();

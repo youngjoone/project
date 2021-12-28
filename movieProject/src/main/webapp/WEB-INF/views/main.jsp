@@ -47,7 +47,6 @@
 	href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/template/assets/css/dashforge.dashboard.css">
-</head>
 <style>
 p {
 	text-align: center;
@@ -65,6 +64,7 @@ a:hover {
 	color: black;
 }
 </style>
+</head>
 
 <body>
 <header>
