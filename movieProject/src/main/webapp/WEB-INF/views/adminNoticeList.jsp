@@ -170,7 +170,7 @@ function muldelete() {
 				</tr>
 			</c:when>
 			<c:when test="${!empty noticesList}">
-				<c:forEach var="noticeVO" items="${noticesList}" end="9" varStatus="noticeNum">
+				<c:forEach var="noticeVO" items="${noticesList}" varStatus="noticeNum">
 
 					<tr align="center">
 						
