@@ -19,13 +19,13 @@ public class FileDownloadController {
     public void fileDownload(HttpServletRequest request,HttpServletResponse response) throws Exception {
         //String path =  request.getSession().getServletContext().getRealPath("저장경로");
         
-		String POSTER_IMAGE_REPO = "c:\\poster_image";
+		String POSTER_IMAGE_REPO = "/home/ubuntu/image";
 		String posterName = request.getParameter("posterName");
 		String mid = request.getParameter("mid");
 		
 		OutputStream out = response.getOutputStream();
 		//파일경로
-		String path = POSTER_IMAGE_REPO +"\\"+mid+"\\"+posterName;
+		String path = POSTER_IMAGE_REPO +"/"+mid+"/"+posterName;
 		File poster = new File(path);
 		
 	//파일 다운로드
